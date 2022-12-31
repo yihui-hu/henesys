@@ -63,6 +63,14 @@ const Home = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (showAddBookmark) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showAddBookmark])
+
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`api/your-bookmarks`, {
       method: "POST",

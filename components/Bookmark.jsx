@@ -25,7 +25,7 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView, delete
         className="bookmark-item"
         initial={{ y: "30px", opacity: 0 }}
         animate={{ y: "0px", opacity: 1 }}
-        transition={{ duration: 0.5, type: "spring", delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.02}}
+        transition={{ duration: 0.5, type: "spring", delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.01}}
         onMouseEnter={() => setHoverInfo(true)}
         onMouseLeave={() => setHoverInfo(false)}
       >

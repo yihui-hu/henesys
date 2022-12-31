@@ -25,7 +25,7 @@
 
 .add-bookmark-input {
   width: 100%;
-  border: 1px solid #eeeeee;
+  border: 1.5px solid #eeeeee;
   background-color: #f7f7f7;
   border-radius: 0.5rem;
   padding-inline: 1rem;
@@ -145,6 +145,16 @@ textarea {
 }
 
 @media screen and (max-width: 1024px) {
+  .add-bookmark-container {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 53%,
+      rgba(255, 255, 255, 1) 90%
+    );
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  }
+
   .add-bookmark-modal {
     font-size: 1.7vw;
     background-color: white;
@@ -176,10 +186,25 @@ textarea {
 }
 
 @media screen and (max-width: 480px) {
+  .add-bookmark-container {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    background: white;
+  }
+
   .add-bookmark-modal {
-    width: 92vw;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
     font-size: 3.8vw;
     padding: 1rem;
+    background: white;
+    box-shadow: none;
   }
 
   .add-bookmark-tag {
@@ -189,7 +214,7 @@ textarea {
     white-space: nowrap;
 
     font-size: 4vw;
-    padding-block: 2vw;
+    padding-block: 1.5vw;
     padding-inline: 4vw;
   }
 

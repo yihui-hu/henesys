@@ -97,7 +97,7 @@
   padding-block: 0.5rem;
   border: 0px solid black;
   border-radius: 100px;
-  background-color: rgb(42, 41, 41);
+  background-color: black;
   color: white;
   cursor: pointer;
   transition: 0.15s ease;
@@ -136,6 +136,7 @@
   .home-container {
     margin-top: 12vw;
     padding: 2vw;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
   }
 
   .home-search-tags-container {
@@ -215,7 +216,7 @@
     white-space: nowrap;
 
     font-size: 4vw;
-    padding-block: 2vw;
+    padding-block: 1.5vw;
     padding-inline: 4vw;
   }
 
@@ -232,13 +233,14 @@
     background-color: black;
     border: 1px solid rgb(255, 255, 255, 0.2);
     border-radius: 200px;
-    width: 14vw;
-    height: 14vw;
+    width: 16vw;
+    height: 16vw;
     position: fixed;
     z-index: 18;
     bottom: 4vw;
     right: 4vw;
     font-size: 8vw;
+    transition: 0.2s ease;
   }
 
   .add-first-bookmark-message {

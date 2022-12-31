@@ -77,7 +77,7 @@ const Landing = () => {
               <motion.div
                 initial={{ y: "30px", opacity: 0 }}
                 animate={{ y: "0px", opacity: 1 }}
-                transition={{ duration: 0.5, type: "spring", delay: 0.15 }}
+                transition={{ duration: 0.5, type: "spring", delay: 0.13 }}
               >
                 <div className="landing-modal">
                   save / add either files (images, pdfs, etc), urls or
@@ -91,7 +91,7 @@ const Landing = () => {
               <motion.div
                 initial={{ y: "30px", opacity: 0 }}
                 animate={{ y: "0px", opacity: 1 }}
-                transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+                transition={{ duration: 0.5, type: "spring", delay: 0.16 }}
               >
                 <div className="landing-modal">dk, dc</div>
                 <h4 className="landing-modal-caption">how.jpg</h4>
@@ -99,7 +99,7 @@ const Landing = () => {
               <motion.div
                 initial={{ y: "30px", opacity: 0 }}
                 animate={{ y: "0px", opacity: 1 }}
-                transition={{ duration: 0.5, type: "spring", delay: 0.25 }}
+                transition={{ duration: 0.5, type: "spring", delay: 0.19 }}
               >
                 <div className="landing-modal">
                   i love are.na, and wanted to try building a simpler, less

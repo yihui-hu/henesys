@@ -13,7 +13,7 @@ const handler = async (req, res) => {
 
     const bookmarks = await Bookmark.find({
       username: username,
-      tags: { $all: tags },
+      tags: { $in: tags },
       timestamp: { $lt: lastTimestamp },
     })
       .limit(limit)

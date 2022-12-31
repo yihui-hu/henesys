@@ -219,7 +219,6 @@ fade-info {
     }
   
     fade-text {
-      position: absolute;
       bottom: calc(12vw);
       border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
       width: calc(100% - 2px);
@@ -233,14 +232,15 @@ fade-info {
     }
   
     fade-info {
-      position: absolute;
-      bottom: 0;
+      z-index: 999999;
+      bottom: 5vw;
       right: 40%;
-      width: 10%;
-      height: 2vw;
+      width: 20%;
+      height: 4vw;
       background-image: linear-gradient(
         to right,
         rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 1) 100%
       );
     }

@@ -30,7 +30,6 @@ const Community = () => {
   const [loading, setLoading] = useState(true);
   const [endOfBookmarks, setEndOfBookmarks] = useState(false);
 
-  const [deletedBookmarksCount, setDeletedBookmarksCount] = useState(0);
   const [bookmarkFullView, setBookmarkFullView] = useState(false);
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
 
@@ -101,30 +100,6 @@ const Community = () => {
 
     setLoading(false);
     setSearchTagsMode(false);
-  }
-
-  async function deleteBookmark(bookmark) {
-    const res = await fetch("api/delete-bookmark", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": token,
-      },
-      body: JSON.stringify({
-        bookmark,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (data.status == "ok") {
-      let new_bookmarks = bookmarks.filter((item) => item !== bookmark);
-      setBookmarks(new_bookmarks);
-      setBookmarkFullView(false);
-      setDeletedBookmarksCount(deletedBookmarksCount + 1);
-    } else {
-      console.log(data.error);
-    }
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
@@ -258,10 +233,10 @@ const Community = () => {
                       bookmark={item}
                       key={i}
                       index={i}
-                      deleteBookmark={deleteBookmark}
+                      deleteBookmark={null}
                       communityView={true}
                       showBookmarkFullView={showBookmarkFullView}
-                      deletedBookmarks={deletedBookmarksCount}
+                      deletedBookmarks={0}
                     />
                   );
                 })}
@@ -277,7 +252,7 @@ const Community = () => {
               </h4>
             )}
             {!loading &&
-              bookmarks.length + deletedBookmarksCount >= 47 &&
+              bookmarks.length >= 47 &&
               !endOfBookmarks && (
                 <div className="show-more-button-container">
                   <button
@@ -300,12 +275,6 @@ const Community = () => {
               <div className="bookmark-full-view">
                 <h2>{bookmarkFullViewData.username}</h2>
                 <h4>{bookmarkFullViewData.timestamp}</h4>
-                <button
-                  type="button"
-                  onClick={() => deleteBookmark(bookmarkFullViewData)}
-                >
-                  Delete bookmark
-                </button>
                 <button
                   type="button"
                   onClick={() => setBookmarkFullView(false)}

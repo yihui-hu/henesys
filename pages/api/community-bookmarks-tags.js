@@ -11,7 +11,7 @@ const handler = async (req, res) => {
     const limit = 48;
 
     const bookmarks = await Bookmark.find({
-      tags: { $all: tags },
+      tags: { $in: tags },
       timestamp: { $lt: lastTimestamp },
     })
       .limit(limit)

@@ -285,7 +285,7 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
               )}
               {!filesUploaded && (
                 <h4 className="add-bookmark-input-header">
-                  Add text or URL instead
+                  {inputFocused ? "Add text or URL" : "Add text or URL instead"}
                 </h4>
               )}
               {!filesUploaded && (
