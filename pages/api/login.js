@@ -26,7 +26,7 @@ const handler = async (req, res) => {
           username: user.username,
           email: user.email,
         },
-        process.env.SECRET_KEY
+        process.env.FO_FO_JWT_SECRET_KEY
       );
 
       return res.json({ status: "ok", token: token });

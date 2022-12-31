@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   const token = req.headers["x-access-token"];
   const { bookmark } = req.body;
   try {
-    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
     await Bookmark.findOneAndDelete({
       username: decoded.username,
       timestamp: bookmark.timestamp,

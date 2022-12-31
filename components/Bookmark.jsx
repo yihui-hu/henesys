@@ -41,7 +41,7 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView, delete
             { text && ((!communityView) || (communityView && hoverInfo)) && 
               <h4 className="bookmark-info-text">{ note ? `Note: ${truncate(note, 25)}` : "text" }<fade-info/></h4> }
             { url  && ((!communityView) || (communityView && hoverInfo)) && 
-              <h4 className="bookmark-info-text"><a href={url} target="_blank">↗ { metadata.title ? truncate(metadata.title, 21) : url }</a><fade-info/></h4> }
+              <h4 className="bookmark-info-text"><a href={url} target="_blank" rel="noreferrer">↗ { metadata.title ? truncate(metadata.title, 21) : url }</a><fade-info/></h4> }
             <h4 className="bookmark-info-timestamp">{ <ReactTimeAgo date={parseInt(timestamp)} locale="en-US" timeStyle="twitter" /> }</h4>
         </div>
       </motion.div>

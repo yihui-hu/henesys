@@ -4,15 +4,15 @@ const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
 
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  region: process.env.S3_REGION,
+  accessKeyId: process.env.FO_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.FO_AWS_SECRET,
+  region: process.env.FO_S3_REGION,
 });
 
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded_token = jwt.verify(token, process.env.SECRET_KEY);
+    const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
     // create bookmark object with relevant metadata
     let { file, text, url, metadata, note, tags } = req.body;

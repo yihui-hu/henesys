@@ -8,7 +8,7 @@ const handler = async (req, res) => {
   const limit = 48;
 
   try {
-    jwt.verify(token, process.env.SECRET_KEY);
+    jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
     const bookmarks = await Bookmark.find({
       tags: { $all: tags },
       timestamp: { $lt: lastTimestamp },

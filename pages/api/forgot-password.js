@@ -7,9 +7,9 @@ const aws = require("aws-sdk");
 // configuring nodemailer with aws ses
 let transporter = nodemailer.createTransport({
   SES: new aws.SES({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.SES_REGION,
+    accessKeyId: process.env.FO_AWS_ACCESS_KEY,
+    secretAccessKey: process.env.FO_AWS_SECRET,
+    region: process.env.FO_SES_REGION,
     apiVersion: "2010-12-01",
   }),
 });
@@ -27,7 +27,7 @@ const handler = async (req, res) => {
 
     const token = jwt.sign(
       { username: user.username, email: user.email },
-      process.env.SECRET_KEY,
+      process.env.FO_JWT_SECRET_KEY,
       { expiresIn: "10m" }
     );
     const url_token = token.replace(/\./g, "%25dot%25");
