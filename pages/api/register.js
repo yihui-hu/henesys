@@ -14,10 +14,18 @@ const handler = async (req, res) => {
     // });
 
     // res.json({ status: "ok", message: "Successfully registered user." });
-    res.json({ status: "ok", message: "Not open for sign ups yet." });
+    res.json({ status: "ok", message: "Not accepting new users at the moment." });
   } catch (err) {
     return res.json({ status: "error", error: err });
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "4mb",
+    },
+  },
+};
 
 export default connectDB(handler);

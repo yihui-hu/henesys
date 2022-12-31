@@ -35,13 +35,13 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView, delete
           { text && <TextPreview text={text} /> }
         </div>
         <div className="bookmark-info">
-            { (communityView && !hoverInfo) && <h4 className="bookmark-info-text">{ truncate(`added by ${username}`, 21) }</h4> }
+            { (communityView && !hoverInfo) && <h4 className="bookmark-info-text">{ `added by ${username}` }</h4> }
             { file && ((!communityView) || (communityView && hoverInfo)) && 
-              <h4 className="bookmark-info-text">{ truncate(metadata.fileName, 25) }<fade-info/></h4> }
+              <h4 className="bookmark-info-text">{ metadata.fileName }<fade-info/></h4> }
             { text && ((!communityView) || (communityView && hoverInfo)) && 
-              <h4 className="bookmark-info-text">{ note ? `Note: ${truncate(note, 25)}` : "text" }<fade-info/></h4> }
+              <h4 className="bookmark-info-text">{ note ? note : "" }<fade-info/></h4> }
             { url  && ((!communityView) || (communityView && hoverInfo)) && 
-              <h4 className="bookmark-info-text"><a href={url} target="_blank" rel="noreferrer">↗ { metadata.title ? truncate(metadata.title, 21) : url }</a><fade-info/></h4> }
+              <h4 className="bookmark-info-text"><a href={url} target="_blank" rel="noreferrer">↗ { metadata.title ? metadata.title : url }</a><fade-info/></h4> }
             <h4 className="bookmark-info-timestamp">{ <ReactTimeAgo date={parseInt(timestamp)} locale="en-US" timeStyle="twitter" /> }</h4>
         </div>
       </motion.div>

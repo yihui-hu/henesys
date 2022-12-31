@@ -27,7 +27,6 @@ const handler = async (req, res) => {
         { Bucket: "field-observer", Key: filename },
         (err, data) => {
           console.error(err);
-          console.log(data);
         }
       );
     }
@@ -39,7 +38,6 @@ const handler = async (req, res) => {
         { Bucket: "field-observer", Key: filename },
         (err, data) => {
           console.error(err);
-          console.log(data);
         }
       );
     }

@@ -37,7 +37,7 @@ const Register = () => {
       return;
     }
 
-    const response = await fetch("/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Register = () => {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
             required
             className="auth-input"
           />

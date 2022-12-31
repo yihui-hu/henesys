@@ -78,11 +78,12 @@
 }
 
 .bookmark-info-text {
-  width: 60%;
+  max-width: 60%;
   color: #acacac;
   font-weight: 600;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .bookmark-info-timestamp {
@@ -112,19 +113,6 @@ fade-text {
     to bottom,
     rgba(255, 255, 255, 0.2),
     rgba(255, 255, 255, 0.92),
-    rgba(255, 255, 255, 1) 100%
-  );
-}
-
-fade-info {
-  position: absolute;
-  bottom: 0;
-  right: 40%;
-  width: 10%;
-  height: 1.5vw;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 1) 100%
   );
 }
@@ -172,19 +160,6 @@ fade-info {
       rgba(255, 255, 255, 1) 100%
     );
   }
-
-  fade-info {
-    position: absolute;
-    bottom: 0;
-    right: 40%;
-    width: 10%;
-    height: 2vw;
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -227,20 +202,6 @@ fade-info {
         to bottom,
         rgba(255, 255, 255, 0.2),
         rgba(255, 255, 255, 0.92),
-        rgba(255, 255, 255, 1) 100%
-      );
-    }
-  
-    fade-info {
-      z-index: 999999;
-      bottom: 5vw;
-      right: 40%;
-      width: 20%;
-      height: 4vw;
-      background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 1) 100%
       );
     }

@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
-    const username = decoded.username;
+    const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    const username = decoded_token.username;
 
     const { lastTimestamp, tags } = req.body;
     const limit = 48;
