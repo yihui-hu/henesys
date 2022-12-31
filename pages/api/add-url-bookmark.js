@@ -1,9 +1,9 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
 const jwt = require("jsonwebtoken");
+const aws = require("aws-sdk");
 const reachableUrl = require("reachable-url");
 const puppeteer = require("puppeteer");
-const aws = require("aws-sdk");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.FO_AWS_ACCESS_KEY,
@@ -14,9 +14,8 @@ const s3 = new aws.S3({
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    // create bookmark object with relevant metadata
     let { file, text, url, metadata, note, tags } = req.body;
 
     if (reachableUrl.isReachable(await reachableUrl(url))) {
@@ -66,17 +65,15 @@ const handler = async (req, res) => {
         metadata = {
           title: title == undefined ? null : title,
           description: description == undefined ? null : description,
-          preview_image_url:
-            preview_image_url == undefined ? null : preview_image_url,
+          preview_image_url: preview_image_url == undefined ? null : preview_image_url,
         };
       } catch (err) {
-        console.log(err);
         return res.json({ status: "error", error: "Error saving url." });
       }
     }
 
     const bookmark = {
-      username: decoded.username,
+      username: decoded_token.username,
       file: file,
       text: text,
       url: url,
@@ -99,10 +96,10 @@ const handler = async (req, res) => {
 
 export const config = {
   api: {
-      bodyParser: {
-          sizeLimit: '4mb'
-      }
-  }
-}
+    bodyParser: {
+      sizeLimit: "4mb",
+    },
+  },
+};
 
 export default connectDB(handler);

@@ -14,7 +14,6 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    // create bookmark object with relevant metadata
     let { file, text, url, metadata, note, tags } = req.body;
 
     if (file != null) {
@@ -31,7 +30,10 @@ const handler = async (req, res) => {
         const { Location } = await s3.upload(params).promise();
         file = Location;
       } catch (err) {
-        return res.json({ status: "error", error: "Something went wrong." });
+        return res.json({
+          status: "error",
+          error: "Unable to add bookmark. Please try again later.",
+        });
       }
     }
 
@@ -50,16 +52,19 @@ const handler = async (req, res) => {
     await Bookmark.create(bookmark);
     return res.json({ status: "ok", bookmark: bookmark });
   } catch (err) {
-    return res.json({ status: "error", error: "Unable to add bookmark. Please try again later." });
+    return res.json({
+      status: "error",
+      error: "Unable to add bookmark. Please try again later.",
+    });
   }
 };
 
 export const config = {
   api: {
-      bodyParser: {
-          sizeLimit: '4mb'
-      }
-  }
-}
+    bodyParser: {
+      sizeLimit: "4mb",
+    },
+  },
+};
 
 export default connectDB(handler);
