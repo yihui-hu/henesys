@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
@@ -8,6 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
 
   async function loginUser(event) {
     event.preventDefault();
@@ -27,7 +29,11 @@ const Login = () => {
 
     if (data.status == "ok") {
       localStorage.setItem("token", data.token);
-      window.location.href = "/home";
+      setErrorMsg("");
+      setError(false);
+      setSuccessMsg("Logging you in...");
+      setSuccess(true);
+      router.push("/home");
     } else {
       setPassword("");
       setErrorMsg(data.error);
@@ -36,54 +42,57 @@ const Login = () => {
   }
 
   return (
-    <div className="auth-container">
-      <div className="auth-nav" onClick={() => router.push("/")}>
-        field-observer
-      </div>
-      <div className="auth-modal">
-        <form onSubmit={loginUser}>
-          <h4 className="auth-input-header">Email</h4>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="auth-input"
-          />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 className="auth-input-header">Password</h4>
-            <a
-              onClick={() => router.push("/forgot-password")}
-              className="auth-forgot-password"
-            >
-              Forgot?
-            </a>
-          </div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="auth-input"
-          />
-          {error && <p className="auth-error-message">{errorMsg}</p>}
-          <div className="auth-button-container">
-            <button
-              type="button"
-              onClick={() => router.push("/register")}
-              className="auth-secondary-button"
-            >
-              Sign up instead
-            </button>
+    <>
+      <div className="auth-container">
+        <div className="auth-nav" onClick={() => router.push("/")}>
+          field-observer
+        </div>
+        <div className="auth-modal">
+          <form onSubmit={loginUser}>
+            <h4 className="auth-input-header">Email</h4>
             <input
-              type="submit"
-              value="Login"
-              className="auth-primary-button"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="auth-input"
             />
-          </div>
-        </form>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h4 className="auth-input-header">Password</h4>
+              <a
+                onClick={() => router.push("/forgot-password")}
+                className="auth-forgot-password"
+              >
+                Forgot?
+              </a>
+            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="auth-input"
+            />
+            {error && <p className="auth-error-message">{errorMsg}</p>}
+            {success && <p className="auth-success-message">{successMsg}</p>}
+            <div className="auth-button-container">
+              <button
+                type="button"
+                onClick={() => router.push("/register")}
+                className="auth-secondary-button"
+              >
+                Sign up instead
+              </button>
+              <input
+                type="submit"
+                value="Login"
+                className="auth-primary-button"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

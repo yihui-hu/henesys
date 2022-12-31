@@ -30,11 +30,11 @@ const Profile = () => {
 
   function logout() {
     localStorage.removeItem("token");
-    window.location.href = "/";
+    router.push("/");
   }
 
   function goHome() {
-    window.location.href = "/home";
+    router.push("/home");
   }
 
   return (

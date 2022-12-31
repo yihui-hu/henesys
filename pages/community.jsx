@@ -92,9 +92,9 @@ const Community = () => {
         setLastTimestamp(data.bookmarks.at(-1).timestamp);
       }
 
-      // if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
-      //   alert("No more bookmarks to load.")
-      // }
+      if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
+        alert("No more bookmarks to load.")
+      }
     } else {
       console.log(data.error);
     }
@@ -216,7 +216,7 @@ const Community = () => {
           />
 
           <div className="home-container">
-            <div className="home-search-input-container">
+            <div className="home-search-tags-container">
               <svg
                 className="search-logo"
                 width="24"
@@ -232,10 +232,10 @@ const Community = () => {
               </svg>
               <ReactTags
                 classNames={{
-                  tag: "home-add-bookmark-tag",
-                  selected: "home-add-bookmark-tag-container",
-                  remove: "home-add-bookmark-remove-tag",
-                  tagInputField: "home-add-bookmark-search-input",
+                  tag: "home-tag",
+                  selected: "home-tag-container",
+                  remove: "home-remove-tag",
+                  tagInputField: "home-search-input",
                 }}
                 tags={tags}
                 inputFieldPosition="inline"
