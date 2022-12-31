@@ -1,0 +1,132 @@
+.auth-container {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/grid-bg.svg") center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.auth-nav {
+  position: fixed;
+  top: 2vw;
+  left: 2vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+.auth-modal {
+  font-size: 1.1vw;
+  background-color: white;
+  width: 25rem;
+  max-height: 80vh;
+  overflow: scroll;
+  border-radius: 0.5rem;
+  padding: 1.2rem;
+  border: 1px solid #e7e7e7;
+  box-shadow: rgba(17, 12, 46, 0.05) 0px 48px 100px 0px;
+}
+
+.auth-input {
+  width: 100%;
+  border: 1px solid #eeeeee;
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  margin-bottom: 1rem;
+  outline: 0;
+  transition: 0.1s ease;
+}
+
+.auth-input:focus {
+  border: 1.5px solid black;
+}
+
+.auth-input-header {
+  margin-bottom: 0.5rem;
+}
+
+.auth-error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.auth-success-message {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+.auth-button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.auth-secondary-button {
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.auth-secondary-button:hover {
+  background-color: #f7f7f7;
+}
+
+.auth-primary-button {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  background-color: black;
+  color: #fafafa;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.auth-primary-button:hover {
+  background-color: #535353;
+  border: 1px solid #535353;
+}
+
+.auth-forgot-password {
+  cursor: pointer;
+  color: #797979;
+}
+
+.auth-forgot-password:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+  .auth-nav {
+    font-size: 2vw;
+  }
+
+  .auth-modal {
+    padding: 1.1rem;
+    font-size: 1.7vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .auth-nav {
+    top: 4vw;
+    left: 4vw;
+    font-size: 4.5vw;
+  }
+
+  .auth-modal {
+    width: 92vw;
+    padding: 1rem;
+    font-size: 3.8vw;
+  }
+}

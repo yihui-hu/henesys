@@ -1,0 +1,252 @@
+.home-container {
+  margin-top: 8vw;
+  padding: 2vw;
+}
+
+.home-search-tags-container {
+  display: flex;
+  margin: auto;
+  align-items: center;
+
+  gap: 0.7vw;
+  margin-bottom: 1.5vw;
+}
+
+.search-logo {
+  width: 1.4vw;
+  height: 1.4vw;
+}
+
+.home-search-input {
+  border: 0px solid black;
+  outline: 0px;
+  font-weight: 400;
+
+  font-size: 1.2vw;
+  padding-block: 0.4vw;
+  padding-inline: 1vw;
+  width: 50vw;
+}
+
+.home-tag {
+  color: white;
+  background-color: black;
+  border-radius: 100px;
+  white-space: nowrap;
+
+  font-size: 1.2vw;
+  padding-block: 0.4vw;
+  padding-inline: 1vw;
+}
+
+.home-tag-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7vw;
+}
+
+.home-remove-tag {
+  color: rgb(139, 139, 139);
+  background-color: rgba(255, 255, 255, 0);
+  border: 0px solid black;
+  padding: 0;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+
+  margin-left: 0.7vw;
+}
+
+.add-bookmark-button {
+  width: calc(90vw / 4);
+  height: calc(90vw / 4);
+  font-size: 5vw;
+
+  display: grid;
+  place-items: center;
+  color: #d6d6d6;
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.add-bookmark-button:hover {
+  color: #cacaca;
+  background-color: #e7e7e7;
+}
+
+.bookmarks-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+.show-more-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-more-button {
+  align-self: flex-end;
+  font-size: 1.2vw;
+  margin-top: 1.5vw;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 0px solid black;
+  border-radius: 100px;
+  background-color: rgb(42, 41, 41);
+  color: white;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.show-more-button:hover {
+  background-color: rgb(71, 71, 71);
+}
+
+.show-more-button:active {
+  background-color: black;
+}
+
+.bookmark-full-view {
+  position: absolute;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: white;
+}
+
+.add-first-bookmark-message {
+  margin-top: 1vw;
+}
+
+::placeholder {
+  color: #afafaf;
+}
+
+@media screen and (max-width: 1024px) {
+  .home-container {
+    margin-top: 12vw;
+    padding: 2vw;
+  }
+
+  .home-search-tags-container {
+    gap: 1.5vw;
+  }
+
+  .search-logo {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+
+  .home-search-input {
+    font-size: 1.8vw;
+    padding-block: 0.4vw;
+    padding-inline: 1vw;
+    width: 50vw;
+  }
+
+  .home-tag {
+    color: white;
+    background-color: black;
+    border-radius: 100px;
+    white-space: nowrap;
+
+    font-size: 1.8vw;
+    padding-block: 0.4vw;
+    padding-inline: 1.5vw;
+  }
+
+  .home-tag-container {
+    gap: 1vw;
+  }
+
+  .home-remove-tag {
+    margin-left: 1vw;
+  }
+
+  .add-bookmark-button {
+    width: calc(92vw / 3);
+    height: calc(92vw / 3);
+    font-size: 8vw;
+  }
+
+  .add-first-bookmark-message {
+    margin-top: 1.5vw;
+  }
+
+  .show-more-button {
+    font-size: 1.8vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-container {
+    margin-top: 25vw;
+    padding: 4vw;
+  }
+
+  .home-search-tags-container {
+    gap: 3vw;
+    margin-bottom: 4vw;
+  }
+
+  .search-logo {
+    display: none;
+  }
+
+  .home-search-input {
+    font-size: 4vw;
+    width: 92vw;
+  }
+
+  .home-tag {
+    color: white;
+    background-color: black;
+    border-radius: 100px;
+    white-space: nowrap;
+
+    font-size: 4vw;
+    padding-block: 2vw;
+    padding-inline: 4vw;
+  }
+
+  .home-tag-container {
+    gap: 3vw;
+  }
+
+  .home-remove-tag {
+    margin-left: 3vw;
+  }
+
+  .add-bookmark-button {
+    color: white;
+    background-color: black;
+    border: 1px solid rgb(255, 255, 255, 0.2);
+    border-radius: 200px;
+    width: 14vw;
+    height: 14vw;
+    position: fixed;
+    z-index: 18;
+    bottom: 4vw;
+    right: 4vw;
+    font-size: 8vw;
+  }
+
+  .add-first-bookmark-message {
+    margin-top: 1.5vw;
+  }
+
+  .show-more-button {
+    font-size: 4vw;
+    margin-bottom: 20vw;
+  }
+}

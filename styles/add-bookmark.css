@@ -1,0 +1,207 @@
+.add-bookmark-container {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-bookmark-modal {
+  font-size: 1.1vw;
+  background-color: white;
+  width: 30rem;
+  max-height: 80vh;
+  border-radius: 0.5rem;
+  padding: 1.2rem;
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 48px 100px 0px;
+  overflow: scroll;
+}
+
+.add-bookmark-input {
+  width: 100%;
+  border: 1px solid #eeeeee;
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  margin-bottom: 1rem;
+  outline: 0;
+  transition: 0.1s ease;
+}
+
+.add-bookmark-input:focus {
+  border: 1.5px solid black;
+}
+
+.add-bookmark-input-header {
+  margin-bottom: 0.5rem;
+}
+
+.add-bookmark-error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.add-bookmark-success-message {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+.add-bookmark-button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.add-bookmark-secondary-button {
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-bookmark-secondary-button:hover {
+  background-color: #f7f7f7;
+}
+
+.add-bookmark-primary-button {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  background-color: black;
+  color: #fafafa;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-bookmark-primary-button:hover {
+  background-color: #535353;
+  border: 1px solid #535353;
+}
+
+.add-bookmark-forgot-password {
+  cursor: pointer;
+  color: #797979;
+}
+
+.add-bookmark-forgot-password:hover {
+  text-decoration: underline;
+}
+
+.add-bookmark-tag {
+  color: white;
+  background-color: black;
+  border-radius: 100px;
+  white-space: nowrap;
+  margin-bottom: 0.7rem;
+
+  font-size: 1.2vw;
+  padding-block: 0.4vw;
+  padding-inline: 1vw;
+}
+
+.add-bookmark-tag-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.7vw;
+}
+
+.add-bookmark-remove-tag {
+  color: rgb(139, 139, 139);
+  background-color: rgba(255, 255, 255, 0);
+  border: 0px solid black;
+  padding: 0;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+
+  margin-left: 0.7vw;
+}
+
+.filepond--drop-label {
+  font-size: 1.1vw !important;
+  color: #afafaf !important;
+}
+
+.filepond--panel-root {
+  background-color: #f7f7f7 !important;
+  border: 1px solid #eeeeee !important;
+}
+
+textarea {
+  resize: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .add-bookmark-modal {
+    font-size: 1.7vw;
+    background-color: white;
+    padding: 1.1rem;
+  }
+
+  .add-bookmark-tag {
+    color: white;
+    background-color: black;
+    border-radius: 100px;
+    white-space: nowrap;
+
+    font-size: 1.8vw;
+    padding-block: 0.4vw;
+    padding-inline: 1.5vw;
+  }
+
+  .add-bookmark-tag-container {
+    column-gap: 1vw;
+  }
+
+  .add-bookmark-remove-tag {
+    margin-left: 1vw;
+  }
+
+  .filepond--drop-label {
+    font-size: 1.7vw !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .add-bookmark-modal {
+    width: 92vw;
+    font-size: 3.8vw;
+    padding: 1rem;
+  }
+
+  .add-bookmark-tag {
+    color: white;
+    background-color: black;
+    border-radius: 100px;
+    white-space: nowrap;
+
+    font-size: 4vw;
+    padding-block: 2vw;
+    padding-inline: 4vw;
+  }
+
+  .add-bookmark-tag-container {
+    column-gap: 3vw;
+  }
+
+  .add-bookmark-remove-tag {
+    margin-left: 3vw;
+  }
+
+  .filepond--drop-label {
+    font-size: 3.8vw !important;
+  }
+}

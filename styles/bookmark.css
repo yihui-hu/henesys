@@ -1,0 +1,248 @@
+.bookmark-modal-image {
+  width: calc(90vw / 4);
+  height: calc(90vw / 4);
+  border-radius: 0.5rem;
+  background-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.bookmark-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bookmark-modal-text {
+  font-size: 1vw;
+  background-color: white;
+  padding: 1vw;
+  width: calc(90vw / 4);
+  height: calc(90vw / 4);
+  border-radius: 0.5rem;
+  border: 1px solid rgb(236, 236, 236);
+  cursor: pointer;
+  transition: 0.1s ease;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.bookmark-modal-text-box {
+  height: 100%;
+  overflow: hidden;
+}
+
+.bookmark-modal-text-box h4 {
+  font-weight: normal;
+}
+
+.bookmark-modal-file {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  width: calc(90vw / 4);
+  height: calc(90vw / 4);
+  border-radius: 0.5rem;
+  border: 1px solid rgb(236, 236, 236);
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.bookmark-modal-file-text {
+  font-size: 1vw;
+  padding-inline: 1vw;
+  padding-block: 0.5rem;
+  border-radius: 100px;
+  color: #b7b7b7;
+  background-color: #f1f1f1;
+}
+
+.bookmark-modal-image:hover,
+.bookmark-modal-text:hover,
+.bookmark-modal-file:hover {
+  border: 1px solid #d5d5d5;
+}
+
+.bookmark-info {
+  font-size: 1vw;
+  display: flex;
+  width: calc(90vw / 4);
+  justify-content: space-between;
+  margin-top: 0.5vw;
+}
+
+.bookmark-info-text {
+  width: 60%;
+  color: #acacac;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bookmark-info-timestamp {
+  color: #acacac;
+  font-weight: normal;
+  align-self: flex-end;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+a:hover {
+  color: #929292;
+}
+
+fade-text {
+  position: absolute;
+  bottom: calc(2vw + 1px);
+  border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
+  right: calc(1px);
+  width: calc(100% - 2px);
+  height: 100px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+fade-info {
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+  width: 10%;
+  height: 1.5vw;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+@media screen and (max-width: 1024px) {
+  .bookmark-modal-image {
+    width: calc(92vw / 3);
+    height: calc(92vw / 3);
+  }
+
+  .bookmark-modal-text {
+    width: calc(92vw / 3);
+    height: calc(92vw / 3);
+    font-size: 1.6vw;
+    padding: 1.5vw;
+  }
+
+  .bookmark-modal-file {
+    width: calc(92vw / 3);
+    height: calc(92vw / 3);
+  }
+
+  .bookmark-modal-file-text {
+    font-size: 1.6vw;
+    padding-inline: 2vw;
+    padding-block: 1vw;
+  }
+
+  .bookmark-info {
+    font-size: 1.4vw;
+    width: calc(92vw / 3);
+    margin-top: 0.5vw;
+  }
+
+  fade-text {
+    position: absolute;
+    bottom: calc(3vw + 1px);
+    border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
+    width: calc(100% - 2px);
+    height: 100px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.92),
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+
+  fade-info {
+    position: absolute;
+    bottom: 0;
+    right: 40%;
+    width: 10%;
+    height: 2vw;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+}
+
+@media screen and (max-width: 480px) {
+    .bookmark-modal-image {
+      width: 92vw;
+      height: 92vw;
+    }
+  
+    .bookmark-modal-text {
+      width: 92vw;
+      height: 92vw;
+      font-size: 4vw;
+      padding: 4vw;
+    }
+  
+    .bookmark-modal-file {
+      width: 92vw;
+      height: 92vw;
+    }
+  
+    .bookmark-modal-file-text {
+      font-size: 4vw;
+      padding-inline: 6vw;
+      padding-block: 3vw;
+    }
+  
+    .bookmark-info {
+      font-size: 3.8vw;
+      width: 92vw;
+      margin-top: 2vw;
+      margin-bottom: 4vw;
+    }
+  
+    fade-text {
+      position: absolute;
+      bottom: calc(12vw);
+      border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
+      width: calc(100% - 2px);
+      height: 100px;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.92),
+        rgba(255, 255, 255, 1) 100%
+      );
+    }
+  
+    fade-info {
+      position: absolute;
+      bottom: 0;
+      right: 40%;
+      width: 10%;
+      height: 2vw;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 1) 100%
+      );
+    }
+  }
+  
