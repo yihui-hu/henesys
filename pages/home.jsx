@@ -123,7 +123,7 @@ const Home = () => {
       setBookmarkFullView(false);
       setDeletedBookmarksCount(deletedBookmarksCount + 1);
     } else {
-      console.log(data.error);
+      alert("Error deleting bookmark, please try again later.");
     }
   }
 
