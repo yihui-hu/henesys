@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation"
 
 const Error404 = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   
   return (
     <div>
       <h2>This page does not exist.</h2>
-      <h2 onClick={() => navigate("/")}>Return home</h2>
+      <h2 onClick={() => router.push("/")}>Return home</h2>
     </div>
   );
 };
