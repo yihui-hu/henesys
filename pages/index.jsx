@@ -1,27 +1,27 @@
 import { React } from "react";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";
 
 export default function Landing() {
   const router = useRouter();
-  
+
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <div className="landing-container">
         <div className="landing-navbar">
           <div className="landing-navbar-header">
             <h4 className="landing-navbar-logo">field-observer</h4>
-            <motion.h2
+            <m.h2
               className="landing-navbar-text"
               initial={{ y: "30px", opacity: 0 }}
               animate={{ y: "0px", opacity: 1 }}
               transition={{ duration: 0.5, type: "spring" }}
             >
               is a barebones bookmarking / <br></br> capture-anything site
-            </motion.h2>
+            </m.h2>
           </div>
-          <motion.div
+          <m.div
             className="landing-auth-button-container"
             initial={{ y: "30px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
@@ -41,22 +41,22 @@ export default function Landing() {
             >
               Login
             </button>
-          </motion.div>
+          </m.div>
         </div>
         <div className="landing-modal-container">
-          <motion.div
+          <m.div
             initial={{ y: "30px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
             transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
           >
-            <motion.div className="landing-modal">
+            <m.div className="landing-modal">
               this site is basically an are.na lite / mymind lite. you can use
               it however you like honestly. whether to jot down quick notes, or
               bookmark something interesting you came across
-            </motion.div>
+            </m.div>
             <h4 className="landing-modal-caption">what</h4>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             initial={{ y: "30px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
             transition={{ duration: 0.5, type: "spring", delay: 0.13 }}
@@ -69,16 +69,16 @@ export default function Landing() {
               organization)
             </div>
             <h4 className="landing-modal-caption">features.gif</h4>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             initial={{ y: "30px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
             transition={{ duration: 0.5, type: "spring", delay: 0.16 }}
           >
             <div className="landing-modal">dk, dc</div>
             <h4 className="landing-modal-caption">how.jpg</h4>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             initial={{ y: "30px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
             transition={{ duration: 0.5, type: "spring", delay: 0.19 }}
@@ -88,11 +88,11 @@ export default function Landing() {
               feature-full but also less complex version of it.
             </div>
             <h4 className="landing-modal-caption">why.pdf</h4>
-          </motion.div>
+          </m.div>
         </div>
       </div>
-    </>
+    </LazyMotion>
   );
-};
+}
 
-export { getServerSideProps }
+export { getServerSideProps };

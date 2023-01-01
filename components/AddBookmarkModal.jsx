@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { filesize } from "filesize";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
-import jwt from "jsonwebtoken";
+import { parseCookies } from 'nookies'
 import useMediaQuery from "../hooks/useMediaQuery";
 import Textarea from "react-textarea-autosize";
 import isUrl from "is-url";
@@ -225,8 +224,8 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
   };
 
   return (
-    <>
-      <motion.div
+    <LazyMotion features={domAnimation}>
+      <m.div
         className="add-bookmark-container"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -234,7 +233,7 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
         transition={{ duration: 0.15 }}
         onClick={() => (isDesktop ? setShown(false) : undefined)}
       >
-        <motion.div
+        <m.div
           className="add-bookmark-modal"
           initial={{ y: "15px", opacity: 0 }}
           animate={{ y: "0px", opacity: 1 }}
@@ -361,9 +360,9 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
               </div>
             </form>
           )}
-        </motion.div>
-      </motion.div>
-    </>
+        </m.div>
+      </m.div>
+    </LazyMotion>
   );
 };
 

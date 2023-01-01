@@ -7,10 +7,6 @@ import jwt from "jsonwebtoken";
 export default function Profile({ token, user }) {
   const router = useRouter();
 
-  useEffect(() => {
-
-  }, []);
-
   function logout() {
     destroyCookie(null, "fo_token");
     router.push("/");
