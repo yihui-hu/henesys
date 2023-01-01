@@ -11,7 +11,7 @@ const handler = async (req, res) => {
       browser = await puppeteer.launch({
         args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
         executablePath: await chromium.executablePath,
-        headless: true,
+        headless: false,
         ignoreHTTPSErrors: true,
       });
     } catch (err) {
@@ -19,27 +19,27 @@ const handler = async (req, res) => {
     }
 
     const page = await browser.newPage();
-    // await page.setUserAgent(
-    //   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
-    // );
+    await page.setUserAgent(
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+    );
     await page.goto(url, { waitUntil: "networkidle2" });
 
     try {
       const image_base64 = await page.screenshot({ encoding: "base64" });
 
-      // let title, description;
-      // try {
-      //   title = await page.$eval(
-      //     "head > meta[property='og:title']",
-      //     (element) => element.content
-      //   );
-      //   description = await page.$eval(
-      //     "head > meta[property='og:description']",
-      //     (element) => element.content
-      //   );
-      // } catch (err) {
-      //   console.log(err);
-      // }
+      let title, description;
+      try {
+        title = await page.$eval(
+          "head > meta[property='og:title']",
+          (element) => element.content
+        );
+        description = await page.$eval(
+          "head > meta[property='og:description']",
+          (element) => element.content
+        );
+      } catch (err) {
+        console.log(err);
+      }
 
       let metadata = {
         title: "testing",
