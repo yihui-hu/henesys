@@ -257,7 +257,7 @@ export default function Home({ token, profile_pic }) {
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
           <h4 className="add-first-bookmark-message">
-            No bookmarks with that tag found.
+            No bookmarks found.
           </h4>
         )}
         {!loading &&

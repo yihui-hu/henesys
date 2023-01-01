@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { getServerSideProps } from "../lib/authStaticPages";
 

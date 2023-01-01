@@ -1,4 +1,3 @@
-import { React } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";

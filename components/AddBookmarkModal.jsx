@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { useState } from "react";
 import { filesize } from "filesize";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";

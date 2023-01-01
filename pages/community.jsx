@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
@@ -216,7 +216,7 @@ export default function Community({ token, profile_pic }) {
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
           <h4 className="add-first-bookmark-message">
-            No bookmarks with that tag found.
+            No bookmarks found.
           </h4>
         )}
         {!loading && bookmarks.length >= 35 && !endOfBookmarks && (
