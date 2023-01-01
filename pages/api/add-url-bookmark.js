@@ -1,6 +1,7 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
-import chromium, { defaultViewport } from "chrome-aws-lambda";
+import chromium from "chrome-aws-lambda";
+import puppeteer from 'puppeteer-core';
 const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
 const reachableUrl = require("reachable-url");
@@ -31,7 +32,7 @@ const handler = async (req, res) => {
       // await page.goto(url, { waitUntil: "networkidle2" });
 
       // chrome-aws-lambda for vercel
-      const browser = await chromium.puppeteer.launch({
+      const browser = await puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
