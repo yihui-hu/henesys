@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 
     try {
       browser = await puppeteer.launch({
-        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security", '--no-sandbox', '--disable-setuid-sandbox'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
         ignoreDefaultArgs: ['--disable-extensions'],
         executablePath: await chromium.executablePath,
         ignoreHTTPSErrors: true,
