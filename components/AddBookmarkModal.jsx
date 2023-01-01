@@ -153,6 +153,8 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
         });
 
         const s3_data = await s3_response.json();
+        console.log("THIS IS THE S3_DATA");
+        console.log(s3_data.metadata);
         
         response = await fetch("api/add-url-bookmark", {
           method: "POST",
