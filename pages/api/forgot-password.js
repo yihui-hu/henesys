@@ -34,17 +34,21 @@ const handler = async (req, res) => {
     const link = `https://field-observer-next.vercel.app/reset-password/${url_token}`;
 
     // send email using nodemailer & aws ses
-    transporter.sendMail(
-      {
-        from: "field.observers@gmail.com",
-        to: req.body.email,
-        subject: "field-observer Password Reset",
-        text: `Here's your password reset link: ${link}. It will expire in 10 minutes.`,
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    try {
+      transporter.sendMail(
+        {
+          from: "field.observers@gmail.com",
+          to: req.body.email,
+          subject: "field-observer Password Reset",
+          text: `Here's your password reset link: ${link}. It will expire in 10 minutes.`,
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (err) {
+      return res.json({ status: "error", message: "Error sending password reset link. Please try again later." });
+    }
 
     return res.json({
       status: "ok",
