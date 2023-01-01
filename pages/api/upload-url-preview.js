@@ -2,19 +2,15 @@ import chromium from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
 const reachableUrl = require("reachable-url");
 
-const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-
 const handler = async (req, res) => {
   try {
     let { url } = req.body;
 
     if (reachableUrl.isReachable(await reachableUrl(url))) {
-      const executablePath = await chromium.executablePath || LOCAL_CHROME_EXECUTABLE
-
       const browser = await puppeteer.launch({
         args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
         defaultViewport: chromium.defaultViewport,
-        executablePath: executablePath,
+        executablePath: await chromium.executablePath,
         headless: true,
         ignoreHTTPSErrors: true,
       })
