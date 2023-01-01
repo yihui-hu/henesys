@@ -8,11 +8,7 @@ const handler = async (req, res) => {
     let browser;
 
     try {
-      browser = await puppeteer.launch({
-        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-        executablePath: await chromium.executablePath,
-        ignoreHTTPSErrors: true,
-      });
+      browser = await puppeteer.launch();
     } catch (err) {
       return res.json({
         status: "error",
