@@ -4,7 +4,7 @@ import chromium, { defaultViewport } from "chrome-aws-lambda";
 const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
 const reachableUrl = require("reachable-url");
-const puppeteer = require("puppeteer");
+// const puppeteer = require("puppeteer");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.FO_AWS_ACCESS_KEY,
