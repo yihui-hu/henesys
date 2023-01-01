@@ -47,10 +47,9 @@ const handler = async (req, res) => {
 
     try {
       browser = await puppeteer.launch({
-        args: [...minimal_args, "--hide-scrollbars", "--disable-web-security"],
-        defaultViewport: chromium.defaultViewport,
+        args: [...minimal_args],
         executablePath: await chromium.executablePath,
-        headless: chromium.headlesss,
+        headless: chromium.headless,
         ignoreHTTPSErrors: true,
       });
     } catch (err) {
@@ -61,7 +60,7 @@ const handler = async (req, res) => {
     await page.setUserAgent(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
     );
-    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.goto(url, { waitUntil: "domcontentloaded" });
 
     try {
       const image_base64 = await page.screenshot({ encoding: "base64" });
