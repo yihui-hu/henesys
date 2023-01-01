@@ -1,9 +1,9 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
 import chromium from "chrome-aws-lambda";
-import puppeteer from 'puppeteer-core';
-import aws from "@aws-sdk/client-s3";
+// import puppeteer from 'puppeteer-core';
 const jwt = require("jsonwebtoken");
+const aws = require("aws-sdk");
 const reachableUrl = require("reachable-url");
 // const puppeteer = require("puppeteer");
 
