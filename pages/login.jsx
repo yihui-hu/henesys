@@ -13,6 +13,7 @@ const Login = () => {
 
   async function loginUser(event) {
     event.preventDefault();
+    setSuccessMsg("Logging you in...");
 
     const response = await fetch("/api/login", {
       method: "POST",
@@ -31,13 +32,13 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       setErrorMsg("");
       setError(false);
-      setSuccessMsg("Logging you in...");
       setSuccess(true);
       router.push("/home");
     } else {
       setPassword("");
       setErrorMsg(data.error);
       setError(true);
+      setSuccess(false);
     }
   }
 
