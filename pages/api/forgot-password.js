@@ -31,7 +31,7 @@ const handler = async (req, res) => {
       { expiresIn: "10m" }
     );
     const url_token = token.replace(/\./g, "%25dot%25");
-    const link = `http://localhost:5173/reset-password/${url_token}`;
+    const link = `https://field-observer-next.vercel.app/reset-password/${url_token}`;
 
     // send email using nodemailer & aws ses
     transporter.sendMail(
