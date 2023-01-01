@@ -12,7 +12,7 @@ const s3 = new aws.S3({
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
     let { file, text, url, metadata, note, tags } = req.body;
 
@@ -38,7 +38,7 @@ const handler = async (req, res) => {
     }
 
     const bookmark = {
-      username: decoded_token.username,
+      username: decoded.username,
       file: file,
       text: text,
       url: url,

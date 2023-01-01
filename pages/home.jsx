@@ -2,20 +2,13 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
-import { useRouter } from "next/navigation";
-import jwt from "jwt-decode";
+import nookies from "nookies";
+import jwt from "jsonwebtoken";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
-export default function Home() {
-  const router = useRouter();
-
-  let token;
-  if (typeof window !== "undefined") {
-    token = localStorage.getItem("token");
-  }
-
+export default function Home({ token, profile_pic }) {
   if (typeof window !== "undefined") {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
@@ -23,7 +16,6 @@ export default function Home() {
   }
 
   const [showAddBookmark, setShowAddBookmark] = useState(false);
-  const [profilePic, setProfilePic] = useState(null);
 
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,27 +30,15 @@ export default function Home() {
   const [lastTimestamp, setLastTimestamp] = useState(9999);
 
   useEffect(() => {
-    if (token) {
-      const user = jwt(token);
+    getYourBookmarks(lastTimestamp);
 
-      if (!user) {
-        localStorage.removeItem("token");
-        router.push("/login");
-      } else {
-        setProfilePic(jwt(token).profile_pic);
-        getYourBookmarks(lastTimestamp);
+    function handleKeyDown(e) {
+      if (e.keyCode == 27) {
+        setBookmarkFullView(false);
+        setShowAddBookmark(false);
       }
-
-      function handleKeyDown(e) {
-        if (e.keyCode == 27) {
-          setBookmarkFullView(false);
-          setShowAddBookmark(false);
-        }
-      }
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      router.push("/login");
     }
+    document.addEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -90,7 +70,7 @@ export default function Home() {
         setBookmarks([...bookmarks, ...data.bookmarks]);
       }
 
-      if (data.bookmarks.length < 47) {
+      if (data.bookmarks.length < 35) {
         setEndOfBookmarks(true);
       }
 
@@ -163,7 +143,7 @@ export default function Home() {
           setBookmarks(data.bookmarks);
         }
 
-        if (data.bookmarks.length < 47) {
+        if (data.bookmarks.length < 35) {
           setEndOfBookmarks(true);
         }
 
@@ -213,7 +193,11 @@ export default function Home() {
 
   return (
     <>
-      <Navbar homeView={true} communityView={false} profilePic={profilePic} />
+      <Navbar 
+        homeView={true} 
+        communityView={false} 
+        profilePic={profile_pic} 
+      />
       <div className="home-container">
         <div className="home-search-tags-container">
           <svg
@@ -283,7 +267,7 @@ export default function Home() {
           </h4>
         )}
         {!loading &&
-          bookmarks.length + deletedBookmarksCount >= 47 &&
+          bookmarks.length + deletedBookmarksCount >= 35 &&
           !endOfBookmarks && (
             <div className="show-more-button-container">
               <button
@@ -330,5 +314,28 @@ export default function Home() {
       </AnimatePresence>
     </>
   );
-};
+}
 
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx);
+  const token = cookies.fo_token;
+
+  let user;
+  try {
+    user = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!user) {
+    nookies.destroy(ctx, 'fo_token')
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/login'
+      }
+    }
+  }
+
+  return { props: { token, profile_pic: user.profile_pic } };
+}

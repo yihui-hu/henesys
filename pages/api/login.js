@@ -1,5 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import User from "../../models/user.model.js";
+const { setCookie } = require('nookies');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -24,12 +25,16 @@ const handler = async (req, res) => {
         {
           profile_pic: user.profile_pic,
           username: user.username,
-          email: user.email,
         },
         process.env.FO_JWT_SECRET_KEY
       );
 
-      return res.json({ status: "ok", token: token });
+      setCookie({ res }, "fo_token", token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/'
+      })
+
+      return res.json({ status: "ok", message: "Successfully logged in." });
     } else {
       return res.json({ status: "error", error: "Incorrect password." });
     }
@@ -40,5 +45,6 @@ const handler = async (req, res) => {
     });
   }
 };
+
 
 export default connectDB(handler);

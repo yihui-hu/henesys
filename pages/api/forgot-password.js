@@ -26,12 +26,12 @@ const handler = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { username: user.username, email: user.email },
+      { email: user.email },
       process.env.FO_JWT_SECRET_KEY,
       { expiresIn: "10m" }
     );
 
-    const link = `https://field-observer-next.vercel.app/reset-password/${encodeURIComponent(token)}`;
+    const link = `https://field-observer-next.vercel.app/reset-password/${token}`;
 
     // send email using nodemailer & aws ses
     try {

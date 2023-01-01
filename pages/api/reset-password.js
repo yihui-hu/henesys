@@ -6,15 +6,15 @@ const jwt = require("jsonwebtoken");
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
     const hashed_new_password = await bcrypt.hash(req.body.password, 10);
 
-    if (decoded_token.email != req.body.email) {
+    if (decoded.email != req.body.email) {
       return res.json({ status: "error", error: "Invalid email." });
     }
 
     await User.findOneAndUpdate(
-      { email: decoded_token.email },
+      { email: decoded.email },
       { password: hashed_new_password }
     );
 

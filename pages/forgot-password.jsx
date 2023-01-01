@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { getServerSideProps } from "./lib/authStaticPages";
 
-const ForgotPassword = () => {
+export default function ForgotPassword() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -63,4 +64,4 @@ const ForgotPassword = () => {
   );
 }
 
-export default ForgotPassword;
+export { getServerSideProps };

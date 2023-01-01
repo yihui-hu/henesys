@@ -2,20 +2,13 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
-import { useRouter } from "next/navigation";
-import jwt from "jwt-decode";
+import nookies from "nookies";
+import jwt from "jsonwebtoken";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
-const Community = () => {
-  const router = useRouter();
-
-  let token;
-  if (typeof window !== "undefined") {
-    token = localStorage.getItem("token");
-  }
-
+export default function Community({ token, profile_pic }) {
   if (typeof window !== "undefined") {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
@@ -23,7 +16,6 @@ const Community = () => {
   }
 
   const [showAddBookmark, setShowAddBookmark] = useState(false);
-  const [profilePic, setProfilePic] = useState(null);
 
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,27 +29,15 @@ const Community = () => {
   const [lastTimestamp, setLastTimestamp] = useState(9999);
 
   useEffect(() => {
-    if (token) {
-      const user = jwt(token);
+    getCommunityBookmarks(lastTimestamp);
 
-      if (!user) {
-        localStorage.removeItem("token");
-        router.push("/login");
-      } else {
-        setProfilePic(jwt(token).profile_pic);
-        getCommunityBookmarks(lastTimestamp);
+    function handleKeyDown(e) {
+      if (e.keyCode == 27) {
+        setBookmarkFullView(false);
+        setShowAddBookmark(false);
       }
-
-      function handleKeyDown(e) {
-        if (e.keyCode == 27) {
-          setBookmarkFullView(false);
-          setShowAddBookmark(false);
-        }
-      }
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      router.push("/login");
     }
+    document.addEventListener("keydown", handleKeyDown);
   }, []);
 
   async function getCommunityBookmarks(lastTimestamp) {
@@ -81,7 +61,7 @@ const Community = () => {
         setBookmarks([...bookmarks, ...data.bookmarks]);
       }
 
-      if (data.bookmarks.length < 47) {
+      if (data.bookmarks.length < 35) {
         setEndOfBookmarks(true);
       }
 
@@ -130,7 +110,7 @@ const Community = () => {
           setBookmarks(data.bookmarks);
         }
 
-        if (data.bookmarks.length < 47) {
+        if (data.bookmarks.length < 35) {
           setEndOfBookmarks(true);
         }
 
@@ -180,7 +160,11 @@ const Community = () => {
 
   return (
     <>
-      <Navbar homeView={false} communityView={true} profilePic={profilePic} />
+      <Navbar 
+        homeView={false} 
+        communityView={true} 
+        profilePic={profile_pic} 
+      />
       <div className="home-container">
         <div className="home-search-tags-container">
           <svg
@@ -241,7 +225,7 @@ const Community = () => {
             No bookmarks with that tag found.
           </h4>
         )}
-        {!loading && bookmarks.length >= 47 && !endOfBookmarks && (
+        {!loading && bookmarks.length >= 35 && !endOfBookmarks && (
           <div className="show-more-button-container">
             <button
               type="button"
@@ -281,6 +265,28 @@ const Community = () => {
       </AnimatePresence>
     </>
   );
-};
+}
 
-export default Community;
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx);
+  const token = cookies.fo_token;
+
+  let user;
+  try {
+    user = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!user) {
+    nookies.destroy(ctx, "fo_token");
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  return { props: { token, profile_pic: user.profile_pic } };
+}

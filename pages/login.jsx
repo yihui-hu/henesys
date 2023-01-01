@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getServerSideProps } from "./lib/authStaticPages";
 
-const Login = () => {
+export default function Login() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -29,7 +30,6 @@ const Login = () => {
     const data = await response.json();
 
     if (data.status == "ok") {
-      localStorage.setItem("token", data.token);
       setErrorMsg("");
       setError(false);
       setSuccess(true);
@@ -95,6 +95,6 @@ const Login = () => {
       </div>
     </>
   );
-};
+}
 
-export default Login;
+export { getServerSideProps }

@@ -1,9 +1,9 @@
 import { React, useState } from "react";
 import { useRouter } from 'next/router'
+const jwt = require("jsonwebtoken");
 
-const ResetPassword = () => {
+export default function ResetPassword({ token }) {
   const router = useRouter();
-  const { token_url } = router.query;
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,8 +31,6 @@ const ResetPassword = () => {
       displayError("Password do not match.");
       return;
     }
-
-    const token = decodeURIcomponent(token_url);
 
     const res = await fetch("/api/reset-password", {
       method: "POST",
@@ -102,4 +100,24 @@ const ResetPassword = () => {
   );
 }
 
-export default ResetPassword;
+export async function getServerSideProps(ctx) {
+  const token = ctx.query.token_url;
+
+  let user;
+  try {
+    user = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+  } catch (err) {
+    console.log("Invalid token.");
+  }
+
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+
+  return { props: { token } };
+}

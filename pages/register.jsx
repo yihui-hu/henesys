@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { getServerSideProps } from "./lib/authStaticPages";
 
-const Register = () => {
+export default function Register() {
   const router = useRouter();
 
   const [username, setUsername] = useState("");
@@ -124,4 +125,4 @@ const Register = () => {
   );
 }
 
-export default Register;
+export { getServerSideProps }
