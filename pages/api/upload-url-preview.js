@@ -30,7 +30,7 @@ const handler = async (req, res) => {
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
     );
     await page.goto(url, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1000);
 
     try {
       const image_base64 = await page.screenshot({ encoding: "base64" });
