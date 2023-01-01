@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getServerSideProps } from "./lib/authStaticPages";
+import { getServerSideProps } from "../lib/authStaticPages";
 
 export default function Login() {
   const router = useRouter();

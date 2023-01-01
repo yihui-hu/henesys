@@ -1,7 +1,7 @@
 import { React } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { getServerSideProps } from "./lib/authStaticPages";
+import { getServerSideProps } from "../lib/authStaticPages";
 
 export default function Landing() {
   const router = useRouter();

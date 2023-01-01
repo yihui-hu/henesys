@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
-import { getServerSideProps } from "./lib/authHomeCommunity";
+import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
