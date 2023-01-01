@@ -14,14 +14,22 @@ const handler = async (req, res) => {
         ignoreHTTPSErrors: true,
       });
     } catch (err) {
-      return res.json({ status: "error", error: "Unable to load website, please try again later." })
+      return res.json({
+        status: "error",
+        error: "Unable to load website, please try again later.",
+      });
+    }
+
+    const aboutBlankPage = (await browser.pages())[0];
+    if (aboutBlankPage) {
+      await aboutBlankPage.close();
     }
 
     const page = await browser.newPage();
     await page.setUserAgent(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
     );
-    await page.goto(url, { waitUntil: "domcontentloaded"});
+    await page.goto(url, { waitUntil: "domcontentloaded" });
     await page.waitForTimeout(2000);
 
     try {
@@ -54,7 +62,8 @@ const handler = async (req, res) => {
   } catch (err) {
     return res.json({
       status: "error",
-      error: "Unable to retrieve screenshot of website, please try again later.",
+      error:
+        "Unable to retrieve screenshot of website, please try again later.",
     });
   }
 };
