@@ -22,7 +22,6 @@ const Community = () => {
     };
   }
 
-  const [validToken, setValidToken] = useState(false);
   const [showAddBookmark, setShowAddBookmark] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
 
@@ -45,7 +44,6 @@ const Community = () => {
         localStorage.removeItem("token");
         router.push("/login");
       } else {
-        setValidToken(true);
         setProfilePic(jwt(token).profile_pic);
         getCommunityBookmarks(lastTimestamp);
       }

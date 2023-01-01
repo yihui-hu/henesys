@@ -8,7 +8,7 @@ import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
-const Home = () => {
+export default function Home() {
   const router = useRouter();
 
   let token;
@@ -22,7 +22,6 @@ const Home = () => {
     };
   }
 
-  const [validToken, setValidToken] = useState(false);
   const [showAddBookmark, setShowAddBookmark] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
 
@@ -46,7 +45,6 @@ const Home = () => {
         localStorage.removeItem("token");
         router.push("/login");
       } else {
-        setValidToken(true);
         setProfilePic(jwt(token).profile_pic);
         getYourBookmarks(lastTimestamp);
       }
@@ -334,4 +332,3 @@ const Home = () => {
   );
 };
 
-export default Home;
