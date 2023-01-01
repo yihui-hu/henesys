@@ -1,5 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
+import chromium, { defaultViewport } from "chrome-aws-lambda";
 const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
 const reachableUrl = require("reachable-url");
@@ -19,12 +20,26 @@ const handler = async (req, res) => {
     let { file, text, url, metadata, note, tags } = req.body;
 
     if (reachableUrl.isReachable(await reachableUrl(url))) {
-      const browser = await puppeteer.launch();
-      const page = await browser.newPage();
 
-      await page.setUserAgent(
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
-      );
+      // puppeteer local
+      // const browser = await puppeteer.launch();
+      // const page = await browser.newPage();
+
+      // await page.setUserAgent(
+      //   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+      // );
+      // await page.goto(url, { waitUntil: "networkidle2" });
+
+      // chrome-aws-lambda for vercel
+      const browser = await chromium.puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true
+      });
+
+      const page = await browser.newPage()
       await page.goto(url, { waitUntil: "networkidle2" });
 
       try {
@@ -67,6 +82,8 @@ const handler = async (req, res) => {
           description: description == undefined ? null : description,
           preview_image_url: preview_image_url == undefined ? null : preview_image_url,
         };
+
+        browser.close();
       } catch (err) {
         return res.json({ status: "error", error: "Error saving url." });
       }
