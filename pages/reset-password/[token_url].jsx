@@ -32,7 +32,7 @@ const ResetPassword = () => {
       return;
     }
 
-    const token = token_url.replace(/%dot%/g, '.');
+    const token = decodeURIcomponent(token_url);
 
     const res = await fetch("/api/reset-password", {
       method: "POST",
