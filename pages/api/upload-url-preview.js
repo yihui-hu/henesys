@@ -20,11 +20,6 @@ const handler = async (req, res) => {
       });
     }
 
-    const aboutBlankPage = (await browser.pages())[0];
-    if (aboutBlankPage) {
-      await aboutBlankPage.close();
-    }
-
     const page = await browser.newPage();
     await page.setUserAgent(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
@@ -53,6 +48,8 @@ const handler = async (req, res) => {
         description: description == undefined ? null : description,
         image_base64: image_base64,
       };
+
+      browser.close();
 
       return res.json({ status: "ok", metadata: metadata });
     } catch (err) {

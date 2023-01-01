@@ -2,8 +2,7 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
-import nookies from "nookies";
-import jwt from "jsonwebtoken";
+import { getServerSideProps } from "./lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
@@ -267,26 +266,4 @@ export default function Community({ token, profile_pic }) {
   );
 }
 
-export async function getServerSideProps(ctx) {
-  const cookies = nookies.get(ctx);
-  const token = cookies.fo_token;
-
-  let user;
-  try {
-    user = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
-  } catch (err) {
-    console.log(err);
-  }
-
-  if (!user) {
-    nookies.destroy(ctx, "fo_token");
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-    };
-  }
-
-  return { props: { token, profile_pic: user.profile_pic } };
-}
+export { getServerSideProps }
