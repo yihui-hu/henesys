@@ -1,7 +1,7 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
-const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
+const jwt = require("jsonwebtoken");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.FO_AWS_ACCESS_KEY,
@@ -16,12 +16,36 @@ const handler = async (req, res) => {
 
     let { file, text, url, metadata, note, tags } = req.body;
 
+    const params = {
+      Bucket: "field-observer",
+      Key: url + "_" + Date.now(),
+      Body: Buffer.from(metadata.image_base64, "base64"),
+      ContentEncoding: "base64",
+      ContentType: "image/jpeg",
+      ACL: "public-read",
+    };
+
+    let preview_image_url;
+
+    try {
+      const { Location } = await s3.upload(params).promise();
+      preview_image_url = Location;
+    } catch (err) {
+      console.log(err);
+    }
+
+    let new_metadata = {
+      title: metadata.title,
+      description: metadata.description,
+      preview_image_url: preview_image_url == undefined ? null : preview_image_url,
+    };
+
     const bookmark = {
       username: decoded_token.username,
       file: file,
       text: text,
       url: url,
-      metadata: metadata,
+      metadata: new_metadata,
       note: note,
       tags: tags,
       private: false,
