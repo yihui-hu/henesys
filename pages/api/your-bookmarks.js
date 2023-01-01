@@ -9,8 +9,7 @@ const handler = async (req, res) => {
     const username = decoded.username;
 
     const { lastTimestamp } = req.body;
-    // const limit = lastTimestamp == 9999 ? 47 : 48;
-    const limit = 48;
+    const limit = 36;
 
     const bookmarks = await Bookmark.find({
       username: username,

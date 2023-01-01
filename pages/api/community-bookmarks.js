@@ -9,7 +9,7 @@ const handler = async (req, res) => {
     const username = decoded_token.username;
 
     const { lastTimestamp } = req.body;
-    const limit = 48;
+    const limit = 36;
 
     const bookmarks = await Bookmark.find({
       username: { $ne: username },
