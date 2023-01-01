@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "14.x"
+  },  
   "dependencies": {
     "@aws-sdk/client-s3": "^3.241.0",
     "@next/font": "13.1.1",
