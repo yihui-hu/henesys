@@ -22,7 +22,7 @@ const handler = async (req, res) => {
 
       try {
         const image_base64 = await page.screenshot({ encoding: "base64" });
-
+        
         // let title, description;
         // try {
         //   title = await page.$eval(
@@ -43,7 +43,7 @@ const handler = async (req, res) => {
           image_base64: image_base64,
         };
 
-        return res.json({ status: "ok", metadata: metadata });
+        return res.json({ status: "ok", metadata: "ok" });
       } catch (err) {
         return res.json({ status: "error", error: "Error saving url." });
       }

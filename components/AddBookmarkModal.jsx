@@ -155,21 +155,21 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
         const s3_data = await s3_response.json();
         console.log(s3_data.metadata);
         
-        response = await fetch("api/add-url-bookmark", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-access-token": token,
-          },
-          body: JSON.stringify({
-            file: null,
-            text: null,
-            url: text,
-            metadata: s3_data.metadata,
-            note,
-            tags: tags_array,
-          })
-        })
+        // response = await fetch("api/add-url-bookmark", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     "x-access-token": token,
+        //   },
+        //   body: JSON.stringify({
+        //     file: null,
+        //     text: null,
+        //     url: text,
+        //     metadata: s3_data.metadata,
+        //     note,
+        //     tags: tags_array,
+        //   })
+        // })
 
         // parse as normal body of text
       } else {
