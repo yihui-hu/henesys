@@ -18,32 +18,32 @@ const handler = async (req, res) => {
       })
 
       const page = await browser.newPage();
-      await page.goto(url, { waitUntil: "networkidle2" });
+      page.goto(url, { waitUntil: "domcontentloaded" });
 
       try {
         const image_base64 = await page.screenshot({ encoding: "base64" });
-        
-        // let title, description;
-        // try {
-        //   title = await page.$eval(
-        //     "head > meta[property='og:title']",
-        //     (element) => element.content
-        //   );
-        //   description = await page.$eval(
-        //     "head > meta[property='og:description']",
-        //     (element) => element.content
-        //   );
-        // } catch (err) {
-        //   console.log(err);
-        // }
+
+        let title, description;
+        try {
+          title = await page.$eval(
+            "head > meta[property='og:title']",
+            (element) => element.content
+          );
+          description = await page.$eval(
+            "head > meta[property='og:description']",
+            (element) => element.content
+          );
+        } catch (err) {
+          console.log(err);
+        }
 
         let metadata = {
-          title: null,
-          description: null,
+          title: title == undefined ? null : title,
+          description: description == undefined ? null : description,
           image_base64: image_base64,
         };
 
-        return res.json({ status: "ok", metadata: "ok" });
+        return res.json({ status: "ok", metadata: metadata });
       } catch (err) {
         return res.json({ status: "error", error: "Error saving url." });
       }
@@ -60,7 +60,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "4.5mb",
+      sizeLimit: "4mb",
     },
   },
 };
