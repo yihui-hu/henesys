@@ -142,6 +142,19 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
       if (isURL) {
         setAddingBookmark(true);
 
+        let s3_response = await fetch("api/upload-url-preview", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            url: text
+          }),
+        });
+
+        const s3_data = await s3_response.json();
+        console.log(s3_data.metadata);
+        
         response = await fetch("api/add-url-bookmark", {
           method: "POST",
           headers: {
@@ -152,11 +165,11 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
             file: null,
             text: null,
             url: text,
-            metadata: null,
+            metadata: s3_data.metadata,
             note,
             tags: tags_array,
-          }),
-        });
+          })
+        })
 
         // parse as normal body of text
       } else {
