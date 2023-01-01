@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion"; 
 import ReactTimeAgo from 'react-time-ago'
-import truncate from "../js/truncateText";
 import FilePreview from "./FilePreview";
 import TextPreview from "./TextPreview";
 import UrlPreview from "./UrlPreview";
@@ -37,7 +36,7 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView, delete
         <div className="bookmark-info">
             { (communityView && !hoverInfo) && <h4 className="bookmark-info-text">{ `added by ${username}` }</h4> }
             { file && ((!communityView) || (communityView && hoverInfo)) && 
-              <h4 className="bookmark-info-text">{ metadata.fileName }<fade-info/></h4> }
+              <h4 className="bookmark-info-text">{ note ? note : metadata.fileName }<fade-info/></h4> }
             { text && ((!communityView) || (communityView && hoverInfo)) && 
               <h4 className="bookmark-info-text">{ note ? note : "" }<fade-info/></h4> }
             { url  && ((!communityView) || (communityView && hoverInfo)) && 

@@ -32,7 +32,7 @@ const handler = async (req, res) => {
       } catch (err) {
         return res.json({
           status: "error",
-          error: "Unable to add bookmark. Please try again later.",
+          error: "Issue uploading file. Please try again later",
         });
       }
     }

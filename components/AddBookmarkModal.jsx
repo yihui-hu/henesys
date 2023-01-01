@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { filesize } from "filesize";
 import { motion } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
+import jwt from "jsonwebtoken";
 import useMediaQuery from "../hooks/useMediaQuery";
 import Textarea from "react-textarea-autosize";
-import jwt from "jwt-decode";
 import isUrl from "is-url";
 
 // import React FilePond
@@ -30,7 +30,6 @@ registerPlugin(
 );
 
 const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
-  const router = useRouter();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const [files, setFiles] = useState([]);
@@ -46,22 +45,8 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
   const [addingBookmark, setAddingBookmark] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(false);
 
-  let token;
-  if (typeof window !== "undefined") {
-    token = localStorage.getItem("token");
-  }
-
-  useEffect(() => {
-    if (token) {
-      const user = jwt(token);
-      if (!user) {
-        localStorage.removeItem("token");
-        router.push("/login");
-      }
-    } else {
-      router.push("/login");
-    }
-  }, []);
+  const cookies = parseCookies();
+  const token = cookies.fo_token;
 
   async function submitBookmark(event) {
     event.preventDefault();
