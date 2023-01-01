@@ -8,12 +8,7 @@ import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
 export default function Community({ token, profile_pic }) {
-  if (typeof window !== "undefined") {
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
-  }
-
+  
   const [showAddBookmark, setShowAddBookmark] = useState(false);
 
   const [bookmarks, setBookmarks] = useState([]);

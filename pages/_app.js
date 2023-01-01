@@ -13,6 +13,12 @@ TimeAgo.setDefaultLocale(en.locale);
 TimeAgo.addLocale(en);
 
 export default function App({ Component, pageProps }) {
+  if (typeof window !== "undefined") {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }
+  
   return (
     <>
       <Head>
