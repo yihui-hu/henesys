@@ -1,23 +1,22 @@
 import chromium from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core";
 
-const LOCAL_CHROME_EXECUTABLE =
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-
 const handler = async (req, res) => {
   try {
     let { url } = req.body;
 
-    const executablePath =
-      (await chromium.executablePath) || LOCAL_CHROME_EXECUTABLE;
-
-    const browser = await puppeteer.launch({
-      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chromium.defaultViewport,
-      executablePath: executablePath,
-      headless: true,
-      ignoreHTTPSErrors: true,
-    });
+    let browser;
+    try {
+      browser = await puppeteer.launch({
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
+        headless: true,
+        ignoreHTTPSErrors: true,
+      });
+    } catch (err) {
+      return res.json({ status: "error", error: "Unable to launch puppeteer." })
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent(
@@ -55,7 +54,7 @@ const handler = async (req, res) => {
   } catch (err) {
     return res.json({
       status: "error",
-      error: "Unable to add bookmark. Please try again later.",
+      error: "Puppeteer ran into an issue.",
     });
   }
 };
@@ -63,7 +62,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "4mb",
+      sizeLimit: "4.5mb",
     },
   },
 };

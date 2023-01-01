@@ -65,7 +65,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "4mb",
+      sizeLimit: "4.5mb",
     },
   },
 };
