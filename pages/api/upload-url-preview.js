@@ -23,23 +23,23 @@ const handler = async (req, res) => {
       try {
         const image_base64 = await page.screenshot({ encoding: "base64" });
 
-        let title, description;
-        try {
-          title = await page.$eval(
-            "head > meta[property='og:title']",
-            (element) => element.content
-          );
-          description = await page.$eval(
-            "head > meta[property='og:description']",
-            (element) => element.content
-          );
-        } catch (err) {
-          console.log(err);
-        }
+        // let title, description;
+        // try {
+        //   title = await page.$eval(
+        //     "head > meta[property='og:title']",
+        //     (element) => element.content
+        //   );
+        //   description = await page.$eval(
+        //     "head > meta[property='og:description']",
+        //     (element) => element.content
+        //   );
+        // } catch (err) {
+        //   console.log(err);
+        // }
 
         let metadata = {
-          title: title == undefined ? null : title,
-          description: description == undefined ? null : description,
+          title: null,
+          description: null,
           image_base64: image_base64,
         };
 
@@ -60,7 +60,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "4mb",
+      sizeLimit: "4.5mb",
     },
   },
 };
