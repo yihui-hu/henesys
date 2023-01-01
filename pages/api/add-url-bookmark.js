@@ -15,7 +15,7 @@ const handler = async (req, res) => {
     const decoded_token = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
     let { file, text, url, metadata, note, tags } = req.body;
-    
+
     const params = {
       Bucket: "field-observer",
       Key: url + "_" + Date.now(),
@@ -57,7 +57,7 @@ const handler = async (req, res) => {
   } catch (err) {
     return res.json({
       status: "error",
-      error: "Issue with AWS, please try again later."
+      error: "Unable to add bookmark, please try again later."
     });
   }
 };
