@@ -198,7 +198,9 @@ export default function Community({ token, profile_pic }) {
             </div>
           )}
           {loading && (
-            <CircularProgress color="black" size="small" variant="dotted" />
+            <div className="loading-indicator-container">
+              <CircularProgress color="black" size="small" variant="dotted" />
+            </div>
           )}
           {!loading &&
             bookmarks.map(function (item, i) {
