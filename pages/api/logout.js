@@ -1,4 +1,3 @@
-import nookies from "nookies";
 import { destroyCookie } from "nookies"
 
 const handler = async (req, res) => {
