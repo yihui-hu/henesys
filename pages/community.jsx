@@ -8,7 +8,6 @@ import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
 export default function Community({ token, profile_pic }) {
-  
   const [showAddBookmark, setShowAddBookmark] = useState(false);
 
   const [bookmarks, setBookmarks] = useState([]);
@@ -154,11 +153,7 @@ export default function Community({ token, profile_pic }) {
 
   return (
     <>
-      <Navbar 
-        homeView={false} 
-        communityView={true} 
-        profilePic={profile_pic} 
-      />
+      <Navbar homeView={false} communityView={true} profilePic={profile_pic} />
       <div className="home-container">
         <div className="home-search-tags-container">
           <svg
@@ -192,6 +187,14 @@ export default function Community({ token, profile_pic }) {
           />
         </div>
         <div className="bookmarks-container">
+          {!searchTagsMode && (
+            <div
+              onClick={() => setShowAddBookmark(true)}
+              className="add-bookmark-button"
+            >
+              +
+            </div>
+          )}
           {loading && (
             <CircularProgress color="black" size="small" variant="dotted" />
           )}
@@ -215,9 +218,7 @@ export default function Community({ token, profile_pic }) {
           </h4>
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
-          <h4 className="add-first-bookmark-message">
-            No bookmarks found.
-          </h4>
+          <h4 className="add-first-bookmark-message">No bookmarks found.</h4>
         )}
         {!loading && bookmarks.length >= 35 && !endOfBookmarks && (
           <div className="show-more-button-container">
@@ -261,4 +262,4 @@ export default function Community({ token, profile_pic }) {
   );
 }
 
-export { getServerSideProps }
+export { getServerSideProps };

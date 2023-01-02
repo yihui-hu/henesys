@@ -33,7 +33,7 @@ const Bookmark = ({
         transition={{
           duration: 0.5,
           type: "spring",
-          delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.01,
+          delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.02,
         }}
         onMouseEnter={() => setHoverInfo(true)}
         onMouseLeave={() => setHoverInfo(false)}
