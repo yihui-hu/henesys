@@ -303,6 +303,7 @@ export default function Home({ token, profile_pic }) {
             setShown={setShowAddBookmark}
             bookmarks={bookmarks}
             updateBookmarks={setBookmarks}
+            token={token}
           />
         )}
       </AnimatePresence>

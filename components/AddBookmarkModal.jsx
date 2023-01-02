@@ -28,7 +28,7 @@ registerPlugin(
   FilePondPluginFileValidateType
 );
 
-const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
+const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks, token }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const [files, setFiles] = useState([]);
@@ -43,9 +43,6 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks }) => {
   const [inputFocused, setInputFocused] = useState(false);
   const [addingBookmark, setAddingBookmark] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(false);
-
-  const cookies = parseCookies();
-  const token = cookies.fo_token;
 
   async function submitBookmark(event) {
     event.preventDefault();
