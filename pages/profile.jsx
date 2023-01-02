@@ -1,17 +1,25 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { setCookie } from 'nookies';
+import { destroyCookie } from 'nookies'; destroyCookie({}, 'access'); 
 import nookies from "nookies";
 import jwt from "jsonwebtoken";
 
 export default function Profile({}) {
   const router = useRouter();
 
-  function logout() {
-    setCookie(null, 'fo_token', 'invalid', {
-      maxAge: -1,
-      path: '/',
-    })
+  async function logout() {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+    });
+
+    const data = await response.json();
+
+    if (data.status == 200) {
+      alert("OK")
+    } else {
+      alert("NOPE")
+    }
+
     router.push("/");
   }
 
