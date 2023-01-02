@@ -4,7 +4,7 @@ import { destroyCookie } from 'nookies'
 import nookies from "nookies";
 import jwt from "jsonwebtoken";
 
-export default function Profile({ token, user }) {
+export default function Profile({}) {
   const router = useRouter();
 
   function logout() {
@@ -45,5 +45,5 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  return { props: { token, user } };
+  return { props: {} };
 }
