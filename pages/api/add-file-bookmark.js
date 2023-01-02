@@ -16,23 +16,19 @@ const handler = async (req, res) => {
 
     let { file, note, tags } = req.body;
 
-    const fileName = file.fileName;
-    const fileBuffer = file.fileBuffer;
-    const fileType = file.fileType;
-    const fileSize = file.fileSize;
-
     const params = {
       Bucket: "field-observer",
-      Key: fileName + "_" + Date.now(),
-      Body: Buffer.from(fileBuffer, "base64"),
+      Key: file.fileName + "_" + Date.now(),
+      Body: Buffer.from(file.fileBuffer, "base64"),
       ContentEncoding: "base64",
-      ContentType: fileType,
+      ContentType: file.fileType,
       ACL: "public-read",
     };
 
+    let file_url;
     try {
       const { Location } = await s3.upload(params).promise();
-      file = Location;
+      file_url = Location;
     } catch (err) {
       return res.json({
         status: "error",
@@ -42,13 +38,13 @@ const handler = async (req, res) => {
 
     const bookmark = {
       username: decoded.username,
-      file: file,
+      file: file_url,
       text: null,
       url: null,
       metadata: {
-        fileName,
-        fileType,
-        fileSize,
+        fileName: file.fileName,
+        fileType: file.fileType,
+        fileSize: file.fileSize,
       },
       note: note,
       tags: tags,

@@ -1,9 +1,13 @@
 import chromium from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core";
 const reachableUrl = require("reachable-url");
+const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
   try {
+    const token = req.headers["x-access-token"];
+    jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+
     let { url } = req.body;
 
     if (!reachableUrl.isReachable(await reachableUrl(url))) {
@@ -14,7 +18,6 @@ const handler = async (req, res) => {
     }
 
     let browser;
-
     try {
       browser = await puppeteer.launch({
         args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],

@@ -26,7 +26,6 @@ const handler = async (req, res) => {
     };
 
     let preview_image_url;
-
     try {
       const { Location } = await s3.upload(params).promise();
       preview_image_url = Location;
