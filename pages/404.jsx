@@ -8,7 +8,7 @@ export default function Custom404() {
           <h4 className="error-404">404</h4>
           <br></br>
           <Link href="/">
-            <a>← return home</a>
+            ← return home
           </Link>
         </div>
       </div>
