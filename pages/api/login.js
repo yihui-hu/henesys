@@ -32,8 +32,7 @@ const handler = async (req, res) => {
       nookies.set({ res }, "fo_token", token, {
         secure: true,
         httpOnly: true,
-        sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+        maxAge: 14 * 24 * 60 * 60,
         path: "/",
       });
 
