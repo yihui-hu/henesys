@@ -8,7 +8,9 @@ export default function Profile({}) {
   const router = useRouter();
 
   function logout() {
-    destroyCookie(null, "fo_token");
+    destroyCookie({}, "fo_token", {
+      path: '/'
+    });
     router.push("/");
   }
 
