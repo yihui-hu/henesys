@@ -27,8 +27,7 @@
 
   font-size: 1.2vw;
   padding-block: 0.4vw;
-  padding-inline: 1vw;
-  width: 50vw;
+  width: 10vw;
 }
 
 .home-tag {
@@ -169,8 +168,7 @@
   .home-search-input {
     font-size: 1.8vw;
     padding-block: 0.4vw;
-    padding-inline: 1vw;
-    width: 50vw;
+    width: 20vw;
   }
 
   .home-tag {
@@ -202,7 +200,6 @@
     width: calc(92vw / 3);
     height: calc(92vw / 3);
     font-size: 1.8vw;
-    margin-top: 1.5vw;
     padding: 4vw;
   }
 
@@ -223,12 +220,13 @@
   }
 
   .search-logo {
-    display: none;
+    width: 5vw;
+    height: 5vw;
   }
 
   .home-search-input {
     font-size: 4vw;
-    width: 92vw;
+    width: 30vw;
     padding-block: 0.4vw;
     padding-inline: 0;
   }
@@ -272,6 +270,11 @@
     height: 92vw;
     padding: 8vw;
     font-size: 4vw;
+    position: static;
+    margin-top: 8vw;
+    top: auto;
+    left: auto;
+    transform: translate(0, 0);
   }
 
   .show-more-button {
