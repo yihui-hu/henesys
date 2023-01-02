@@ -2,7 +2,6 @@ import { useState } from "react";
 import { filesize } from "filesize";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
-import { parseCookies } from 'nookies'
 import useMediaQuery from "../hooks/useMediaQuery";
 import Textarea from "react-textarea-autosize";
 import isUrl from "is-url";
@@ -28,7 +27,7 @@ registerPlugin(
   FilePondPluginFileValidateType
 );
 
-const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks, token }) => {
+const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks, token }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const [files, setFiles] = useState([]);
@@ -173,7 +172,9 @@ const AddBookmarkModal = ({ setShown, bookmarks, updateBookmarks, token }) => {
       const data = await response.json();
 
       if (data.status == "ok") {
-        updateBookmarks([data.bookmark, ...bookmarks]);
+        if (!communityView) {
+          updateBookmarks([data.bookmark, ...bookmarks]);
+        }
         setSuccessMsg("Successfully added bookmark.");
         setSuccess(true);
         setErrorMsg("");

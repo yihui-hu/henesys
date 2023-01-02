@@ -253,8 +253,10 @@ export default function Community({ token, profile_pic }) {
         {showAddBookmark && (
           <AddBookmarkModal
             setShown={setShowAddBookmark}
+            communityView={true}
             bookmarks={bookmarks}
             updateBookmarks={setBookmarks}
+            token={token}
           />
         )}
       </AnimatePresence>

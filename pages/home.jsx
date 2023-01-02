@@ -301,6 +301,7 @@ export default function Home({ token, profile_pic }) {
         {showAddBookmark && (
           <AddBookmarkModal
             setShown={setShowAddBookmark}
+            communityView={false}
             bookmarks={bookmarks}
             updateBookmarks={setBookmarks}
             token={token}
