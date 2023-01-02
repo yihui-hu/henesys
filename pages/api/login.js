@@ -32,8 +32,6 @@ const handler = async (req, res) => {
       nookies.set({ res }, "fo_token", token, {
         secure: true,
         httpOnly: true,
-        sameSite: "none",
-        domain: "https://field-observer-next.vercel.app",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
       });
