@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { destroyCookie } from 'nookies'; destroyCookie({}, 'access'); 
+import { setCookie } from 'nookies';
 import nookies from "nookies";
 import jwt from "jsonwebtoken";
 
@@ -8,9 +8,10 @@ export default function Profile({}) {
   const router = useRouter();
 
   function logout() {
-    destroyCookie({}, "fo_token", {
-      path: '/'
-    });
+    setCookie(null, 'fo_token', 'invalid', {
+      maxAge: -1,
+      path: '/',
+    })
     router.push("/");
   }
 
