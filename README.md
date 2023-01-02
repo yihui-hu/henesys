@@ -1,5 +1,6 @@
 field-observer - barebones note-taking, bookmarking, capture-anything site
 
+```
 /////////////////////////////////////////////////
 //                   _ooOoo_                   //
 //                  o8888888o                  //
@@ -24,5 +25,6 @@ field-observer - barebones note-taking, bookmarking, capture-anything site
 //          佛祖保佑           永无BUG            //
 //         God Bless        Never Crash        //
 /////////////////////////////////////////////////
+```
 
 (buddha blessing courtesy of (ben-yip)[https://github.com/ben-yip])
