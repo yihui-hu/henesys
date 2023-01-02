@@ -21,7 +21,6 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
         <h4
           className={homeView ? "navbar-nav-selected" : "navbar-nav-deselected"}
           onClick={homeView ? undefined : () => {
-            window.scrollTo(0, 0);
             router.push("/home")
           }}
         >
@@ -30,7 +29,6 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
         <h4
           className={communityView ? "navbar-nav-selected" : "navbar-nav-deselected"}
           onClick={communityView ? undefined : () => {
-            window.scrollTo(0, 0);
             router.push("/community")
           }}
         >
