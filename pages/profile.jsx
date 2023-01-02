@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { destroyCookie } from 'nookies'
+import { destroyCookie } from 'nookies'; destroyCookie({}, 'access'); 
 import nookies from "nookies";
 import jwt from "jsonwebtoken";
 
