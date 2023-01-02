@@ -271,7 +271,7 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
                     "text/markdown",
                   ]}
                   maxFiles={1}
-                  maxFileSize={"3MB"}
+                  maxFileSize={"5MB"}
                   name="files"
                   labelIdle='Drag & drop or <span class="filepond--label-action">choose</span> file to upload'
                   credits={false}
