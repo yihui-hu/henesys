@@ -14,7 +14,7 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    let { file, text, url, metadata, note, tags } = req.body;
+    let { url, metadata, note, tags } = req.body;
 
     const params = {
       Bucket: "field-observer",
@@ -42,8 +42,8 @@ const handler = async (req, res) => {
 
     const bookmark = {
       username: decoded.username,
-      file: file,
-      text: text,
+      file: null,
+      text: null,
       url: url,
       metadata: new_metadata,
       note: note,

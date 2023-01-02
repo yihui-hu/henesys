@@ -58,33 +58,24 @@ const AddBookmarkModal = ({
       displayErrorMsg("Upload a file or text/url.");
       return;
     } else if (files[0] != undefined && files[0].status != 2) {
-      displayErrorMsg("Please select a valid file.");
+      displayErrorMsg("Only files under 3MB are allowed.");
       return;
     }
 
+    setAddingBookmark(true);
     const tags_array = tags.map((tag) => tag.text.toLowerCase());
-
     let response;
 
     // adding file bookmark
     if (text == "") {
-      setAddingBookmark(true);
-
-      let fileData = files[0];
-
-      let file = {
-        fileName: fileData.filename,
-        fileType: fileData.fileType,
-        fileBuffer: fileData.getFileEncodeBase64String(),
+      const file = {
+        fileName: files[0].filename,
+        fileType: files[0].fileType,
+        fileSize: filesize(files[0].fileSize),
+        fileBuffer: files[0].getFileEncodeBase64String(),
       };
 
-      let metadata = {
-        fileName: fileData.filename,
-        fileType: fileData.fileType,
-        fileSize: filesize(fileData.fileSize),
-      };
-
-      response = await fetch("api/add-bookmark", {
+      response = await fetch("api/add-file-bookmark", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,22 +83,14 @@ const AddBookmarkModal = ({
         },
         body: JSON.stringify({
           file: file,
-          text: null,
-          url: null,
-          metadata,
-          note,
-          tags: tags_array,
-        }),
+          note: note,
+          tags: tags_array
+        })
       });
-
       // adding text bookmark
     } else {
-      const isURL = isUrl(text);
-
       // parse as URL
-      if (isURL) {
-        setAddingBookmark(true);
-
+      if (isUrl(text)) {
         let s3_response = await fetch("api/upload-url-preview", {
           method: "POST",
           headers: {
@@ -127,28 +110,23 @@ const AddBookmarkModal = ({
             "x-access-token": token,
           },
           body: JSON.stringify({
-            file: null,
-            text: null,
             url: text,
             metadata: s3_data.metadata,
-            note,
+            note: note,
             tags: tags_array,
-          }),
+          })
         });
 
         // parse as normal body of text
       } else {
-        response = await fetch("api/add-bookmark", {
+        response = await fetch("api/add-text-bookmark", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "x-access-token": token,
           },
           body: JSON.stringify({
-            file: null,
             text: text,
-            url: null,
-            metadata: null,
             note,
             tags: tags_array,
           }),
@@ -263,7 +241,7 @@ const AddBookmarkModal = ({
                     "text/markdown",
                   ]}
                   maxFiles={1}
-                  maxFileSize={"5MB"}
+                  maxFileSize={"3MB"}
                   name="files"
                   labelIdle='Drag & drop or <span class="filepond--label-action">choose</span> file to upload'
                   credits={false}
