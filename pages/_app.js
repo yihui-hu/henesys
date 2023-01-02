@@ -6,6 +6,7 @@ import "../styles/home.css";
 import "../styles/bookmark.css";
 import "../styles/navbar.css";
 import "../styles/add-bookmark.css";
+import "../styles/404.css";
 
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";

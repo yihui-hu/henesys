@@ -1,0 +1,55 @@
+.error-container {
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/grid-bg.svg") center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+}
+
+.error-modal {
+  display: grid;
+  place-items: center;
+  width: calc(90vw / 4);
+  height: calc(90vw / 4);
+  background-color: white;
+  border: 1px dashed black;
+  border-radius: 0.5rem;
+  font-size: 1.2vw;
+  text-align: center;
+}
+
+.error-404 {
+  font-size: 4vw;
+}
+
+@media screen and (max-width: 1024px) {
+  .error-modal {
+    width: calc(92vw / 3);
+    height: calc(92vw / 3);
+    font-size: 1.8vw;
+    padding: 4vw;
+  }
+
+  .error-404 {
+    font-size: 5.8vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .error-modal {
+    width: 92vw;
+    height: 92vw;
+    padding: 8vw;
+    font-size: 4vw;
+  }
+
+  br {
+    display: none;
+  }
+
+  .error-404 {
+    font-size: 14vw;
+  }
+}
