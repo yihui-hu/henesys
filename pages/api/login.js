@@ -1,6 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import User from "../../models/user.model.js";
-const { setCookie } = require('nookies');
+import nookies from "nookies";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -29,12 +29,14 @@ const handler = async (req, res) => {
         process.env.FO_JWT_SECRET_KEY
       );
 
-      setCookie({ res }, "fo_token", token, {
+      nookies.set({ res }, "fo_token", token, {
+        secure: true,
         httpOnly: true,
-        sameSite: true,
+        sameSite: "none",
+        domain: "https://field-observer-next.vercel.app",
         maxAge: 7 * 24 * 60 * 60 * 1000,
-        path: '/'
-      })
+        path: "/",
+      });
 
       return res.json({ status: "ok", message: "Successfully logged in." });
     } else {
@@ -47,6 +49,5 @@ const handler = async (req, res) => {
     });
   }
 };
-
 
 export default connectDB(handler);
