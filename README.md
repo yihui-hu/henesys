@@ -27,4 +27,4 @@ field-observer - barebones note-taking, bookmarking, capture-anything site
 /////////////////////////////////////////////////
 ```
 
-(buddha blessing courtesy of (ben-yip)[https://github.com/ben-yip])
+(buddha blessing courtesy of [ben-yip](https://github.com/ben-yip))
