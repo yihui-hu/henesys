@@ -84,14 +84,14 @@ const AddBookmarkModal = ({
         body: JSON.stringify({
           file: file,
           note: note,
-          tags: tags_array
-        })
+          tags: tags_array,
+        }),
       });
       // adding text bookmark
     } else {
       // parse as URL
       if (isUrl(text)) {
-        let s3_response = await fetch("api/upload-url-preview", {
+        let s3_response = await fetch("api/add-url-preview", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +115,7 @@ const AddBookmarkModal = ({
             metadata: s3_data.metadata,
             note: note,
             tags: tags_array,
-          })
+          }),
         });
 
         // parse as normal body of text
@@ -173,25 +173,6 @@ const AddBookmarkModal = ({
     setSubmitDisabled(false);
   }
 
-  function handleFileStart() {
-    setSubmitDisabled(true);
-    setFilesUploaded(true);
-  }
-
-  function handleFileProcessed() {
-    setSubmitDisabled(false);
-  }
-
-  const delimiters = [188, 13];
-
-  const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
-
-  const handleAddition = (tag) => {
-    setTags([...tags, tag]);
-  };
-
   return (
     <LazyMotion features={domAnimation}>
       <m.div
@@ -220,11 +201,12 @@ const AddBookmarkModal = ({
                 <FilePond
                   files={files}
                   onupdatefiles={setFiles}
-                  onaddfilestart={handleFileStart}
-                  onremovefile={() => {
-                    setFilesUploaded(false);
+                  onaddfilestart={() => {
+                    setSubmitDisabled(true);
+                    setFilesUploaded(true);
                   }}
-                  onaddfile={handleFileProcessed}
+                  onremovefile={() => setFilesUploaded(false)}
+                  onaddfile={() => setSubmitDisabled(false)}
                   allowMultiple={false}
                   allowFileEncode={true}
                   acceptedFileTypes={[
@@ -292,9 +274,11 @@ const AddBookmarkModal = ({
                   tags={tags}
                   allowDragDrop={false}
                   autofocus={false}
-                  delimiters={delimiters}
-                  handleDelete={handleDelete}
-                  handleAddition={handleAddition}
+                  delimiters={[188, 13]}
+                  handleDelete={(i) =>
+                    setTags(tags.filter((tag, index) => index !== i))
+                  }
+                  handleAddition={(tag) => setTags([...tags, tag])}
                   inputFieldPosition="bottom"
                 />
               )}

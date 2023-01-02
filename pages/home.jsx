@@ -158,8 +158,6 @@ export default function Home({ token, profile_pic }) {
     setSearchTagsMode(true);
   }
 
-  const delimiters = [188, 13];
-
   const handleDelete = (i) => {
     let new_tags = tags.filter((tag, index) => index !== i);
     setTags(new_tags);
@@ -216,7 +214,7 @@ export default function Home({ token, profile_pic }) {
             placeholder="Search tags..."
             allowDragDrop={false}
             autofocus={false}
-            delimiters={delimiters}
+            delimiters={[188, 13]}
             handleDelete={handleDelete}
             handleAddition={handleAddition}
           />
