@@ -37,7 +37,6 @@ export async function getServerSideProps(ctx) {
   }
 
   if (!user) {
-    nookies.destroy(ctx, "fo_token");
     return {
       redirect: {
         permanent: false,
