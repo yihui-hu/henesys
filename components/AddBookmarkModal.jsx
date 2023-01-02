@@ -27,17 +27,25 @@ registerPlugin(
   FilePondPluginFileValidateType
 );
 
-const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks, token }) => {
+const AddBookmarkModal = ({
+  setShown,
+  communityView,
+  bookmarks,
+  updateBookmarks,
+  token,
+}) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const [files, setFiles] = useState([]);
   const [text, setText] = useState("");
   const [note, setNote] = useState("");
   const [tags, setTags] = useState([]);
+
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
+
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
   const [addingBookmark, setAddingBookmark] = useState(false);
@@ -47,20 +55,16 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
     event.preventDefault();
 
     if (text == "" && files.length == 0) {
-      setErrorMsg("Upload a file or text/url.");
-      setError(true);
-      setSuccessMsg("");
-      setSuccess(false);
+      displayErrorMsg("Upload a file or text/url.");
       return;
     } else if (files[0] != undefined && files[0].status != 2) {
-      setErrorMsg("Invalid file.");
-      setError(true);
-      setSuccessMsg("");
-      setSuccess(false);
+      displayErrorMsg("Please select a valid file.");
       return;
     }
 
     const tags_array = tags.map((tag) => tag.text.toLowerCase());
+
+    let response;
 
     // adding file bookmark
     if (text == "") {
@@ -80,7 +84,7 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
         fileSize: filesize(fileData.fileSize),
       };
 
-      const response = await fetch("api/add-bookmark", {
+      response = await fetch("api/add-bookmark", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,27 +100,9 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
         }),
       });
 
-      const data = await response.json();
-
-      if (data.status == "ok") {
-        updateBookmarks([data.bookmark, ...bookmarks]);
-        setSuccessMsg("Successfully added bookmark.");
-        setSuccess(true);
-        setErrorMsg("");
-        setError(false);
-        resetDefault();
-      } else {
-        setErrorMsg(data.error);
-        setError(true);
-        setSuccessMsg("");
-        setSuccess(false);
-        resetDefault();
-      }
-
       // adding text bookmark
     } else {
       const isURL = isUrl(text);
-      let response = null;
 
       // parse as URL
       if (isURL) {
@@ -128,12 +114,12 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            url: text
+            url: text,
           }),
         });
 
         const s3_data = await s3_response.json();
-        
+
         response = await fetch("api/add-url-bookmark", {
           method: "POST",
           headers: {
@@ -147,8 +133,8 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
             metadata: s3_data.metadata,
             note,
             tags: tags_array,
-          })
-        })
+          }),
+        });
 
         // parse as normal body of text
       } else {
@@ -168,28 +154,34 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
           }),
         });
       }
+    }
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (data.status == "ok") {
-        if (!communityView) {
-          updateBookmarks([data.bookmark, ...bookmarks]);
-        }
-        setSuccessMsg("Successfully added bookmark.");
-        setSuccess(true);
-        setErrorMsg("");
-        setError(false);
-        resetDefault();
-      } else {
-        setErrorMsg(data.error);
-        setError(true);
-        setSuccessMsg("");
-        setSuccess(false);
-        resetDefault();
+    if (data.status == "ok") {
+      if (!communityView) {
+        updateBookmarks([data.bookmark, ...bookmarks]);
       }
+      displaySuccessMsg("Successfully added bookmark.");
+      resetDefault();
+    } else {
+      displayErrorMsg(data.error);
+      resetDefault();
     }
 
     setAddingBookmark(false);
+  }
+
+  function displayErrorMsg(message) {
+    setErrorMsg(message);
+    setError(true);
+    setSuccess(false);
+  }
+
+  function displaySuccessMsg(message) {
+    setSuccessMsg(message);
+    setSuccess(true);
+    setError(false);
   }
 
   function resetDefault() {
@@ -342,7 +334,11 @@ const AddBookmarkModal = ({ setShown, communityView, bookmarks, updateBookmarks,
                 {(filesUploaded || inputFocused) && (
                   <button
                     type="button"
-                    onClick={resetDefault}
+                    onClick={() => {
+                      setError(false);
+                      setSuccess(false);
+                      resetDefault();
+                    }}
                     className="add-bookmark-secondary-button"
                   >
                     Back

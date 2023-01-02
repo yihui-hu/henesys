@@ -1,7 +1,7 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
-const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
+const jwt = require("jsonwebtoken");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.FO_AWS_ACCESS_KEY,
@@ -62,7 +62,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "4mb",
+      sizeLimit: "4.5mb",
     },
   },
 };

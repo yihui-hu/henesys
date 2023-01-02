@@ -1,9 +1,17 @@
 import chromium from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core";
+const reachableUrl = require("reachable-url");
 
 const handler = async (req, res) => {
   try {
     let { url } = req.body;
+
+    if (!reachableUrl.isReachable(await reachableUrl(url))) {
+      return res.json({
+        status: "error",
+        error: "Unable to reach website.",
+      });
+    }
 
     let browser;
 
