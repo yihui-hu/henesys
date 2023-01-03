@@ -138,7 +138,7 @@
   border-radius: 0.5rem;
   font-size: 1.2vw;
   position: absolute;
-  top: 50%;
+  top: max(30vw, 50vh);
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2vw;
@@ -208,6 +208,7 @@
   .empty-state-message {
     width: calc(92vw / 3);
     height: calc(92vw / 3);
+    top: max(42vw, 50vh);
     font-size: 1.8vw;
     padding: 4vw;
   }
@@ -289,23 +290,5 @@
   .show-more-button {
     font-size: 4vw;
     margin-bottom: 20vw;
-  }
-}
-
-@media screen and not (max-aspect-ratio: 12/9) {
-  .empty-state-message {
-    position: static;
-    top: auto;
-    left: auto;
-    transform: translate(0, 0);
-  }
-}
-
-@media screen and (max-width: 1024px) and (not (max-aspect-ratio: 12/6)) {
-  .empty-state-message {
-    position: static;
-    top: auto;
-    left: auto;
-    transform: translate(0, 0);
   }
 }
