@@ -7,7 +7,7 @@ const FilePreview = ({ file, metadata }) => {
   if (mimeImageTypes.includes(metadata.fileType)) {
     return (
       <div className="bookmark-modal-image">
-          <LazyLoadImage src={file} effect="blur"/>
+          <LazyLoadImage src={file} effect="blur" />
       </div>
     );
   } else {

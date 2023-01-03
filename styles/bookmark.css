@@ -9,14 +9,16 @@
 }
 
 .lazy-load-image-background,
-.opacity, l
+.opacity,
 .lazy-load-image-loaded {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-img {
+.lazy-load-image-background > img,
+.opacity > img,
+.lazy-load-image-loaded > img {
   width: 100%;
   height: 100%;
   object-fit: contain;
