@@ -1,10 +1,13 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 const FilePreview = ({ file, metadata }) => {
   const mimeImageTypes = ["image/png", "image/jpeg", "image/gif", "image/webp"];
 
   if (mimeImageTypes.includes(metadata.fileType)) {
     return (
       <div className="bookmark-modal-image">
-        <img src={file} />
+          <LazyLoadImage src={file} effect="blur"/>
       </div>
     );
   } else {
