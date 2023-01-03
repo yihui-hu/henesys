@@ -1,8 +1,7 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
-const jwt = require("jsonwebtoken");
 const aws = require("aws-sdk");
-const url = require("url");
+const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const s3 = new aws.S3({
@@ -29,9 +28,7 @@ const handler = async (req, res) => {
           console.error(err);
         }
       );
-    }
-
-    if (bookmark.file != null) {
+    } else if (bookmark.file) {
       let filename = decodeURI(path.basename(bookmark.file));
 
       s3.deleteObject(

@@ -1,8 +1,8 @@
 import connectDB from "../../middleware/mongodb";
 import User from "../../models/user.model.js";
+const aws = require("aws-sdk");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const aws = require("aws-sdk");
 
 // configuring nodemailer with aws ses
 let transporter = nodemailer.createTransport({
@@ -40,7 +40,7 @@ const handler = async (req, res) => {
           from: "field.observers@gmail.com",
           to: req.body.email,
           subject: "field-observer Password Reset",
-          text: `Here's your password reset link: ${link}. It will expire in 10 minutes.`,
+          text: `Here's your password reset link: \n\n ${link}. \n\n It will expire in 10 minutes.`,
         },
         (err) => {
           console.log(err);

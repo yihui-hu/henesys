@@ -11,7 +11,14 @@ const handler = async (req, res) => {
     if (!user) {
       return res.json({
         status: "error",
-        error: "Email does not exist in our database.",
+        error: "No account associated with that email.",
+      });
+    }
+
+    if (user.password == process.env.FO_WAITLIST_PASSWORD) {
+      return res.json({
+        status: "error",
+        error: "You'll be let in shortly -- keep an eye out for an email! 👀",
       });
     }
 

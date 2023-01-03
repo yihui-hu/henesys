@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";
 
 export default function Register() {
@@ -11,13 +11,8 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-
-  function displayError(error) {
-    setErrorMsg(error);
-    setError(true);
-    setPassword("");
-    setConfirmPassword("");
-  }
+  const [success, setSuccess] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
 
   async function registerUser(event) {
     event.preventDefault();
@@ -26,15 +21,17 @@ export default function Register() {
     const validUsername = !!res;
 
     if (!validUsername || username.length < 3) {
-      displayError("Username must be more than 3 characters and contain at least one letter (a-z / A-Z). Other valid characters include numbers (0-9).");
+      displayErrorMsg(
+        "Username must be more than 3 characters and contain at least one letter (a-z / A-Z). Other valid characters include numbers (0-9)."
+      );
       return;
     }
 
     if (password.length < 8) {
-      displayError("Password must be at least 8 characters.");
+      displayErrorMsg("Password must be at least 8 characters.");
       return;
     } else if (password != confirmPassword) {
-      displayError("Passwords do not match.");
+      displayErrorMsg("Passwords do not match.");
       return;
     }
 
@@ -53,16 +50,25 @@ export default function Register() {
     const data = await response.json();
 
     if (data.status == "ok") {
-      router.push("/login");
+      displaySuccessMsg(data.message);
     } else {
-      if (data.error.keyPattern.username == 1) {
-        displayError("Username already exists in the database.");
-      } else if (data.error.keyPattern.email == 1) {
-        displayError("Email already exists in the database.");
-      } else {
-        displayError("Error registering. Please try again.");
-      }
+      displayErrorMsg(data.error);
     }
+  }
+
+  function displayErrorMsg(error) {
+    setErrorMsg(error);
+    setError(true);
+    setSuccessMsg("");
+    setSuccess(false);
+    setPassword("");
+    setConfirmPassword("");
+  }
+
+  function displaySuccessMsg(message) {
+    setSuccessMsg(message);
+    setSuccess(true);
+    setError(false);
   }
 
   return (
@@ -104,7 +110,8 @@ export default function Register() {
             required
             className="auth-input"
           />
-          { error && <p className="auth-error-message">{errorMsg}</p> }
+          {error && <p className="auth-error-message">{errorMsg}</p>}
+          {success && <p className="auth-success-message">{successMsg}</p>}
           <div className="auth-button-container">
             <button
               type="button"
@@ -125,4 +132,4 @@ export default function Register() {
   );
 }
 
-export { getServerSideProps }
+export { getServerSideProps };

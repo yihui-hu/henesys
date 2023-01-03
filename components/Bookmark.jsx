@@ -40,7 +40,7 @@ const Bookmark = ({
       >
         <div onClick={() => showBookmarkFullView(bookmark)}>
           {file && <FilePreview file={file} metadata={metadata} />}
-          {url && <UrlPreview url={url} metadata={metadata} />}
+          {url  && <UrlPreview url={url} metadata={metadata} />}
           {text && <TextPreview text={text} />}
         </div>
         <div className="bookmark-info">
