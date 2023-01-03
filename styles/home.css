@@ -74,7 +74,7 @@
   z-index: 18;
   bottom: 2vw;
   right: 2vw;
-  font-size: 1.4vw;
+  font-size: 1.8vw;
   transition: 0.2s ease;
 }
 
@@ -103,6 +103,7 @@
   border: 0px solid black;
   border-radius: 100px;
   background-color: black;
+  margin-bottom: 8vw;
   color: white;
   cursor: pointer;
   transition: 0.15s ease;
@@ -202,7 +203,7 @@
   .add-bookmark-button {
     width: 7vw;
     height: 7vw;
-    font-size: 4vw;
+    font-size: 3.4vw;
   }
 
   .empty-state-message {
