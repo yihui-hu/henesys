@@ -1,5 +1,5 @@
 const UrlPreview = ({ url, metadata }) => {
-const imageURL = metadata.preview_image_url;
+  const imageURL = metadata.preview_image_url;
 
   if (imageURL) {
     return (
