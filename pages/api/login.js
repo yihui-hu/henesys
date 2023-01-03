@@ -18,7 +18,7 @@ const handler = async (req, res) => {
     if (user.password == process.env.FO_WAITLIST_PASSWORD) {
       return res.json({
         status: "error",
-        error: "You'll be let in shortly -- keep an eye out for an email! 👀",
+        error: "Hang tight, you'll be let in shortly!",
       });
     }
 

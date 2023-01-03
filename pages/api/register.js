@@ -32,7 +32,7 @@ const handler = async (req, res) => {
           from: "field.observers@gmail.com",
           to: "yyihui.hu@gmail.com",
           subject: "field-observer New User Signup",
-          text: `New user sign up! \n\n Profile pic: ${default_profile_pic} \n Username: ${req.body.username} \n Email: ${req.body.email} \n Hashed password: ${hashed_password} \n`,
+          text: `New user sign up! \n Username: ${req.body.username} \n Email: ${req.body.email} \n Hashed password: ${hashed_password} \n`,
         },
         (err) => {
           console.log(err);
