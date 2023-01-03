@@ -67,8 +67,8 @@
   background-color: black;
   border: 1px solid rgb(255, 255, 255, 0.2);
   border-radius: 200px;
-  width: 4vw;
-  height: 4vw;
+  width: 4.5vw;
+  height: 4.5vw;
   cursor: pointer;
   position: fixed;
   z-index: 18;
@@ -81,6 +81,11 @@
 .add-bookmark-button:hover {
   color: #cacaca;
   background-color: #e7e7e7;
+}
+
+.add-bookmark-icon {
+  width: 70%;
+  height: 70%;
 }
 
 .bookmarks-container {
