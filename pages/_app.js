@@ -24,14 +24,8 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>field-observer</title>
-        <meta
-          name="description"
-          content="barebones bookmarking / note-taking site"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-        />
+        <meta name="description" content="barebones bookmarking / note-taking site" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

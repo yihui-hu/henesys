@@ -3,15 +3,11 @@ import Link from "next/link";
 export default function Custom404() {
   return (
     <div className="error-container">
-      <div className="error-modal">
-        <div>
-          <h4 className="error-404">500</h4>
-          <br></br>
-          <Link href="/">
-            ← return home
-          </Link>
+      <Link href="/">
+        <div className="error-modal">
+          <img src={"buddha-bless.png"} />
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
