@@ -146,12 +146,12 @@ textarea {
 
 @media screen and (max-width: 1024px) {
   .add-bookmark-container {
-    background: linear-gradient(
+    /* background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.2) 0%,
       rgba(0, 0, 0, 0.2) 53%,
       rgba(255, 255, 255, 1) 90%
-    );
+    ); */
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
   }
 
