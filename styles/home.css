@@ -129,7 +129,7 @@
   background-color: white;
 }
 
-.add-first-bookmark-message {
+.empty-state-message {
   display: grid;
   place-items: center;
   width: calc(90vw / 4);
@@ -205,7 +205,7 @@
     font-size: 4vw;
   }
 
-  .add-first-bookmark-message {
+  .empty-state-message {
     width: calc(92vw / 3);
     height: calc(92vw / 3);
     font-size: 1.8vw;
@@ -274,13 +274,13 @@
     transition: 0.2s ease;
   }
 
-  .add-first-bookmark-message {
+  .empty-state-message {
     width: 92vw;
     height: 92vw;
     padding: 8vw;
     font-size: 4vw;
     position: static;
-    margin-top: 8vw;
+    margin-top: 0vw;
     top: auto;
     left: auto;
     transform: translate(0, 0);
@@ -289,5 +289,23 @@
   .show-more-button {
     font-size: 4vw;
     margin-bottom: 20vw;
+  }
+}
+
+@media screen and not (max-aspect-ratio: 12/9) {
+  .empty-state-message {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: translate(0, 0);
+  }
+}
+
+@media screen and (max-width: 1024px) and (not (max-aspect-ratio: 12/6)) {
+  .empty-state-message {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: translate(0, 0);
   }
 }

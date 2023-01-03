@@ -215,12 +215,12 @@ export default function Community({ token, profile_pic }) {
             })}
         </div>
         {!loading && bookmarks.length == 0 && !searchTagsMode && (
-          <h4 className="add-first-bookmark-message">
+          <h4 className="empty-state-message">
             No bookmarks to display.
           </h4>
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
-          <h4 className="add-first-bookmark-message">No bookmarks found.</h4>
+          <h4 className="empty-state-message">No bookmarks found.</h4>
         )}
         {!loading && bookmarks.length >= 35 && !endOfBookmarks && (
           <div className="show-more-button-container">

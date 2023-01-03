@@ -248,12 +248,12 @@ export default function Home({ token, profile_pic }) {
             })}
         </div>
         {!loading && bookmarks.length == 0 && !searchTagsMode && (
-          <div className="add-first-bookmark-message">
+          <div className="empty-state-message">
             <h4>Add your first bookmark using the lower right button!</h4>
           </div>
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
-          <h4 className="add-first-bookmark-message">No bookmarks found.</h4>
+          <h4 className="empty-state-message">No bookmarks found.</h4>
         )}
         {!loading &&
           bookmarks.length + deletedBookmarksCount >= 35 &&
