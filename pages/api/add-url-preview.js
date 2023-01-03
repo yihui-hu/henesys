@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     if (!reachableUrl.isReachable(await reachableUrl(url))) {
       return res.json({
         status: "error",
-        error: "Unable to reach website.",
+        error: "Unable to reach website. Please try again later.",
       });
     }
 
@@ -27,7 +27,7 @@ const handler = async (req, res) => {
     } catch (err) {
       return res.json({
         status: "error",
-        error: "Unable to load website, please try again later.",
+        error: "Unable to load website. Please try again later.",
       });
     }
 
@@ -70,7 +70,7 @@ const handler = async (req, res) => {
     return res.json({
       status: "error",
       error:
-        "Unable to retrieve screenshot of website, please try again later.",
+        "Unable to retrieve screenshot of website. Please try again later.",
     });
   }
 };

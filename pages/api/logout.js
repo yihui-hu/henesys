@@ -7,7 +7,7 @@ const handler = async (req, res) => {
   } catch (err) {
     return res.json({
       status: "error",
-      error: "Error signing out.",
+      error: "Error signing out. Please try again later.",
     });
   }
 };

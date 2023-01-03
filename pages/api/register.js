@@ -49,7 +49,7 @@ const handler = async (req, res) => {
     } else if (err.keyPattern.email == 1) {
       return res.json({ status: "error", error: "Email already in use." });
     } else {
-      return res.json({ status: "error", error: "Error signing up. Please try again." });
+      return res.json({ status: "error", error: "Error signing up. Please try again later." });
     }
   }
 }
