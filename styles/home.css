@@ -122,19 +122,6 @@
   background-color: black;
 }
 
-.bookmark-full-view {
-  position: absolute;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background-color: white;
-}
-
 .empty-state-message {
   display: grid;
   place-items: center;

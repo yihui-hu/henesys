@@ -6,6 +6,7 @@ import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
+import BookmarkFullView from "../components/BookmarkFullView";
 
 export default function Community({ token, profile_pic }) {
   const [showAddBookmark, setShowAddBookmark] = useState(false);
@@ -32,6 +33,14 @@ export default function Community({ token, profile_pic }) {
     }
     document.addEventListener("keydown", handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (showAddBookmark || bookmarkFullView) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showAddBookmark, bookmarkFullView]);
 
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
@@ -215,9 +224,7 @@ export default function Community({ token, profile_pic }) {
             })}
         </div>
         {!loading && bookmarks.length == 0 && !searchTagsMode && (
-          <h4 className="empty-state-message">
-            No bookmarks to display.
-          </h4>
+          <h4 className="empty-state-message">No bookmarks to display.</h4>
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
           <h4 className="empty-state-message">No bookmarks found.</h4>
@@ -241,13 +248,11 @@ export default function Community({ token, profile_pic }) {
 
       <AnimatePresence>
         {bookmarkFullView && (
-          <div className="bookmark-full-view">
-            <h2>{bookmarkFullViewData.username}</h2>
-            <h4>{bookmarkFullViewData.timestamp}</h4>
-            <button type="button" onClick={() => setBookmarkFullView(false)}>
-              Close
-            </button>
-          </div>
+          <BookmarkFullView
+            bookmarkFullViewData={bookmarkFullViewData}
+            setBookmarkFullView={setBookmarkFullView}
+            homeView={false}
+          />
         )}
       </AnimatePresence>
 

@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
 import { getServerSideProps } from "../lib/authHomeCommunity";
+import BookmarkFullView from "../components/BookmarkFullView";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
@@ -35,12 +36,12 @@ export default function Home({ token, profile_pic }) {
   }, []);
 
   useEffect(() => {
-    if (showAddBookmark) {
+    if (showAddBookmark || bookmarkFullView) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [showAddBookmark]);
+  }, [showAddBookmark, bookmarkFullView]);
 
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`api/your-bookmarks`, {
@@ -256,7 +257,7 @@ export default function Home({ token, profile_pic }) {
         </div>
         {!loading && bookmarks.length == 0 && !searchTagsMode && (
           <div className="empty-state-message">
-            <h4>Add your first bookmark using the lower right button!</h4>
+            <h4>Add your first bookmark using the lower right button! ↘</h4>
           </div>
         )}
         {!loading && bookmarks.length == 0 && searchTagsMode && (
@@ -283,19 +284,12 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {bookmarkFullView && (
-          <div className="bookmark-full-view">
-            <h2>{bookmarkFullViewData.username}</h2>
-            <h4>{bookmarkFullViewData.timestamp}</h4>
-            <button
-              type="button"
-              onClick={() => deleteBookmark(bookmarkFullViewData)}
-            >
-              Delete bookmark
-            </button>
-            <button type="button" onClick={() => setBookmarkFullView(false)}>
-              Close
-            </button>
-          </div>
+          <BookmarkFullView
+            bookmarkFullViewData={bookmarkFullViewData}
+            setBookmarkFullView={setBookmarkFullView}
+            deleteBookmark={deleteBookmark}
+            homeView={true}
+          />
         )}
       </AnimatePresence>
 

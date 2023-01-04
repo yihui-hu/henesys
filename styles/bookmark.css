@@ -36,6 +36,7 @@
   transition: 0.1s ease;
 
   overflow-wrap: break-word;
+  white-space: pre-wrap;
   word-wrap: break-word;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;

@@ -1,0 +1,157 @@
+.bookmark-full-view-container {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9999;
+  background-color: white;
+}
+
+.bookmark-full-view {
+  display: flex;
+}
+
+.bookmark-full-view-file-preview,
+.bookmark-full-view-url-preview {
+  width: 70vw;
+  height: 100vh;
+}
+
+.bookmark-full-view-file-preview img,
+.bookmark-full-view-file-preview embed,
+.bookmark-full-view-url-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bookmark-full-view-file-nopreview {
+  width: 70vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.bookmark-full-view-file-nopreview-text {
+  font-size: 1.2vw;
+  padding-inline: 1.5vw;
+  padding-block: 1rem;
+  border-radius: 100px;
+  color: #b7b7b7;
+  background-color: #f1f1f1;
+}
+
+.bookmark-full-view-text-preview {
+  width: 70vw;
+  height: 100vh;
+  padding-block: 4vw;
+  padding-inline: 8vw;
+  overflow: scroll;
+
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.bookmark-full-view-text-preview > h4 {
+  font-size: 1.2vw;
+  font-weight: 400;
+}
+
+.bookmark-full-view-info {
+  width: 30vw;
+  height: 100vh;
+  overflow: scroll;
+  border-left: 1px solid rgb(236, 236, 236);
+}
+
+.bookmark-full-view-info-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  padding-block: 1.5vw;
+  padding-inline: 2vw;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  height: auto;
+  width: 30vw;
+}
+
+.bookmark-full-view-close-button {
+  cursor: pointer;
+}
+
+.bookmark-full-view-info-content {
+  padding: 2vw;
+}
+
+.bookmark-full-view-info-small-header {
+  display: flex;
+  justify-content: space-between;
+  color: #acacac;
+  font-size: 0.9vw;
+  margin-top: 0.5vw;
+  margin-bottom: 2vw;
+}
+
+.bookmark-full-view-info-small-header > h4 {
+  font-weight: 400;
+}
+
+.bookmark-full-view-info-note {
+  font-weight: 400;
+  margin-bottom: 2vw;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.bookmark-full-view-info-tags-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7vw;
+}
+
+.bookmark-full-view-info-tags {
+  color: white;
+  background-color: black;
+  border-radius: 100px;
+  white-space: nowrap;
+
+  font-size: 1vw;
+  padding-block: 0.4vw;
+  padding-inline: 1vw;
+}
+
+.bookmark-full-view-delete-button {
+  margin-top: 2vw;
+  align-self: flex-end;
+  font-size: 1vw;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid red;
+  background-color: white;
+  border-radius: 100px;
+  color: red;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.bookmark-full-view-delete-button:hover {
+  background-color: red;
+  color: white;
+}

@@ -4,6 +4,7 @@ import "../styles/landing.css";
 import "../styles/authentication.css";
 import "../styles/home.css";
 import "../styles/bookmark.css";
+import "../styles/bookmark-full-view.css"
 import "../styles/navbar.css";
 import "../styles/add-bookmark.css";
 import "../styles/404.css";

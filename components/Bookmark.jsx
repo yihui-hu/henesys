@@ -2,8 +2,8 @@ import { useState } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import ReactTimeAgo from "react-time-ago";
 import FilePreview from "./FilePreview";
-import TextPreview from "./TextPreview";
 import UrlPreview from "./UrlPreview";
+import TextPreview from "./TextPreview";
 
 const Bookmark = ({
   bookmark,
@@ -45,7 +45,7 @@ const Bookmark = ({
         </div>
         <div className="bookmark-info">
           {communityView && !hoverInfo && (
-            <h4 className="bookmark-info-text">{`added by ${username}`}</h4>
+            <h4 className="bookmark-info-text">{`@${username}`}</h4>
           )}
           {file && (!communityView || (communityView && hoverInfo)) && (
             <h4 className="bookmark-info-text">
