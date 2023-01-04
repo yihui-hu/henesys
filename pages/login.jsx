@@ -14,6 +14,7 @@ export default function Login() {
 
   async function loginUser(event) {
     event.preventDefault();
+    setSuccess(true);
     setSuccessMsg("Logging you in...");
 
     const response = await fetch("/api/login", {
