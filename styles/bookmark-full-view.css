@@ -82,8 +82,6 @@
   position: sticky;
   top: 0;
   background-color: white;
-  height: auto;
-  width: 30vw;
 }
 
 .bookmark-full-view-close-button {
@@ -137,21 +135,19 @@
   padding-inline: 1vw;
 }
 
+.bookmark-full-view-menu-container {
+  padding-top: 1vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 2vw;
+}
+
 .bookmark-full-view-delete-button {
-  margin-top: 2vw;
-  align-self: flex-end;
-  font-size: 1vw;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
-  border: 1px solid red;
-  background-color: white;
-  border-radius: 100px;
   color: red;
   cursor: pointer;
   transition: 0.1s ease;
 }
 
 .bookmark-full-view-delete-button:hover {
-  background-color: red;
-  color: white;
+  color: rgb(198, 6, 6);
 }

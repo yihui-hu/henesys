@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import FullFilePreview from "../components/FullFilePreview";
 import FullUrlPreview from "../components/FullUrlPreview";
@@ -19,6 +20,8 @@ export default function BookmarkFullView({
   const metadata = bookmarkFullViewData.metadata;
   const timestamp = bookmarkFullViewData.timestamp;
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="bookmark-full-view-container">
       <div className="bookmark-full-view">
@@ -30,9 +33,27 @@ export default function BookmarkFullView({
         <div className="bookmark-full-view-info">
           <div className="bookmark-full-view-info-header">
             <div>
-              {homeView && <h4>•••</h4>}
-              {/* <h4>Edit</h4>
-              <h4>Delete</h4> */}
+              {homeView && (
+                <>
+                  <h4
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                  >
+                    •••
+                  </h4>
+                  {menuOpen && (
+                    <div className="bookmark-full-view-menu-container">
+                      <h4>Edit</h4>
+                      <h4
+                        className="bookmark-full-view-delete-button"
+                        onClick={() => deleteBookmark(bookmarkFullViewData)}
+                      >
+                        Delete
+                      </h4>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
             <div
               className="bookmark-full-view-close-button"
@@ -64,15 +85,6 @@ export default function BookmarkFullView({
                   );
                 })}
               </div>
-            )}
-            {homeView && (
-              <button
-                type="button"
-                className="bookmark-full-view-delete-button"
-                onClick={() => deleteBookmark(bookmarkFullViewData)}
-              >
-                Delete bookmark
-              </button>
             )}
           </div>
         </div>
