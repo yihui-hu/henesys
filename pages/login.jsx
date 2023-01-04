@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";
 
@@ -41,6 +41,10 @@ export default function Login() {
       setSuccess(false);
     }
   }
+
+  useEffect(() => {
+    router.prefetch('/home')
+  }, [])
 
   return (
     <>

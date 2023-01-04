@@ -142,12 +142,24 @@
   gap: 2vw;
 }
 
+.bookmark-full-view-edit-button {
+  color: black;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+.bookmark-full-view-edit-button:hover {
+  color: gray;
+}
+
 .bookmark-full-view-delete-button {
   color: red;
   cursor: pointer;
   transition: 0.1s ease;
 }
-
 .bookmark-full-view-delete-button:hover {
   color: rgb(198, 6, 6);
+}
+
+.bookmark-full-view-info-edit {
+  padding: 2vw;
 }
