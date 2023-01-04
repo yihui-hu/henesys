@@ -15,6 +15,7 @@ const handler = async (req, res) => {
       text: text,
       url: null,
       metadata: null,
+      title: "",
       note: note,
       tags: tags,
       private: false,

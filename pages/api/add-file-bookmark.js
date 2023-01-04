@@ -46,6 +46,7 @@ const handler = async (req, res) => {
         fileType: file.fileType,
         fileSize: file.fileSize,
       },
+      title: file_url,
       note: note,
       tags: tags,
       private: false,

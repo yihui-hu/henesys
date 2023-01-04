@@ -7,6 +7,7 @@ const bookmark = new mongoose.Schema(
     text: { type: String },
     url: { type: String },
     metadata: { type: Object },
+    title: { type: String },
     note: { type: String },
     tags: { type: Array },
     private: { type: Boolean },
