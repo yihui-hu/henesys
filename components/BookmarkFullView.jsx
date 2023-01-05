@@ -63,7 +63,7 @@ export default function BookmarkFullView({
       tag.text.toLowerCase()
     );
 
-    const response = await fetch("http://localhost:3000/api/update-bookmark", {
+    const response = await fetch("/api/update-bookmark", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
