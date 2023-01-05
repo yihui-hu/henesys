@@ -8,20 +8,11 @@
   transition: 0.1s ease;
 }
 
-.lazy-load-image-background,
-.opacity,
-.lazy-load-image-loaded {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.lazy-load-image-background > img,
-.opacity > img,
-.lazy-load-image-loaded > img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.bookmark-modal-image > img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
 }
 
 .bookmark-modal-text {

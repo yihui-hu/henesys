@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link"
 
 const UrlPreview = ({ url, metadata }) => {
@@ -7,7 +8,7 @@ const UrlPreview = ({ url, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={url} target="_blank">
-          <img src={imageURL} />
+          <Image src={imageURL} fill quality={100}/>
         </Link>
       </div>
     );

@@ -22,8 +22,14 @@
 }
 
 .bookmark-full-view-file-preview img,
-.bookmark-full-view-file-preview embed,
 .bookmark-full-view-url-preview img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.bookmark-full-view-file-preview embed {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -282,14 +288,14 @@
   }
 
   .bookmark-full-view-menu-button {
-    padding: 2vw;
-    margin: -2vw;
+    padding: 1.5vw;
+    margin: -1.5vw;
   }
 
   .bookmark-full-view-close-button {
     font-size: 3vw;
-    padding: 2vw;
-    margin: -2vw;
+    padding: 1.5vw;
+    margin: -1.5vw;
   }
 
   .bookmark-full-view-info-content {

@@ -1,5 +1,4 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import Image from "next/image";
 
 const UrlPreview = ({ url, metadata }) => {
   const imageURL = metadata.preview_image_url;
@@ -7,7 +6,7 @@ const UrlPreview = ({ url, metadata }) => {
   if (imageURL) {
     return (
       <div className="bookmark-modal-image">
-        <LazyLoadImage src={imageURL} effect="blur" />
+         <Image src={imageURL} fill quality={50}/>
       </div>
     );
   } else {

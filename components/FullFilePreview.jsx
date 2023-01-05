@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const FilePreview = ({ file, metadata }) => {
@@ -10,18 +11,11 @@ const FilePreview = ({ file, metadata }) => {
   ];
   const mimeDocTypes = ["application/pdf"];
 
-  // "application/epub+zip",
-  // "text/html",
-  // "text/javascript",
-  // "text/css",
-  // "text/plain",
-  // "text/markdown",
-
   if (mimeImageTypes.includes(metadata.fileType)) {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={file} target="_blank">
-          <img src={file} />
+          <Image src={file} fill quality={100}/>
         </Link>
       </div>
     );

@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
+import { FocusOn } from "react-focus-on";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import BookmarkFullView from "../components/BookmarkFullView";
 import AddBookmarkModal from "../components/AddBookmarkModal";
@@ -26,26 +27,18 @@ export default function Home({ token, profile_pic }) {
   useEffect(() => {
     getYourBookmarks(lastTimestamp);
 
-    function handleKeyDown(e) {
-      if (e.keyCode == 27) {
-        setBookmarkFullView(false);
-        setShowAddBookmark(false);
-      }
-    }
-    document.addEventListener("keydown", handleKeyDown);
+    // function handleKeyDown(e) {
+    //   if (e.keyCode == 27) {
+    //     setBookmarkFullView(false);
+    //     setShowAddBookmark(false);
+    //   }
+    // }
+    // document.addEventListener("keydown", handleKeyDown);
 
     // window.addEventListener("popstate", (event) => {
     //   setBookmarkFullView(false);
     // });
   }, []);
-
-  useEffect(() => {
-    if (showAddBookmark || bookmarkFullView) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [showAddBookmark, bookmarkFullView]);
 
   // useEffect(() => {
   //   if (bookmarkFullView) {
@@ -89,7 +82,7 @@ export default function Home({ token, profile_pic }) {
       }
 
       if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
-        alert("No more bookmarks to load.");
+        console.log("No more bookmarks to load.");
       }
     } else {
       console.log(data.error);
@@ -300,27 +293,32 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {bookmarkFullView && (
-          <BookmarkFullView
-            bookmarkFullViewData={bookmarkFullViewData}
-            setBookmarkFullView={setBookmarkFullView}
-            bookmarks={bookmarks}
-            setBookmarks={setBookmarks}
-            deleteBookmark={deleteBookmark}
-            homeView={true}
-            token={token}
-          />
+          <FocusOn
+            autoFocus={false}
+            onEscapeKey={() => setBookmarkFullView(false)}
+          >
+            <BookmarkFullView
+              bookmarkFullViewData={bookmarkFullViewData}
+              setBookmarkFullView={setBookmarkFullView}
+              bookmarks={bookmarks}
+              setBookmarks={setBookmarks}
+              deleteBookmark={deleteBookmark}
+              homeView={true}
+              token={token}
+            />
+          </FocusOn>
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {showAddBookmark && (
-          <AddBookmarkModal
-            setShown={setShowAddBookmark}
-            communityView={false}
-            bookmarks={bookmarks}
-            updateBookmarks={setBookmarks}
-            token={token}
-          />
+            <AddBookmarkModal
+              setShown={setShowAddBookmark}
+              communityView={false}
+              bookmarks={bookmarks}
+              updateBookmarks={setBookmarks}
+              token={token}
+            />
         )}
       </AnimatePresence>
     </>

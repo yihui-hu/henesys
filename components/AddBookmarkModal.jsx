@@ -2,7 +2,7 @@ import { useState } from "react";
 import { filesize } from "filesize";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
-import useMediaQuery from "../hooks/useMediaQuery";
+import { FocusOn } from "react-focus-on";
 import Textarea from "react-textarea-autosize";
 import isUrl from "is-url";
 
@@ -34,8 +34,6 @@ const AddBookmarkModal = ({
   updateBookmarks,
   token,
 }) => {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
   const [files, setFiles] = useState([]);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
@@ -186,154 +184,165 @@ const AddBookmarkModal = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.15 }}
-        onClick={() => (isDesktop ? setShown(false) : undefined)}
       >
-        <m.div
-          className="add-bookmark-modal"
-          initial={{ y: "15px", opacity: 0 }}
-          animate={{ y: "0px", opacity: 1 }}
-          exit={{ y: "15px", opacity: 0 }}
-          transition={{ duration: 0.15, ease: "easeOut" }}
-          onClick={(e) => e.stopPropagation()}
+        <FocusOn
+          autoFocus={false}
+          onEscapeKey={() => setShown(false)}
+          onClickOutside={() => setShown(false)}
         >
-          {addingBookmark && <h4>Adding bookmark... </h4>}
-          {!addingBookmark && (
-            <form onSubmit={submitBookmark}>
-              {!inputFocused && (
-                <h4 className="add-bookmark-input-header">Upload a file</h4>
-              )}
-              {!inputFocused && (
-                <FilePond
-                  files={files}
-                  onupdatefiles={setFiles}
-                  onaddfilestart={() => {
-                    setSubmitDisabled(true);
-                    setFilesUploaded(true);
-                  }}
-                  onremovefile={() => setFilesUploaded(false)}
-                  onaddfile={() => setSubmitDisabled(false)}
-                  allowMultiple={false}
-                  allowFileEncode={true}
-                  acceptedFileTypes={[
-                    "image/jpeg",
-                    "image/png",
-                    "image/jpg",
-                    "image/gif",
-                    "image/webp",
-                    "application/pdf",
-                    "text/html",
-                    "text/css",
-                    "text/plain",
-                    "text/markdown",
-                  ]}
-                  maxFiles={1}
-                  maxFileSize={"3MB"}
-                  name="files"
-                  labelIdle='Drag & drop or <span class="filepond--label-action">choose</span> file to upload'
-                  credits={false}
-                />
-              )}
-              {!filesUploaded && (
-                <h4 className="add-bookmark-input-header">
-                  {inputFocused ? "Add text or URL" : "Add text or URL instead"}
-                </h4>
-              )}
-              {!filesUploaded && (
-                <Textarea
-                  type="textarea"
-                  placeholder="Text or URL (article, image, etc.)"
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  onFocus={() => setInputFocused(true)}
-                  className="add-bookmark-input"
-                  minRows={1}
-                  maxRows={4}
-                />
-              )}
-              {(filesUploaded || inputFocused) && (
-                <h4 className="add-bookmark-input-header">Add title</h4>
-              )}
-              {(filesUploaded || inputFocused) && (
-                <Textarea
-                  type="textarea"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="add-bookmark-input"
-                  minRows={1}
-                  maxRows={2}
-                />
-              )}
-              {(filesUploaded || inputFocused) && (
-                <h4 className="add-bookmark-input-header">Add note</h4>
-              )}
-              {(filesUploaded || inputFocused) && (
-                <Textarea
-                  type="textarea"
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  className="add-bookmark-input"
-                  minRows={2}
-                  maxRows={3}
-                />
-              )}
-              {(filesUploaded || inputFocused) && (
-                <h4 className="add-bookmark-input-header">Add tags</h4>
-              )}
-              {(filesUploaded || inputFocused) && (
-                <ReactTags
-                  classNames={{
-                    tag: "add-bookmark-tag",
-                    selected: "add-bookmark-tag-container",
-                    remove: "add-bookmark-remove-tag",
-                    tagInputField: "add-bookmark-input",
-                  }}
-                  tags={tags}
-                  allowDragDrop={false}
-                  autofocus={false}
-                  delimiters={[188, 13]}
-                  handleDelete={(i) =>
-                    setTags(tags.filter((tag, index) => index !== i))
-                  }
-                  handleAddition={(tag) => setTags([...tags, tag])}
-                  inputFieldPosition="bottom"
-                />
-              )}
-              {error && <p className="auth-error-message">{errorMsg}</p>}
-              {success && <p className="auth-success-message">{successMsg}</p>}
-              <div className="add-bookmark-button-container">
-                {!filesUploaded && !inputFocused && (
-                  <button
-                    type="button"
-                    onClick={() => setShown(false)}
-                    className="add-bookmark-secondary-button"
-                  >
-                    Cancel
-                  </button>
+          <m.div
+            className="add-bookmark-modal"
+            initial={{ y: "15px", opacity: 0 }}
+            animate={{ y: "0px", opacity: 1 }}
+            exit={{ y: "15px", opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {addingBookmark && <h4>Adding bookmark... </h4>}
+            {!addingBookmark && (
+              <form onSubmit={submitBookmark}>
+                {!inputFocused && (
+                  <h4 className="add-bookmark-input-header">Upload a file</h4>
                 )}
-                {(filesUploaded || inputFocused) && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setError(false);
-                      setSuccess(false);
-                      resetDefault();
+                {!inputFocused && (
+                  <FilePond
+                    files={files}
+                    onupdatefiles={setFiles}
+                    onaddfilestart={() => {
+                      setSubmitDisabled(true);
+                      setFilesUploaded(true);
                     }}
-                    className="add-bookmark-secondary-button"
-                  >
-                    Back
-                  </button>
-                )}
-                {!submitDisabled && (
-                  <input
-                    type="submit"
-                    value="Add bookmark"
-                    className="add-bookmark-primary-button"
+                    onremovefile={() => setFilesUploaded(false)}
+                    onaddfile={() => setSubmitDisabled(false)}
+                    allowMultiple={false}
+                    allowFileEncode={true}
+                    acceptedFileTypes={[
+                      "image/jpeg",
+                      "image/png",
+                      "image/jpg",
+                      "image/gif",
+                      "image/webp",
+                      "application/pdf",
+                      "text/html",
+                      "text/css",
+                      "text/plain",
+                      "text/markdown",
+                    ]}
+                    maxFiles={1}
+                    maxFileSize={"3MB"}
+                    name="files"
+                    labelIdle='Drag & drop or <span class="filepond--label-action">choose</span> file to upload'
+                    credits={false}
                   />
                 )}
-              </div>
-            </form>
-          )}
-        </m.div>
+                {!filesUploaded && (
+                  <h4 className="add-bookmark-input-header">
+                    {inputFocused
+                      ? "Add text or URL"
+                      : "Add text or URL instead"}
+                  </h4>
+                )}
+                {!filesUploaded && (
+                  <Textarea
+                    type="textarea"
+                    placeholder={
+                      inputFocused ? "" : "Text or URL (article, image, etc.)"
+                    }
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    onFocus={() => setInputFocused(true)}
+                    className="add-bookmark-input"
+                    minRows={inputFocused ? 3 : 1}
+                    maxRows={6}
+                  />
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <h4 className="add-bookmark-input-header">Add title</h4>
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <Textarea
+                    type="textarea"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="add-bookmark-input"
+                    minRows={1}
+                    maxRows={2}
+                  />
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <h4 className="add-bookmark-input-header">Add note</h4>
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <Textarea
+                    type="textarea"
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    className="add-bookmark-input"
+                    minRows={3}
+                    maxRows={6}
+                  />
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <h4 className="add-bookmark-input-header">Add tags</h4>
+                )}
+                {(filesUploaded || inputFocused) && (
+                  <ReactTags
+                    classNames={{
+                      tag: "add-bookmark-tag",
+                      selected: "add-bookmark-tag-container",
+                      remove: "add-bookmark-remove-tag",
+                      tagInputField: "add-bookmark-input",
+                    }}
+                    tags={tags}
+                    allowDragDrop={false}
+                    autofocus={false}
+                    delimiters={[188, 13]}
+                    handleDelete={(i) =>
+                      setTags(tags.filter((tag, index) => index !== i))
+                    }
+                    handleAddition={(tag) => setTags([...tags, tag])}
+                    inputFieldPosition="bottom"
+                  />
+                )}
+                {error && <p className="auth-error-message">{errorMsg}</p>}
+                {success && (
+                  <p className="auth-success-message">{successMsg}</p>
+                )}
+                <div className="add-bookmark-button-container">
+                  {!filesUploaded && !inputFocused && (
+                    <button
+                      type="button"
+                      onClick={() => setShown(false)}
+                      className="add-bookmark-secondary-button"
+                    >
+                      Cancel
+                    </button>
+                  )}
+                  {(filesUploaded || inputFocused) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setError(false);
+                        setSuccess(false);
+                        resetDefault();
+                      }}
+                      className="add-bookmark-secondary-button"
+                    >
+                      Back
+                    </button>
+                  )}
+                  {!submitDisabled && (
+                    <input
+                      type="submit"
+                      value="Add bookmark"
+                      className="add-bookmark-primary-button"
+                    />
+                  )}
+                </div>
+              </form>
+            )}
+          </m.div>
+        </FocusOn>
       </m.div>
     </LazyMotion>
   );

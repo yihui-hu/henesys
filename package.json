@@ -46,6 +46,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-filepond": "^7.1.2",
+    "react-focus-on": "^3.7.0",
     "react-jwt": "^1.1.7",
     "react-lazy-load-image-component": "^1.5.6",
     "react-loading-indicators": "^0.0.11",

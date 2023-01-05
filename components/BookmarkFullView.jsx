@@ -27,37 +27,26 @@ export default function BookmarkFullView({
   const metadata = bookmarkFullViewData.metadata;
   const timestamp = bookmarkFullViewData.timestamp;
 
-  const original_title = bookmarkFullViewData.title
-    ? bookmarkFullViewData.title
-    : "";
-  const original_note = bookmarkFullViewData.note;
-  const original_tags = bookmarkFullViewData.tags.map((tag, i) => {
-    return { id: tag, text: tag };
-  });
+  const [originalTitle, setOriginalTitle] = useState(
+    bookmarkFullViewData.title ? bookmarkFullViewData.title : ""
+  );
+  const [originalNote, setOriginalNote] = useState(bookmarkFullViewData.note);
+  const [originalTags, setOriginalTags] = useState(bookmarkFullViewData.tags);
+
+  const [title, setTitle] = useState(originalTitle);
+  const [note, setNote] = useState(originalNote);
+  const [tags, setTags] = useState(originalTags);
+  const [editableTags, setEditableTags] = useState(
+    originalTags.map((tag, i) => {
+      return { id: tag, text: tag };
+    })
+  );
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [title, setTitle] = useState(original_title);
-  const [note, setNote] = useState(original_note);
-  const [tags, setTags] = useState(bookmarkFullViewData.tags);
-  const [editableTags, setEditableTags] = useState(original_tags);
 
   async function updateBookmark(event) {
     event.preventDefault();
-
-    let sameTitle = title == original_title;
-    let sameNote = note == original_note;
-    let sameTags =
-      editableTags.length === original_tags.length &&
-      editableTags.every(function (element) {
-        return original_tags.includes(element);
-      });
-
-    if (sameTitle && sameNote && sameTags) {
-      setMenuOpen(false);
-      setEditing(false);
-      return;
-    }
 
     const editableTags_array = editableTags.map((tag) =>
       tag.text.toLowerCase()
@@ -81,6 +70,9 @@ export default function BookmarkFullView({
 
     if (data.status == "ok") {
       setTags(editableTags_array);
+      setOriginalTitle(title);
+      setOriginalNote(note);
+      setOriginalTags(editableTags_array);
       setMenuOpen(false);
       setEditing(false);
 
@@ -100,14 +92,18 @@ export default function BookmarkFullView({
 
       setBookmarks(updated_bookmarks);
     } else {
-      alert("Something went wrong.");
+      alert("Something went wrong. Please try again later.");
     }
   }
 
   function cancelEdit() {
-    setTitle(original_title);
-    setNote(original_note);
-    setEditableTags(original_tags);
+    setTitle(originalTitle);
+    setNote(originalNote);
+    setEditableTags(
+      originalTags.map((tag, i) => {
+        return { id: tag, text: tag };
+      })
+    );
     setEditing(false);
     setMenuOpen(false);
   }
@@ -124,11 +120,8 @@ export default function BookmarkFullView({
                     style={{ cursor: "pointer" }}
                     className="bookmark-full-view-menu-button"
                     onClick={() => {
-                      if (editing) {
-                        cancelEdit();
-                      } else {
-                        setEditing(!editing);
-                      }
+                      cancelEdit();
+                      setEditing(!editing);
                       setMenuOpen(!menuOpen);
                     }}
                   >
@@ -139,14 +132,11 @@ export default function BookmarkFullView({
                       <h4
                         className="bookmark-full-view-edit-button"
                         onClick={() => {
-                          if (editing) {
-                            cancelEdit();
-                          } else {
-                            setEditing(!editing);
-                          }
+                          cancelEdit();
+                          setEditing(!editing);
                         }}
                       >
-                        {editing ? "Cancel edit" : "Edit"}
+                        Cancel edit
                       </h4>
                       <h4
                         className="bookmark-full-view-delete-button"
@@ -182,11 +172,8 @@ export default function BookmarkFullView({
                       style={{ cursor: "pointer" }}
                       className="bookmark-full-view-menu-button"
                       onClick={() => {
-                        if (editing) {
-                          cancelEdit();
-                        } else {
-                          setEditing(!editing);
-                        }
+                        cancelEdit();
+                        setEditing(!editing);
                         setMenuOpen(!menuOpen);
                       }}
                     >
@@ -197,14 +184,11 @@ export default function BookmarkFullView({
                         <h4
                           className="bookmark-full-view-edit-button"
                           onClick={() => {
-                            if (editing) {
-                              cancelEdit();
-                            } else {
-                              setEditing(!editing);
-                            }
+                            cancelEdit();
+                            setEditing(!editing);
                           }}
                         >
-                          {editing ? "Cancel edit" : "Edit"}
+                          Cancel edit
                         </h4>
                         <h4
                           className="bookmark-full-view-delete-button"
@@ -217,13 +201,12 @@ export default function BookmarkFullView({
                   </>
                 )}
               </div>
-              <button
-                type="button"
+              <div
                 className="bookmark-full-view-close-button"
                 onClick={() => setBookmarkFullView(false)}
               >
                 ✕
-              </button>
+              </div>
             </div>
           )}
           {!editing && (
