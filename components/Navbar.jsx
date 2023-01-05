@@ -44,11 +44,12 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
           </h4>
         </Link>
       </div>
-      <div
-        className="navbar-profile-icon"
-        style={{ backgroundImage: `url(${profilePic})` }}
-        onClick={() => router.push("/profile")}
-      />
+      <Link href="/profile">
+        <div
+          className="navbar-profile-icon"
+          style={{ backgroundImage: `url(${profilePic})` }}
+        />
+      </Link>
     </div>
   );
 };

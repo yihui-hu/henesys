@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
-import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import BookmarkFullView from "../components/BookmarkFullView";
 import AddBookmarkModal from "../components/AddBookmarkModal";
@@ -10,8 +9,6 @@ import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 
 export default function Home({ token, profile_pic }) {
-  const router = useRouter();
-
   const [showAddBookmark, setShowAddBookmark] = useState(false);
 
   const [bookmarks, setBookmarks] = useState([]);
@@ -49,10 +46,6 @@ export default function Home({ token, profile_pic }) {
       document.body.style.overflow = "auto";
     }
   }, [showAddBookmark, bookmarkFullView]);
-
-  // useEffect(() => {
-  //   router.prefetch('/community')
-  // }, [])
 
   // useEffect(() => {
   //   if (bookmarkFullView) {
