@@ -155,7 +155,7 @@ export default function BookmarkFullView({
         )}
         <div>
           {file && <FullFilePreview file={file} metadata={metadata} />}
-          {url && <FullUrlPreview url={url} metadata={metadata} />}
+          {url  && <FullUrlPreview  url={url}   metadata={metadata} />}
           {text && <FullTextPreview text={text} />}
         </div>
         <div className="bookmark-full-view-info">
@@ -208,7 +208,8 @@ export default function BookmarkFullView({
           {!editing && (
             <div className="bookmark-full-view-info-content">
               <div className="bookmark-full-view-info-title">
-                {(file || text) && <h4>{title}</h4>}
+                { file && <h4>{title ? title : metadata.fileName}</h4>}
+                { text && <h4>{title ? title : ""}</h4>}
                 {url && (
                   <Link href={url} target="_blank">
                     <h4>

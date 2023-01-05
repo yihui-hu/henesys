@@ -14,7 +14,7 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    let { file, note, tags } = req.body;
+    let { file, title, note, tags } = req.body;
 
     const params = {
       Bucket: "field-observer",
@@ -46,7 +46,7 @@ const handler = async (req, res) => {
         fileType: file.fileType,
         fileSize: file.fileSize,
       },
-      title: file.fileName,
+      title: title != "" ? title : file.fileName,
       note: note,
       tags: tags,
       private: false,

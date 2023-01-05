@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    let { text, note, tags } = req.body;
+    let { text, title, note, tags } = req.body;
 
     const bookmark = {
       username: decoded.username,
@@ -15,7 +15,7 @@ const handler = async (req, res) => {
       text: text,
       url: null,
       metadata: null,
-      title: "",
+      title: title != "" ? title : "",
       note: note,
       tags: tags,
       private: false,

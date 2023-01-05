@@ -38,6 +38,7 @@ const AddBookmarkModal = ({
 
   const [files, setFiles] = useState([]);
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [tags, setTags] = useState([]);
 
@@ -83,6 +84,7 @@ const AddBookmarkModal = ({
         },
         body: JSON.stringify({
           file: file,
+          title: title,
           note: note,
           tags: tags_array,
         }),
@@ -113,6 +115,7 @@ const AddBookmarkModal = ({
           body: JSON.stringify({
             url: text,
             metadata: s3_data.metadata,
+            title: title,
             note: note,
             tags: tags_array,
           }),
@@ -128,7 +131,8 @@ const AddBookmarkModal = ({
           },
           body: JSON.stringify({
             text: text,
-            note,
+            title: title,
+            note: note,
             tags: tags_array,
           }),
         });
@@ -165,6 +169,7 @@ const AddBookmarkModal = ({
 
   function resetDefault() {
     setText("");
+    setTitle("");
     setNote("");
     setTags([]);
     setFiles([]);
@@ -243,6 +248,19 @@ const AddBookmarkModal = ({
                   className="add-bookmark-input"
                   minRows={1}
                   maxRows={4}
+                />
+              )}
+              {(filesUploaded || inputFocused) && (
+                <h4 className="add-bookmark-input-header">Add title</h4>
+              )}
+              {(filesUploaded || inputFocused) && (
+                <Textarea
+                  type="textarea"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="add-bookmark-input"
+                  minRows={1}
+                  maxRows={2}
                 />
               )}
               {(filesUploaded || inputFocused) && (
