@@ -14,7 +14,7 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    let { url, metadata, note, tags } = req.body;
+    let { url, metadata, title, note, tags } = req.body;
 
     const params = {
       Bucket: "field-observer",
