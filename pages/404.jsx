@@ -5,7 +5,7 @@ export default function Custom404() {
     <div className="error-container">
       <Link href="/">
         <div className="error-modal">
-          <img src={"buddha-bless.png"} />
+          <img src={"/buddha-bless.png"} />
         </div>
       </Link>
     </div>

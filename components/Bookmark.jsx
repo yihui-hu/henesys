@@ -16,6 +16,7 @@ const Bookmark = ({
   const text = bookmark.text;
   const file = bookmark.file;
   const url = bookmark.url;
+  const title = bookmark.title;
   const note = bookmark.note;
   const metadata = bookmark.metadata;
   const timestamp = bookmark.timestamp;
@@ -49,20 +50,20 @@ const Bookmark = ({
           )}
           {file && (!communityView || (communityView && hoverInfo)) && (
             <h4 className="bookmark-info-text">
-              {note ? note : metadata.fileName}
+              {title ? title : metadata.fileName}
               <fade-info />
             </h4>
           )}
           {text && (!communityView || (communityView && hoverInfo)) && (
             <h4 className="bookmark-info-text">
-              {note ? note : ""}
+              {title ? title : note}
               <fade-info />
             </h4>
           )}
           {url && (!communityView || (communityView && hoverInfo)) && (
             <h4 className="bookmark-info-text">
               <a href={url} target="_blank" rel="noreferrer">
-                ↗ {metadata.title ? metadata.title : url}
+                ↗ {title ? title : (metadata.title ? metadata.title : url)}
               </a>
               <fade-info />
             </h4>

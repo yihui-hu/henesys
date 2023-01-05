@@ -7,10 +7,10 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    const { timestamp, username, title, note, tags } = req.body;
+    const { id, title, note, tags } = req.body;
 
     const bookmark = await Bookmark.findOneAndUpdate(
-      { timestamp: timestamp, username: username },
+      { _id : id },
       { title: title, note: note, tags: tags }
     );
 

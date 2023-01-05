@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
+import useMediaQuery from "../hooks/useMediaQuery";
 import Link from "next/link";
 import Textarea from "react-textarea-autosize";
 import FullFilePreview from "../components/FullFilePreview";
@@ -16,10 +17,14 @@ export default function BookmarkFullView({
   homeView,
   token,
 }) {
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+
   const username = bookmarkFullViewData.username;
   const text = bookmarkFullViewData.text;
   const file = bookmarkFullViewData.file;
   const url = bookmarkFullViewData.url;
+
+  const id = bookmarkFullViewData._id;
   const original_title = bookmarkFullViewData.title
     ? bookmarkFullViewData.title
     : "";
@@ -58,15 +63,14 @@ export default function BookmarkFullView({
       tag.text.toLowerCase()
     );
 
-    const response = await fetch("api/update-bookmark", {
+    const response = await fetch("http://localhost:3000/api/update-bookmark", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-access-token": token,
       },
       body: JSON.stringify({
-        timestamp: bookmarkFullViewData.timestamp,
-        username: bookmarkFullViewData.username,
+        id: id,
         title: title,
         note: note,
         tags: editableTags_array,
@@ -103,12 +107,7 @@ export default function BookmarkFullView({
   return (
     <div className="bookmark-full-view-container">
       <div className="bookmark-full-view">
-        <div>
-          {file && <FullFilePreview file={file} metadata={metadata} />}
-          {url && <FullUrlPreview url={url} metadata={metadata} />}
-          {text && <FullTextPreview text={text} />}
-        </div>
-        <div className="bookmark-full-view-info">
+        {isMobile && (
           <div className="bookmark-full-view-info-header">
             <div>
               {homeView && (
@@ -127,6 +126,9 @@ export default function BookmarkFullView({
                       <h4
                         className="bookmark-full-view-edit-button"
                         onClick={() => {
+                          if (editing) {
+                            setEditableTags(original_tags);
+                          }
                           setEditing(!editing);
                         }}
                       >
@@ -150,13 +152,68 @@ export default function BookmarkFullView({
               ✕
             </div>
           </div>
+        )}
+        <div>
+          {file && <FullFilePreview file={file} metadata={metadata} />}
+          {url && <FullUrlPreview url={url} metadata={metadata} />}
+          {text && <FullTextPreview text={text} />}
+        </div>
+        <div className="bookmark-full-view-info">
+          {!isMobile && (
+            <div className="bookmark-full-view-info-header">
+              <div>
+                {homeView && (
+                  <>
+                    <h4
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setEditing(false);
+                        setMenuOpen(!menuOpen);
+                      }}
+                    >
+                      •••
+                    </h4>
+                    {menuOpen && (
+                      <div className="bookmark-full-view-menu-container">
+                        <h4
+                          className="bookmark-full-view-edit-button"
+                          onClick={() => {
+                            if (editing) {
+                              setEditableTags(original_tags);
+                            }
+                            setEditing(!editing);
+                          }}
+                        >
+                          {editing ? "Cancel edit" : "Edit"}
+                        </h4>
+                        <h4
+                          className="bookmark-full-view-delete-button"
+                          onClick={() => deleteBookmark(bookmarkFullViewData)}
+                        >
+                          Delete
+                        </h4>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+              <div
+                className="bookmark-full-view-close-button"
+                onClick={() => setBookmarkFullView(false)}
+              >
+                ✕
+              </div>
+            </div>
+          )}
           {!editing && (
             <div className="bookmark-full-view-info-content">
               <div className="bookmark-full-view-info-title">
                 {(file || text) && <h4>{title}</h4>}
                 {url && (
                   <Link href={url} target="_blank">
-                    <h4>{title} ↗</h4>
+                    <h4>
+                      ↗ {title ? title : metadata.title ? metadata.title : url}
+                    </h4>
                   </Link>
                 )}
               </div>
@@ -228,6 +285,7 @@ export default function BookmarkFullView({
                     type="button"
                     className="cancel-edit-button"
                     onClick={() => {
+                      setEditableTags(original_tags);
                       setEditing(!editing);
                       setMenuOpen(false);
                     }}

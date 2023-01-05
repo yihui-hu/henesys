@@ -21,7 +21,6 @@ export async function getServerSideProps(ctx) {
   let user = null;
   let loggedIn = false;
   let editable = false;
-  let referer = ctx.req.headers.referer;
   let bookmarkFullViewData = null;
 
   try {
@@ -59,14 +58,12 @@ export async function getServerSideProps(ctx) {
     console.log(err);
   }
 
-  console.log(referer)
   console.log(bookmarkFullViewData)
   console.log(loggedIn)
   console.log(editable)
 
   return {
     props: {
-      referer,
       loggedIn,
       bookmarkFullViewData,
       editable,
