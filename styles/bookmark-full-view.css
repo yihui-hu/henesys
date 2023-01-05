@@ -277,7 +277,7 @@
   .bookmark-full-view-info {
     width: 100vw;
     height: auto;
-    border-left: 1px solid rgb(236, 236, 236);
+    border-left: 0px solid black;
   }
 
   .bookmark-full-view-info-header {
@@ -371,7 +371,6 @@
   .bookmark-full-view-info {
     width: 100vw;
     height: auto;
-    border-left: 1px solid rgb(236, 236, 236);
   }
 
   .bookmark-full-view-info-header {

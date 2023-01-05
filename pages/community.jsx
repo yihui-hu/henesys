@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
+import { FocusOn } from "react-focus-on";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
@@ -24,14 +25,6 @@ export default function Community({ token, profile_pic }) {
 
   useEffect(() => {
     getCommunityBookmarks(lastTimestamp);
-
-    function handleKeyDown(e) {
-      if (e.keyCode == 27) {
-        setBookmarkFullView(false);
-        setShowAddBookmark(false);
-      }
-    }
-    document.addEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -248,11 +241,16 @@ export default function Community({ token, profile_pic }) {
 
       <AnimatePresence>
         {bookmarkFullView && (
-          <BookmarkFullView
-            bookmarkFullViewData={bookmarkFullViewData}
-            setBookmarkFullView={setBookmarkFullView}
-            homeView={false}
-          />
+          <FocusOn
+            autoFocus={false}
+            onEscapeKey={() => setBookmarkFullView(false)}
+          >
+            <BookmarkFullView
+              bookmarkFullViewData={bookmarkFullViewData}
+              setBookmarkFullView={setBookmarkFullView}
+              homeView={false}
+            />
+          </FocusOn>
         )}
       </AnimatePresence>
 
