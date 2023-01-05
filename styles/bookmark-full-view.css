@@ -8,7 +8,7 @@
   overflow: hidden;
   z-index: 9999;
   background-color: white;
-  font-size: 1.2vw;
+  font-size: 1.1vw;
 }
 
 .bookmark-full-view {
@@ -74,9 +74,9 @@
 }
 
 .bookmark-full-view-info-header {
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid rgb(236, 236, 236);
   padding-block: 1.5vw;
@@ -118,6 +118,7 @@
 }
 
 .bookmark-full-view-info-title {
+  font-size: 1.2vw;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -149,7 +150,7 @@
   border-radius: 100px;
   white-space: nowrap;
 
-  font-size: 1vw;
+  font-size: 1.1vw;
   padding-block: 0.4vw;
   padding-inline: 1vw;
 }

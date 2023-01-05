@@ -19,12 +19,14 @@ export default function BookmarkFullView({
 }) {
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
+  const id = bookmarkFullViewData._id;
   const username = bookmarkFullViewData.username;
   const text = bookmarkFullViewData.text;
   const file = bookmarkFullViewData.file;
   const url = bookmarkFullViewData.url;
+  const metadata = bookmarkFullViewData.metadata;
+  const timestamp = bookmarkFullViewData.timestamp;
 
-  const id = bookmarkFullViewData._id;
   const original_title = bookmarkFullViewData.title
     ? bookmarkFullViewData.title
     : "";
@@ -32,14 +34,12 @@ export default function BookmarkFullView({
   const original_tags = bookmarkFullViewData.tags.map((tag, i) => {
     return { id: tag, text: tag };
   });
-  const metadata = bookmarkFullViewData.metadata;
-  const timestamp = bookmarkFullViewData.timestamp;
-  const [tags, setTags] = useState(bookmarkFullViewData.tags);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(original_title);
   const [note, setNote] = useState(original_note);
+  const [tags, setTags] = useState(bookmarkFullViewData.tags);
   const [editableTags, setEditableTags] = useState(original_tags);
 
   async function updateBookmark(event) {
