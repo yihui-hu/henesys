@@ -287,8 +287,11 @@ export default function Home({ token, profile_pic }) {
           <BookmarkFullView
             bookmarkFullViewData={bookmarkFullViewData}
             setBookmarkFullView={setBookmarkFullView}
+            bookmarks={bookmarks}
+            setBookmarks={setBookmarks}
             deleteBookmark={deleteBookmark}
             homeView={true}
+            token={token}
           />
         )}
       </AnimatePresence>

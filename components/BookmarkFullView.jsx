@@ -10,29 +10,95 @@ const dayjs = require("dayjs");
 export default function BookmarkFullView({
   bookmarkFullViewData,
   setBookmarkFullView,
+  bookmarks,
+  setBookmarks,
   deleteBookmark,
   homeView,
+  token,
 }) {
-
   const username = bookmarkFullViewData.username;
   const text = bookmarkFullViewData.text;
   const file = bookmarkFullViewData.file;
   const url = bookmarkFullViewData.url;
-  const original_title = "original title";
+  const original_title = bookmarkFullViewData.title
+    ? bookmarkFullViewData.title
+    : "";
   const original_note = bookmarkFullViewData.note;
   const original_tags = bookmarkFullViewData.tags.map((tag, i) => {
     return { id: tag, text: tag };
   });
   const metadata = bookmarkFullViewData.metadata;
   const timestamp = bookmarkFullViewData.timestamp;
-  const tags = bookmarkFullViewData.tags;
+  const [tags, setTags] = useState(bookmarkFullViewData.tags);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
-  // replace with metadata title or smth
   const [title, setTitle] = useState(original_title);
   const [note, setNote] = useState(original_note);
   const [editableTags, setEditableTags] = useState(original_tags);
+
+  async function updateBookmark(event) {
+    event.preventDefault();
+
+    let sameTitle = title == original_title;
+    let sameNote = note == original_note;
+    let sameTags =
+      editableTags.length === original_tags.length &&
+      editableTags.every(function (element) {
+        return original_tags.includes(element);
+      });
+
+    if (sameTitle && sameNote && sameTags) {
+      setMenuOpen(false);
+      setEditing(false);
+      return;
+    }
+
+    const editableTags_array = editableTags.map((tag) =>
+      tag.text.toLowerCase()
+    );
+
+    const response = await fetch("api/update-bookmark", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+      body: JSON.stringify({
+        timestamp: bookmarkFullViewData.timestamp,
+        username: bookmarkFullViewData.username,
+        title: title,
+        note: note,
+        tags: editableTags_array,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.status == "ok") {
+      setTags(editableTags_array);
+      setMenuOpen(false);
+      setEditing(false);
+
+      var old_bookmark_index = bookmarks.findIndex(
+        (bookmark) =>
+          bookmark.username == username && bookmark.timestamp == timestamp
+      );
+
+      let updated_bookmarks = [...bookmarks];
+      let updated_bookmark = {
+        ...bookmarks[old_bookmark_index],
+        title: title,
+        note: note,
+        tags: editableTags_array,
+      };
+      updated_bookmarks[old_bookmark_index] = updated_bookmark;
+
+      setBookmarks(updated_bookmarks);
+    } else {
+      alert("Something went wrong.");
+    }
+  }
 
   return (
     <div className="bookmark-full-view-container">
@@ -61,22 +127,17 @@ export default function BookmarkFullView({
                       <h4
                         className="bookmark-full-view-edit-button"
                         onClick={() => {
-                          setTitle(original_title);
-                          setNote(original_note);
-                          setEditableTags(original_tags);
                           setEditing(!editing);
                         }}
                       >
                         {editing ? "Cancel edit" : "Edit"}
                       </h4>
-                      {!editing && (
-                        <h4
-                          className="bookmark-full-view-delete-button"
-                          onClick={() => deleteBookmark(bookmarkFullViewData)}
-                        >
-                          Delete
-                        </h4>
-                      )}
+                      <h4
+                        className="bookmark-full-view-delete-button"
+                        onClick={() => deleteBookmark(bookmarkFullViewData)}
+                      >
+                        Delete
+                      </h4>
                     </div>
                   )}
                 </>
@@ -91,12 +152,14 @@ export default function BookmarkFullView({
           </div>
           {!editing && (
             <div className="bookmark-full-view-info-content">
-              {file && <h4>{metadata.fileName}</h4>}
-              {url && (
-                <Link href={url} target="_blank">
-                  <h4>{metadata.title ? metadata.title : url} ↗</h4>
-                </Link>
-              )}
+              <div className="bookmark-full-view-info-title">
+                {(file || text) && <h4>{title}</h4>}
+                {url && (
+                  <Link href={url} target="_blank">
+                    <h4>{title} ↗</h4>
+                  </Link>
+                )}
+              </div>
               <div className="bookmark-full-view-info-small-header">
                 <h4>added by {username}</h4>
                 <h4>
@@ -120,7 +183,7 @@ export default function BookmarkFullView({
           )}
           {editing && (
             <div className="bookmark-full-view-info-edit">
-              <form>
+              <form onSubmit={updateBookmark}>
                 <h4 className="add-bookmark-input-header">Title</h4>
                 <Textarea
                   type="textarea"
@@ -160,9 +223,21 @@ export default function BookmarkFullView({
                   }
                   inputFieldPosition="bottom"
                 />
-                <button type="submit" className="edit-bookmark-primary-button">
-                  Submit
-                </button>
+                <div className="edit-button-container">
+                  <button
+                    type="button"
+                    className="cancel-edit-button"
+                    onClick={() => {
+                      setEditing(!editing);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="edit-bookmark-button">
+                    Save changes
+                  </button>
+                </div>
               </form>
             </div>
           )}

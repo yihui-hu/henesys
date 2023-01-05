@@ -105,6 +105,12 @@
   font-weight: 400;
 }
 
+.bookmark-full-view-info-title {
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .bookmark-full-view-info-note {
   font-weight: 400;
   margin-bottom: 2vw;
@@ -162,4 +168,40 @@
 
 .bookmark-full-view-info-edit {
   padding: 2vw;
+}
+
+.edit-button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2vw;
+}
+
+.cancel-edit-button {
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.cancel-edit-button:hover {
+  background-color: #f7f7f7;
+}
+
+.edit-bookmark-button {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  background-color: black;
+  color: #fafafa;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.edit-bookmark-button:hover {
+  background-color: #535353;
+  border: 1px solid #535353;
 }
