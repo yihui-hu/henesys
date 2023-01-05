@@ -1,4 +1,5 @@
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = ({ homeView, communityView, profilePic }) => {
   const router = useRouter();
@@ -6,11 +7,11 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
   return (
     <div className="navbar-container">
       <div className="navbar-navigation">
-        <svg 
+        <svg
           className="navbar-logo"
           onClick={() => router.push("/home")}
-          viewBox="0 0 27 27" 
-          fill="none" 
+          viewBox="0 0 27 27"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -18,26 +19,35 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
             fill="black"
           />
         </svg>
-        <h4
-          className={homeView ? "navbar-nav-selected" : "navbar-nav-deselected"}
-          onClick={homeView ? undefined : () => {
-            router.push("/home")
-          }}
-        >
-          your bookmarks
-        </h4>
-        <h4
-          className={communityView ? "navbar-nav-selected" : "navbar-nav-deselected"}
-          onClick={communityView ? undefined : () => {
-            router.push("/community")
-          }}
-        >
-          community
-        </h4>
+        <Link href="/home">
+          <h4
+            className={
+              homeView ? "navbar-nav-selected" : "navbar-nav-deselected"
+            }
+            // onClick={homeView ? undefined : () => {
+            //   router.push("/home")
+            // }}
+          >
+            your bookmarks
+          </h4>
+        </Link>
+        <Link href="/community">
+          <h4
+            className={
+              communityView ? "navbar-nav-selected" : "navbar-nav-deselected"
+            }
+            // onClick={communityView ? undefined : () => {
+            //   router.push("/community")
+            // }}
+          >
+            community
+          </h4>
+        </Link>
       </div>
-      <div className="navbar-profile-icon" 
-           style={{ backgroundImage: `url(${profilePic})` }}
-           onClick={() => router.push("/profile")}
+      <div
+        className="navbar-profile-icon"
+        style={{ backgroundImage: `url(${profilePic})` }}
+        onClick={() => router.push("/profile")}
       />
     </div>
   );
