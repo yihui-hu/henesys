@@ -52,7 +52,7 @@ export default function Home({ token, profile_pic }) {
   }, [bookmarkFullView]);
 
   async function getYourBookmarks(lastTimestamp) {
-    const res = await fetch(`//api/your-bookmarks`, {
+    const res = await fetch(`/api/your-bookmarks`, {
       method: "POST",
       headers: {
         "x-access-token": token,
@@ -92,7 +92,7 @@ export default function Home({ token, profile_pic }) {
   }
 
   async function deleteBookmark(bookmark) {
-    const res = await fetch("//api/delete-bookmark", {
+    const res = await fetch("/api/delete-bookmark", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
