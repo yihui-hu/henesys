@@ -104,6 +104,14 @@ export default function BookmarkFullView({
     }
   }
 
+  function cancelEdit() {
+    setTitle(original_title);
+    setNote(original_note);
+    setEditableTags(original_tags);
+    setEditing(false);
+    setMenuOpen(false);
+  }
+
   return (
     <div className="bookmark-full-view-container">
       <div className="bookmark-full-view">
@@ -114,8 +122,13 @@ export default function BookmarkFullView({
                 <>
                   <h4
                     style={{ cursor: "pointer" }}
+                    className="bookmark-full-view-menu-button"
                     onClick={() => {
-                      setEditing(false);
+                      if (editing) {
+                        cancelEdit();
+                      } else {
+                        setEditing(!editing);
+                      }
                       setMenuOpen(!menuOpen);
                     }}
                   >
@@ -127,9 +140,10 @@ export default function BookmarkFullView({
                         className="bookmark-full-view-edit-button"
                         onClick={() => {
                           if (editing) {
-                            setEditableTags(original_tags);
+                            cancelEdit();
+                          } else {
+                            setEditing(!editing);
                           }
-                          setEditing(!editing);
                         }}
                       >
                         {editing ? "Cancel edit" : "Edit"}
@@ -155,7 +169,7 @@ export default function BookmarkFullView({
         )}
         <div>
           {file && <FullFilePreview file={file} metadata={metadata} />}
-          {url  && <FullUrlPreview  url={url}   metadata={metadata} />}
+          {url && <FullUrlPreview url={url} metadata={metadata} />}
           {text && <FullTextPreview text={text} />}
         </div>
         <div className="bookmark-full-view-info">
@@ -166,8 +180,13 @@ export default function BookmarkFullView({
                   <>
                     <h4
                       style={{ cursor: "pointer" }}
+                      className="bookmark-full-view-menu-button"
                       onClick={() => {
-                        setEditing(false);
+                        if (editing) {
+                          cancelEdit();
+                        } else {
+                          setEditing(!editing);
+                        }
                         setMenuOpen(!menuOpen);
                       }}
                     >
@@ -179,9 +198,10 @@ export default function BookmarkFullView({
                           className="bookmark-full-view-edit-button"
                           onClick={() => {
                             if (editing) {
-                              setEditableTags(original_tags);
+                              cancelEdit();
+                            } else {
+                              setEditing(!editing);
                             }
-                            setEditing(!editing);
                           }}
                         >
                           {editing ? "Cancel edit" : "Edit"}
@@ -197,19 +217,20 @@ export default function BookmarkFullView({
                   </>
                 )}
               </div>
-              <div
+              <button
+                type="button"
                 className="bookmark-full-view-close-button"
                 onClick={() => setBookmarkFullView(false)}
               >
                 ✕
-              </div>
+              </button>
             </div>
           )}
           {!editing && (
             <div className="bookmark-full-view-info-content">
               <div className="bookmark-full-view-info-title">
-                { file && <h4>{title ? title : metadata.fileName}</h4>}
-                { text && <h4>{title ? title : ""}</h4>}
+                {file && <h4>{title ? title : metadata.fileName}</h4>}
+                {text && <h4>{title ? title : ""}</h4>}
                 {url && (
                   <Link href={url} target="_blank">
                     <h4>
@@ -285,11 +306,7 @@ export default function BookmarkFullView({
                   <button
                     type="button"
                     className="cancel-edit-button"
-                    onClick={() => {
-                      setEditableTags(original_tags);
-                      setEditing(!editing);
-                      setMenuOpen(false);
-                    }}
+                    onClick={() => cancelEdit()}
                   >
                     Cancel
                   </button>

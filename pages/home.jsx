@@ -33,6 +33,10 @@ export default function Home({ token, profile_pic }) {
       }
     }
     document.addEventListener("keydown", handleKeyDown);
+
+    // window.addEventListener("popstate", (event) => {
+    //   setBookmarkFullView(false);
+    // });
   }, []);
 
   useEffect(() => {
@@ -43,13 +47,17 @@ export default function Home({ token, profile_pic }) {
     }
   }, [showAddBookmark, bookmarkFullView]);
 
-  useEffect(() => {
-    if (bookmarkFullView) {
-      window.history.replaceState(history.bookmarkFullView, null, `/bookmark/${bookmarkFullViewData._id}`);
-    } else {
-      window.history.replaceState(history.bookmarkFulLView, null, "/home")
-    }
-  }, [bookmarkFullView]);
+  // useEffect(() => {
+  //   if (bookmarkFullView) {
+  //     window.history.pushState(
+  //       history.bookmarkFullView,
+  //       null,
+  //       `/bookmark/${bookmarkFullViewData._id}`
+  //     );
+  //   } else {
+  //     window.history.pushState(history.bookmarkFullView, null, ``);
+  //   }
+  // }, [bookmarkFullView]);
 
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`/api/your-bookmarks`, {
