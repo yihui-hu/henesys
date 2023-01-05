@@ -8,7 +8,7 @@ const UrlPreview = ({ url, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={url} target="_blank">
-          <Image src={imageURL} fill quality={100}/>
+          <img src={imageURL} />
         </Link>
       </div>
     );

@@ -15,7 +15,7 @@ const FilePreview = ({ file, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={file} target="_blank">
-          <Image src={file} fill quality={100}/>
+          <img src={file} />
         </Link>
       </div>
     );
