@@ -35,6 +35,8 @@ export default function App({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon" sizes="512x512" href="logo-512x512.png" />
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_portrait.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
