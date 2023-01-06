@@ -201,6 +201,10 @@ textarea {
     box-shadow: none;
   }
 
+  .add-bookmark-button-container {
+    margin-bottom: 20vh;
+  }
+
   .add-bookmark-tag {
     color: white;
     background-color: black;
