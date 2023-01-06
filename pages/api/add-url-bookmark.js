@@ -46,7 +46,7 @@ const handler = async (req, res) => {
       url: url,
       metadata: new_metadata,
       title: title != "" ? title : metadata.title ? metadata.title : url,
-      note: note,
+      note: note != "" ? note : metadata.description,
       tags: tags,
       private: false,
       timestamp: Date.now(),
