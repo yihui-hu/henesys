@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
+import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
@@ -10,6 +11,8 @@ import Navbar from "../components/Navbar";
 import BookmarkFullView from "../components/BookmarkFullView";
 
 export default function Community({ token, profile_pic }) {
+  const router = useRouter();
+
   const [showAddBookmark, setShowAddBookmark] = useState(false);
 
   const [bookmarks, setBookmarks] = useState([]);
@@ -25,15 +28,24 @@ export default function Community({ token, profile_pic }) {
 
   useEffect(() => {
     getCommunityBookmarks(lastTimestamp);
+
+    window.addEventListener("popstate", (event) => {
+      setBookmarkFullView(false);
+      router.back();
+    });
   }, []);
 
   useEffect(() => {
-    if (showAddBookmark || bookmarkFullView) {
-      document.body.style.overflow = "hidden";
+    if (bookmarkFullView) {
+      window.history.pushState(
+        null,
+        null,
+        `/bookmark/${bookmarkFullViewData._id}`
+      );
     } else {
-      document.body.style.overflow = "auto";
+      window.history.pushState(null, null, `/community`);
     }
-  }, [showAddBookmark, bookmarkFullView]);
+  }, [bookmarkFullView]);
 
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
@@ -65,7 +77,7 @@ export default function Community({ token, profile_pic }) {
       }
 
       if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
-        alert("No more bookmarks to load.");
+        console.log("No more bookmarks to load.");
       }
     } else {
       console.log(data.error);
