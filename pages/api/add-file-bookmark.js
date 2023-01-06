@@ -1,5 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
+import { getPlaiceholder } from "plaiceholder";
 const aws = require("aws-sdk");
 const jwt = require("jsonwebtoken");
 
@@ -8,6 +9,14 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.FO_AWS_SECRET,
   region: process.env.FO_S3_REGION,
 });
+
+const mimeImageTypes = [
+  "image/png",
+  "image/jpeg",
+  "image/gif",
+  "image/webp",
+  "image/jpg",
+];
 
 const handler = async (req, res) => {
   try {
@@ -36,6 +45,22 @@ const handler = async (req, res) => {
       });
     }
 
+    let blur64;
+    if (mimeImageTypes.includes(file.fileType)) {
+      try {
+        blur64 = await getPlaiceholder(file_url).then(({ base64 }) => {
+          return base64;
+        });
+      } catch (err) {
+        return res.json({
+          status: "error",
+          error: "Unable to generate blur64 data.",
+        });
+      }
+    }
+
+    console.log(blur64);
+
     const bookmark = {
       username: decoded.username,
       file: file_url,
@@ -45,6 +70,7 @@ const handler = async (req, res) => {
         fileName: file.fileName,
         fileType: file.fileType,
         fileSize: file.fileSize,
+        blurPreview: blur64 ? blur64 : null,
       },
       title: title != "" ? title : file.fileName,
       note: note,

@@ -6,7 +6,11 @@ const FilePreview = ({ file, metadata }) => {
   if (mimeImageTypes.includes(metadata.fileType)) {
     return (
       <div className="bookmark-modal-image">
-        <Image src={file} fill quality={50}/>
+        <Image
+          src={file}
+          fill
+          quality={50}
+        />
       </div>
     );
   } else {

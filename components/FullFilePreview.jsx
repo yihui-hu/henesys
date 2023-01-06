@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
 
 const FullFilePreview = ({ file, metadata }) => {
@@ -15,7 +15,12 @@ const FullFilePreview = ({ file, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={file} target="_blank">
-          <Image src={file} fill />
+          <Image
+            src={file}
+            fill
+            placeholder="blur"
+            blurDataURL={metadata.blurPreview ? metadata.blurPreview : "//"}
+          />
         </Link>
       </div>
     );

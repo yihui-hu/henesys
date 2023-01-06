@@ -11,6 +11,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.241.0",
     "@next/font": "13.1.1",
+    "@plaiceholder/next": "^2.5.0",
     "@radix-ui/react-toast": "^1.1.2",
     "aws-sdk": "^2.1285.0",
     "bcrypt": "^5.1.0",
@@ -40,6 +41,7 @@
     "next-transpile-modules": "^10.0.0",
     "nodemailer": "^6.8.0",
     "nookies": "^2.5.2",
+    "plaiceholder": "^2.5.0",
     "puppeteer": "^19.4.1",
     "puppeteer-core": "6.0.0",
     "reachable-url": "^1.7.1",
@@ -55,6 +57,7 @@
     "react-router-dom": "^6.5.0",
     "react-tag-input": "^6.8.1",
     "react-textarea-autosize": "^8.4.0",
-    "react-time-ago": "^7.2.1"
+    "react-time-ago": "^7.2.1",
+    "sharp": "^0.31.3"
   }
 }

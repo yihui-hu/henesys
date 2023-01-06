@@ -2,6 +2,7 @@
 
 const withPlugins = require("next-compose-plugins");
 const withPWA = require("next-pwa");
+const { withPlaiceholder } = require("@plaiceholder/next");
 const runtimeCaching = require("next-pwa/cache");
 
 const withTM = require("next-transpile-modules")([
@@ -39,6 +40,7 @@ module.exports = withPlugins(
       skipWaiting: true,
       runtimeCaching,
     }),
+    withPlaiceholder,
   ],
   nextConfiguration
 );

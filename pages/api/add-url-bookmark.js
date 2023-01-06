@@ -33,18 +33,18 @@ const handler = async (req, res) => {
       console.log(err);
     }
 
-    let new_metadata = {
-      title: metadata.title,
-      description: metadata.description,
-      preview_image_url: preview_image_url == undefined ? null : preview_image_url,
-    };
-
     const bookmark = {
       username: decoded.username,
       file: null,
       text: null,
       url: url,
-      metadata: new_metadata,
+      metadata: {
+        title: metadata.title,
+        description: metadata.description,
+        preview_image_url:
+          preview_image_url == undefined ? null : preview_image_url,
+        blurPreview: blur64 ? blur64 : null,
+      },
       title: title != "" ? title : metadata.title ? metadata.title : url,
       note: note != "" ? note : metadata.description,
       tags: tags,
@@ -57,7 +57,7 @@ const handler = async (req, res) => {
   } catch (err) {
     return res.json({
       status: "error",
-      error: "Unable to add bookmark. Please try again later."
+      error: "Unable to add bookmark. Please try again later.",
     });
   }
 };

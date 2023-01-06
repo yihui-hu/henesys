@@ -6,7 +6,11 @@ const UrlPreview = ({ url, metadata }) => {
   if (imageURL) {
     return (
       <div className="bookmark-modal-image">
-         <Image src={imageURL} fill quality={50}/>
+        <Image
+          src={imageURL}
+          fill
+          quality={50}
+        />
       </div>
     );
   } else {
