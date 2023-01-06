@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const UrlPreview = ({ url, metadata }) => {
+const FullUrlPreview = ({ url, metadata }) => {
   const imageURL = metadata.preview_image_url;
 
   if (imageURL) {
@@ -24,4 +24,4 @@ const UrlPreview = ({ url, metadata }) => {
   }
 };
 
-export default UrlPreview;
+export default FullUrlPreview;

@@ -1,10 +1,13 @@
 {
     "name": "field observer",
+    "app_name": "f-o",
     "short_name": "f-o",
+    "description": "barebones bookmarking",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",
     "orientation": "portrait-primary",
+    "scope": "/",
     "start_url": "/",
     "icons": [
       {

@@ -1,4 +1,4 @@
-const TextPreview = ({ text }) => {
+const FullTextPreview = ({ text }) => {
   return (
     <div className="bookmark-full-view-text-preview">
         <h4>{text}</h4>
@@ -6,4 +6,4 @@ const TextPreview = ({ text }) => {
   );
 };
 
-export default TextPreview;
+export default FullTextPreview;

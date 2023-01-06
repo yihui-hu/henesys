@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const FilePreview = ({ file, metadata }) => {
+const FullFilePreview = ({ file, metadata }) => {
   const mimeImageTypes = [
     "image/png",
     "image/jpeg",
@@ -37,4 +37,4 @@ const FilePreview = ({ file, metadata }) => {
   }
 };
 
-export default FilePreview;
+export default FullFilePreview;

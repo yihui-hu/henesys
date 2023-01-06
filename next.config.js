@@ -25,12 +25,13 @@ const nextConfiguration = {
       },
     ],
   },
+  experimental: { scrollRestoration: true },
 };
 
 module.exports = withPlugins(
   [
     withTM({
-      experimental: { esmExternals: "loose", scrollRestoration: true },
+      experimental: { esmExternals: "loose" },
     }),
     withPWA({
       dest: "public",
