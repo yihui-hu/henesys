@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link";
 
 const FullFilePreview = ({ file, metadata }) => {
@@ -14,7 +15,7 @@ const FullFilePreview = ({ file, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={file} target="_blank">
-          <img src={file} />
+          <Image src={file} fill />
         </Link>
       </div>
     );

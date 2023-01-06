@@ -1,4 +1,5 @@
-import Link from "next/link"
+import Image from "next/image"
+import Link from "next/link";
 
 const FullUrlPreview = ({ url, metadata }) => {
   const imageURL = metadata.preview_image_url;
@@ -7,7 +8,7 @@ const FullUrlPreview = ({ url, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={url} target="_blank">
-          <img src={imageURL} />
+          <Image src={imageURL} fill />
         </Link>
       </div>
     );
