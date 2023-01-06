@@ -24,9 +24,6 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
             className={
               homeView ? "navbar-nav-selected" : "navbar-nav-deselected"
             }
-            // onClick={homeView ? undefined : () => {
-            //   router.push("/home")
-            // }}
           >
             your bookmarks
           </h4>
@@ -36,9 +33,6 @@ const Navbar = ({ homeView, communityView, profilePic }) => {
             className={
               communityView ? "navbar-nav-selected" : "navbar-nav-deselected"
             }
-            // onClick={communityView ? undefined : () => {
-            //   router.push("/community")
-            // }}
           >
             community
           </h4>

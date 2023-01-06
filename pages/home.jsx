@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import { CircularProgress } from "react-loading-indicators";
+// import { CircularProgress } from "react-loading-indicators";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
 import { useRouter } from "next/navigation";
@@ -118,7 +118,7 @@ export default function Home({ token, profile_pic }) {
     //   null,
     //   `/bookmark/${bookmarkFullViewData._id}`
     // );
-    
+
     setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
   }
@@ -249,7 +249,8 @@ export default function Home({ token, profile_pic }) {
           )}
           {loading && (
             <div className="loading-indicator-container">
-              <CircularProgress color="black" size="small" variant="dotted" />
+              {/* <CircularProgress color="black" size="small" variant="dotted" /> */}
+              <h4>Loading...</h4>
             </div>
           )}
           {!loading &&
