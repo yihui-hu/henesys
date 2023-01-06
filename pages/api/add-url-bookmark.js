@@ -1,5 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
+import { getPlaiceholder } from "plaiceholder";
 const aws = require("aws-sdk");
 const jwt = require("jsonwebtoken");
 
@@ -31,6 +32,18 @@ const handler = async (req, res) => {
       preview_image_url = Location;
     } catch (err) {
       console.log(err);
+    }
+
+    let blur64;
+    try {
+      blur64 = await getPlaiceholder(file_url).then(({ base64 }) => {
+        return base64;
+      });
+    } catch (err) {
+      return res.json({
+        status: "error",
+        error: "Unable to generate blur64 data.",
+      });
     }
 
     const bookmark = {

@@ -59,8 +59,6 @@ const handler = async (req, res) => {
       }
     }
 
-    console.log(blur64);
-
     const bookmark = {
       username: decoded.username,
       file: file_url,
