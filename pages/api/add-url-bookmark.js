@@ -36,7 +36,7 @@ const handler = async (req, res) => {
 
     let blur64;
     try {
-      blur64 = await getPlaiceholder(file_url).then(({ base64 }) => {
+      blur64 = await getPlaiceholder(preview_image_url).then(({ base64 }) => {
         return base64;
       });
     } catch (err) {
