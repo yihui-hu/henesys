@@ -29,23 +29,31 @@ export default function Community({ token, profile_pic }) {
   useEffect(() => {
     getCommunityBookmarks(lastTimestamp);
 
-    window.addEventListener("popstate", (event) => {
-      setBookmarkFullView(false);
-      router.back();
-    });
+    // function handleKeyDown(e) {
+    //   if (e.keyCode == 27) {
+    //     router.back();
+    //   }
+    // }
+
+    // document.addEventListener("keydown", handleKeyDown);
+
+    // window.addEventListener("popstate", (event) => {
+    //   setBookmarkFullView(false);
+    //   router.back();
+    // });
   }, []);
 
-  useEffect(() => {
-    if (bookmarkFullView) {
-      window.history.pushState(
-        null,
-        null,
-        `/bookmark/${bookmarkFullViewData._id}`
-      );
-    } else {
-      window.history.pushState(null, null, `/community`);
-    }
-  }, [bookmarkFullView]);
+  // useEffect(() => {
+  //   if (bookmarkFullView) {
+  //     window.history.pushState(
+  //       null,
+  //       null,
+  //       `/bookmark/${bookmarkFullViewData._id}`
+  //     );
+  //   } else {
+  //     window.history.pushState(null, null, `/community`);
+  //   }
+  // }, [bookmarkFullView]);
 
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
@@ -88,6 +96,12 @@ export default function Community({ token, profile_pic }) {
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
+    // window.history.replaceState(
+    //   null,
+    //   null,
+    //   `/bookmark/${bookmarkFullViewData._id}`
+    // );
+
     setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
   }
@@ -255,7 +269,10 @@ export default function Community({ token, profile_pic }) {
         {bookmarkFullView && (
           <FocusOn
             autoFocus={false}
-            onEscapeKey={() => setBookmarkFullView(false)}
+            onEscapeKey={() => {
+              setBookmarkFullView(false);
+              // router.back();
+            }}
           >
             <BookmarkFullView
               bookmarkFullViewData={bookmarkFullViewData}

@@ -9,25 +9,9 @@ const withTM = require("next-transpile-modules")([
   "@react-dnd/shallowequal",
 ]);
 
-// const nextConfig = {
-//   reactStrictMode: true,
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: "https",
-//         hostname: "field-observer.s3.ca-central-1.amazonaws.com",
-//         port: "",
-//         pathname: "/image/upload/**",
-//       },
-//     ],
-//   },
-// };
-
-// module.exports = nextConfig;
-
 module.exports = withTM({
-  reactStrictMode: true,
-  experimental: { esmExternals: "loose" },
+  reactStrictMode: false,
+  experimental: { esmExternals: "loose", scrollRestoration: true },
   images: {
     remotePatterns: [
       {

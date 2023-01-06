@@ -30,23 +30,23 @@ export default function Home({ token, profile_pic }) {
   useEffect(() => {
     getYourBookmarks(lastTimestamp);
 
-    window.addEventListener("popstate", (event) => {
-      setBookmarkFullView(false);
-      router.back();
-    });
+    // window.addEventListener("popstate", (event) => {
+    //   setBookmarkFullView(false);
+    //   window.history.back();
+    // });
   }, []);
 
-  useEffect(() => {
-    if (bookmarkFullView) {
-      window.history.pushState(
-        null,
-        null,
-        `/bookmark/${bookmarkFullViewData._id}`
-      );
-    } else {
-      window.history.pushState(null, null, `/home`);
-    }
-  }, [bookmarkFullView]);
+  // useEffect(() => {
+  //   if (bookmarkFullView) {
+  //     window.history.pushState(
+  //       null,
+  //       null,
+  //       `/bookmark/${bookmarkFullViewData._id}`
+  //     );
+  //   } else {
+  //     window.history.pushState(null, null, `/home`);
+  //   }
+  // }, [bookmarkFullView]);
 
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`/api/your-bookmarks`, {
@@ -113,6 +113,12 @@ export default function Home({ token, profile_pic }) {
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
+    // window.history.pushState(
+    //   null,
+    //   null,
+    //   `/bookmark/${bookmarkFullViewData._id}`
+    // );
+    
     setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
   }
@@ -291,7 +297,10 @@ export default function Home({ token, profile_pic }) {
         {bookmarkFullView && (
           <FocusOn
             autoFocus={false}
-            onEscapeKey={() => setBookmarkFullView(false)}
+            onEscapeKey={() => {
+              setBookmarkFullView(false);
+              // router.back();
+            }}
           >
             <BookmarkFullView
               bookmarkFullViewData={bookmarkFullViewData}
