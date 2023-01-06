@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+const withPlugins = require("next-compose-plugins");
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
 
@@ -12,9 +13,8 @@ const withTM = require("next-transpile-modules")([
   "@react-dnd/shallowequal",
 ]);
 
-module.exports = withTM({
-  reactStrictMode: false,
-  experimental: { esmExternals: "loose", scrollRestoration: true },
+const nextConfiguration = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -25,10 +25,19 @@ module.exports = withTM({
       },
     ],
   },
-  pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-    runtimeCaching,
-  },
-});
+};
+
+module.exports = withPlugins(
+  [
+    withTM({
+      experimental: { esmExternals: "loose", scrollRestoration: true },
+    }),
+    withPWA({
+      dest: "public",
+      register: true,
+      skipWaiting: true,
+      runtimeCaching,
+    }),
+  ],
+  nextConfiguration
+);
