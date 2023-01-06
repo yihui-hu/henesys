@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
+
 const withTM = require("next-transpile-modules")([
   "react-tag-input",
   "react-dnd",
@@ -21,5 +24,11 @@ module.exports = withTM({
         pathname: "/**",
       },
     ],
+  },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    runtimeCaching,
   },
 });
