@@ -28,13 +28,7 @@ export default function BookmarkFullView({
   const timestamp = bookmarkFullViewData.timestamp;
 
   const [originalTitle, setOriginalTitle] = useState(
-    bookmarkFullViewData.title
-      ? bookmarkFullViewData.title
-      : metadata.title
-      ? metadata.title
-      : metadata.fileName
-      ? metadata.fileName
-      : ""
+    bookmarkFullViewData.title ? bookmarkFullViewData.title : ""
   );
   const [originalNote, setOriginalNote] = useState(bookmarkFullViewData.note);
   const [originalTags, setOriginalTags] = useState(bookmarkFullViewData.tags);
