@@ -11,8 +11,8 @@ const FullUrlPreview = ({ url, metadata }) => {
           <Image
             src={imageURL}
             fill
-            placeholder="blur"
-            blurDataURL={metadata.blurPreview ? metadata.blurPreview : "//"}
+            // placeholder="blur"
+            // blurDataURL={metadata.blurPreview ? metadata.blurPreview : "//"}
           />
         </Link>
       </div>
