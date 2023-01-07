@@ -3,6 +3,7 @@ import { filesize } from "filesize";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
+import useMediaQuery from "../hooks/useMediaQuery";
 import Textarea from "react-textarea-autosize";
 import isUrl from "is-url";
 
@@ -34,6 +35,8 @@ const AddBookmarkModal = ({
   updateBookmarks,
   token,
 }) => {
+  const isDesktop = useMediaQuery("(min-width: 480px)");
+
   const [files, setFiles] = useState([]);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
@@ -165,6 +168,13 @@ const AddBookmarkModal = ({
     setError(false);
   }
 
+  function resetMessages() {
+    setSuccessMsg("");
+    setSuccess(false);
+    setErrorMsg("");
+    setError(false);
+  }
+
   function resetDefault() {
     setText("");
     setTitle("");
@@ -188,7 +198,7 @@ const AddBookmarkModal = ({
         <FocusOn
           autoFocus={false}
           onEscapeKey={() => setShown(false)}
-          // onClickOutside={() => setShown(false)}
+          onClickOutside={isDesktop ? () => setShown(false) : undefined}
         >
           <m.div
             className="add-bookmark-modal"
@@ -209,6 +219,7 @@ const AddBookmarkModal = ({
                     files={files}
                     onupdatefiles={setFiles}
                     onaddfilestart={() => {
+                      resetMessages();
                       setSubmitDisabled(true);
                       setFilesUploaded(true);
                     }}
@@ -250,7 +261,10 @@ const AddBookmarkModal = ({
                     }
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    onFocus={() => setInputFocused(true)}
+                    onFocus={() => {
+                      resetMessages();
+                      setInputFocused(true);
+                    }}
                     className="add-bookmark-input"
                     minRows={inputFocused ? 3 : 1}
                     maxRows={6}
