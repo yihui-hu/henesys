@@ -40,7 +40,7 @@ export default function ForgotPassword() {
   return (
     <div className="auth-container">
       <div className="auth-nav" onClick={() => router.push("/")}>
-        field-observer
+        henesys
       </div>
       <div className="auth-modal">
         <form onSubmit={resetPassword}>

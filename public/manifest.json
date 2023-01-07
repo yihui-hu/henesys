@@ -1,7 +1,7 @@
 {
-    "name": "field observer",
-    "app_name": "f-o",
-    "short_name": "f-o",
+    "name": "henesys",
+    "app_name": "henesys",
+    "short_name": "henesys",
     "description": "barebones bookmarking",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",

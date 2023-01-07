@@ -11,7 +11,7 @@ export default function Profile({}) {
     const response = await fetch("/api/logout", {
       method: "POST",
     });
-    const data = await response.json();
+    await response.json();
 
     router.push("/");
   }

@@ -10,7 +10,7 @@ export default function Landing() {
       <div className="landing-container">
         <div className="landing-navbar">
           <div className="landing-navbar-header">
-            <h4 className="landing-navbar-logo">field-observer</h4>
+            <h4 className="landing-navbar-logo">henesys</h4>
             <m.h2
               className="landing-navbar-text"
               initial={{ y: "30px", opacity: 0 }}
