@@ -1,4 +1,4 @@
-field-observer - barebones note-taking, bookmarking, capture-anything site
+henesys - barebones note-taking, bookmarking, capture-anything site
 
 ```
 /////////////////////////////////////////////////
