@@ -46,6 +46,11 @@ export default function App({ Component, pageProps }) {
         />
         <link
           rel="apple-touch-icon"
+          sizes="150x150"
+          href="/ios-icons/icon-150x150.png"
+        />
+        <link
+          rel="apple-touch-icon"
           sizes="120x120"
           href="/ios-icons/icon-120x120.png"
         />
