@@ -13,9 +13,9 @@
 }
 
 .add-bookmark-modal {
-  font-size: 1.1vw;
+  font-size: 1rem;
   background-color: white;
-  width: 30rem;
+  width: 27rem;
   max-height: 80vh;
   border-radius: 0.5rem;
   padding: 1.2rem;
@@ -28,8 +28,8 @@
   border: 1.5px solid #eeeeee;
   background-color: #f7f7f7;
   border-radius: 0.5rem;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
+  padding-inline: 0.7rem;
+  padding-block: 0.4rem;
   margin-bottom: 1rem;
   outline: 0;
   transition: 0.1s ease;
@@ -106,16 +106,16 @@
   white-space: nowrap;
   margin-bottom: 0.7rem;
 
-  font-size: 1.1vw;
-  padding-block: 0.4vw;
-  padding-inline: 1vw;
+  font-size: 1rem;
+  padding-block: 0.4rem;
+  padding-inline: 0.9rem;
 }
 
 .add-bookmark-tag-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  column-gap: 0.7vw;
+  column-gap: 0.5rem;
 }
 
 .add-bookmark-remove-tag {
@@ -127,11 +127,11 @@
   height: auto;
   cursor: pointer;
 
-  margin-left: 0.7vw;
+  margin-left: 0.7rem;
 }
 
 .filepond--drop-label {
-  font-size: 1.1vw !important;
+  font-size: 1rem !important;
   color: #afafaf !important;
 }
 
@@ -150,9 +150,8 @@ textarea {
   }
 
   .add-bookmark-modal {
-    font-size: 1.7vw;
-    background-color: white;
-    padding: 1.1rem;
+    font-size: 1rem;
+    padding: 1rem;
   }
 
   .add-bookmark-tag {
@@ -161,21 +160,9 @@ textarea {
     border-radius: 100px;
     white-space: nowrap;
 
-    font-size: 1.8vw;
-    padding-block: 0.4vw;
-    padding-inline: 1.5vw;
-  }
-
-  .add-bookmark-tag-container {
-    column-gap: 1vw;
-  }
-
-  .add-bookmark-remove-tag {
-    margin-left: 1vw;
-  }
-
-  .filepond--drop-label {
-    font-size: 1.7vw !important;
+    font-size: 1rem;
+    padding-block: 0.3rem;
+    padding-inline: 0.8rem;
   }
 }
 
@@ -195,7 +182,7 @@ textarea {
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
-    font-size: 3.8vw;
+    font-size: 1rem;
     padding: 1rem;
     background: white;
     box-shadow: none;
@@ -203,28 +190,5 @@ textarea {
 
   .add-bookmark-button-container {
     margin-bottom: 20vh;
-  }
-
-  .add-bookmark-tag {
-    color: white;
-    background-color: black;
-    border-radius: 100px;
-    white-space: nowrap;
-
-    font-size: 4vw;
-    padding-block: 1.5vw;
-    padding-inline: 4vw;
-  }
-
-  .add-bookmark-tag-container {
-    column-gap: 3vw;
-  }
-
-  .add-bookmark-remove-tag {
-    margin-left: 3vw;
-  }
-
-  .filepond--drop-label {
-    font-size: 3.8vw !important;
   }
 }

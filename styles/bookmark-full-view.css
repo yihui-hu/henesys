@@ -8,7 +8,7 @@
   overflow: hidden;
   z-index: 9999;
   background-color: white;
-  font-size: 1.1vw;
+  font-size: 1rem;
 }
 
 .bookmark-full-view {
@@ -43,8 +43,8 @@
 }
 
 .bookmark-full-view-file-nopreview-text {
-  font-size: 1.2vw;
-  padding-inline: 1.5vw;
+  font-size: 1rem;
+  padding-inline: 1.5rem;
   padding-block: 1rem;
   border-radius: 100px;
   color: #b7b7b7;
@@ -54,8 +54,8 @@
 .bookmark-full-view-text-preview {
   width: 70vw;
   height: 100vh;
-  padding-block: 4vw;
-  padding-inline: 8vw;
+  padding-block: 4rem;
+  padding-inline: 8rem;
   overflow: scroll;
 
   overflow-wrap: break-word;
@@ -68,7 +68,7 @@
 }
 
 .bookmark-full-view-text-preview > h4 {
-  font-size: 1.2vw;
+  font-size: 1.1rem;
   font-weight: 400;
 }
 
@@ -80,43 +80,42 @@
 }
 
 .bookmark-full-view-info-header {
-  font-size: 1.1vw;
+  font-size: 1rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid rgb(236, 236, 236);
-  padding-block: 1.5vw;
-  padding-inline: 2vw;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
   position: sticky;
   top: 0;
   background-color: white;
 }
 
 .bookmark-full-view-menu-button {
-  padding: 1.5vw;
-  margin: -1.5vw;
+  padding: 1rem;
+  margin: -1rem;
 }
 
 .bookmark-full-view-close-button {
-  font-size: 1.3vw;
-  padding: 1.5vw;
-  margin: -1.5vw;
+  padding: 1rem;
+  margin: -1rem;
   border: 0px solid black;
   background-color: white;
   cursor: pointer;
 }
 
 .bookmark-full-view-info-content {
-  padding: 2vw;
+  padding: 1.5rem;
 }
 
 .bookmark-full-view-info-small-header {
   display: flex;
   justify-content: space-between;
   color: #acacac;
-  font-size: 0.9vw;
-  margin-top: 0.5vw;
-  margin-bottom: 2vw;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .bookmark-full-view-info-small-header > h4 {
@@ -124,16 +123,16 @@
 }
 
 .bookmark-full-view-info-title {
-  font-size: 1.2vw;
+  font-size: 1.1rem;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .bookmark-full-view-info-note {
-  font-size: 1.1vw;
+  font-size: 1rem;
   font-weight: 400;
-  margin-bottom: 2vw;
+  margin-bottom: 1.5rem;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -147,7 +146,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.7vw;
+  gap: 0.5rem;
 }
 
 .bookmark-full-view-info-tags {
@@ -156,16 +155,17 @@
   border-radius: 100px;
   white-space: nowrap;
 
-  font-size: 1.1vw;
-  padding-block: 0.4vw;
-  padding-inline: 1vw;
+  font-size: 1rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.8rem;
 }
 
 .bookmark-full-view-menu-container {
-  padding-top: 1vw;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
-  gap: 2vw;
+  gap: 1.5rem;
 }
 
 .bookmark-full-view-edit-button {
@@ -187,14 +187,14 @@
 }
 
 .bookmark-full-view-info-edit {
-  padding: 2vw;
+  padding: 1.5rem;
 }
 
 .edit-button-container {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2vw;
+  margin-top: 1.5rem;
 }
 
 .cancel-edit-button {
@@ -229,7 +229,7 @@
 @media screen and (max-width: 1024px) {
   .bookmark-full-view-container {
     overflow: auto;
-    font-size: 1.7vw;
+    font-size: 1rem;
   }
 
   .bookmark-full-view {
@@ -254,24 +254,17 @@
   .bookmark-full-view-file-nopreview {
     width: 100vw;
     height: max(60vh, 60vw);
-    display: grid;
-    place-items: center;
-  }
-
-  .bookmark-full-view-file-nopreview-text {
-    font-size: 1.8vw;
-    padding-inline: 2vw;
   }
 
   .bookmark-full-view-text-preview {
     width: 100vw;
     height: auto;
-    padding: 8vw;
+    padding: 4rem;
     overflow: scroll;
   }
 
   .bookmark-full-view-text-preview > h4 {
-    font-size: 2vw;
+    font-size: 1.1rem;
   }
 
   .bookmark-full-view-info {
@@ -280,69 +273,33 @@
     border-left: 0px solid black;
   }
 
-  .bookmark-full-view-info-header {
-    font-size: 2vw;
-    display: flex;
-    align-items: center;
-    padding-inline: 4vw;
-  }
-
-  .bookmark-full-view-menu-button {
-    padding: 1.5vw;
-    margin: -1.5vw;
-  }
-
+  .bookmark-full-view-menu-button,
   .bookmark-full-view-close-button {
-    font-size: 3vw;
-    padding: 1.5vw;
-    margin: -1.5vw;
+    padding: 1rem;
+    margin: -1rem;
   }
 
   .bookmark-full-view-info-content {
     border-top: 1px solid rgb(236, 236, 236);
-    padding: 8vw;
-  }
-
-  .bookmark-full-view-info-small-header {
-    font-size: 1.6vw;
-    margin-top: 1vw;
-    margin-bottom: 4vw;
-  }
-
-  .bookmark-full-view-info-title {
-    font-size: 2vw;
-  }
-
-  .bookmark-full-view-info-note {
-    font-size: 1.7vw;
-    margin-bottom: 4vw;
-  }
-
-  .bookmark-full-view-info-tags-container {
-    gap: 1.5vw;
-  }
-
-  .bookmark-full-view-info-tags {
-    font-size: 1.8vw;
-    padding-inline: 1.5vw;
   }
 
   .bookmark-full-view-menu-container {
-    padding-top: 2vw;
-    gap: 4vw;
+    padding-top: 0.5rem;
+    padding-bottom: 0rem;
+  }
+
+  .bookmark-full-view-info-tags {
+    font-size: 1rem;
+    padding-block: 0.3rem;
+    padding-inline: 0.8rem;
   }
 
   .bookmark-full-view-info-edit {
     border-top: 1px solid rgb(236, 236, 236);
-    padding: 8vw;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .bookmark-full-view-container {
-    font-size: 4vw;
-  }
-
   .bookmark-full-view-file-preview,
   .bookmark-full-view-url-preview {
     height: max(60vh, 60vw);
@@ -352,87 +309,43 @@
     height: max(60vh, 60vw);
   }
 
-  .bookmark-full-view-file-nopreview-text {
-    font-size: 4vw;
-    padding-inline: 6vw;
+  .bookmark-full-view-info-header {
+    padding-block: 1rem;
+    padding-inline: 1rem;
   }
 
   .bookmark-full-view-text-preview {
     width: 100vw;
     height: auto;
-    padding: 8vw;
+    padding: 1.5rem;
     overflow: scroll;
   }
 
   .bookmark-full-view-text-preview > h4 {
-    font-size: 4vw;
+    font-size: 1rem;
   }
 
-  .bookmark-full-view-info {
-    width: 100vw;
-    height: auto;
-  }
-
-  .bookmark-full-view-info-header {
-    font-size: 4vw;
-    padding-bottom: 4vw;
-  }
-
-  .bookmark-full-view-menu-button {
-    padding: 3vw;
-    margin: -3vw;
-  }
-
+  .bookmark-full-view-menu-button,
   .bookmark-full-view-close-button {
-    font-size: 6vw;
-    padding: 3vw;
-    margin: -3vw;
+    padding: 1rem;
+    margin: -1rem;
   }
 
   .bookmark-full-view-info-content {
     border-top: 1px solid rgb(236, 236, 236);
-    padding: 4vw;
-    margin-bottom: 20vh;
-  }
-
-  .bookmark-full-view-info-small-header {
-    font-size: 3.8vw;
-    margin-top: 1vw;
-    margin-bottom: 8vw;
+    padding: 1rem;
+    margin-bottom: 15vh;
   }
 
   .bookmark-full-view-info-title {
-    font-size: 4.2vw;
-  }
-
-  .bookmark-full-view-info-note {
-    font-size: 4vw;
-    margin-bottom: 8vw;
-  }
-
-  .bookmark-full-view-info-tags-container {
-    gap: 2vw;
-    padding-bottom: 8vw;
-  }
-
-  .bookmark-full-view-info-tags {
-    font-size: 3.8vw;
-    padding-inline: 4vw;
-    padding-block: 2vw;
+    font-size: 1rem;
   }
 
   .edit-button-container {
-    margin-bottom: 20vh;
-  }
-
-  .bookmark-full-view-menu-container {
-    padding-top: 2vw;
-    gap: 4vw;
+    margin-bottom: 15vh;
   }
 
   .bookmark-full-view-info-edit {
-    border-top: 1px solid rgb(236, 236, 236);
-    padding: 4vw;
-    padding-bottom: 8vw;
+    padding: 1rem;
   }
 }

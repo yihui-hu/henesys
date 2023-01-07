@@ -10,18 +10,18 @@
 
 .auth-nav {
   position: fixed;
-  top: 2vw;
-  left: 2vw;
-  font-size: 1.5vw;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
   cursor: pointer;
 }
 
 .auth-modal {
-  font-size: 1.1vw;
+  font-size: 1rem;
   background-color: white;
-  width: 25rem;
+  width: 27rem;
   max-height: 80vh;
   overflow: scroll;
   border-radius: 0.5rem;
@@ -35,8 +35,8 @@
   border: 1.5px solid #eeeeee;
   background-color: #f7f7f7;
   border-radius: 0.5rem;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
+  padding-inline: 0.7rem;
+  padding-block: 0.4rem;
   margin-bottom: 1rem;
   outline: 0;
   transition: 0.1s ease;
@@ -108,25 +108,25 @@
 
 @media screen and (max-width: 1024px) {
   .auth-nav {
-    font-size: 2vw;
+    font-size: 1.2rem;
+    top: 1rem;
+    left: 1rem;
   }
 
   .auth-modal {
-    padding: 1.1rem;
-    font-size: 1.7vw;
+    padding: 1rem;
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .auth-nav {
-    top: 4vw;
-    left: 4vw;
-    font-size: 4.5vw;
+    top: 0.8rem;
+    left: 0.8rem;
   }
 
   .auth-modal {
-    width: 92vw;
+    width: calc(100vw - 1.6rem);
     padding: 1rem;
-    font-size: 3.8vw;
   }
 }

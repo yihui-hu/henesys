@@ -9,31 +9,31 @@
 .landing-navbar {
   display: flex;
   justify-content: space-between;
-  padding: 2vw;
+  padding: 1.5rem;
 }
 
 .landing-navbar-logo {
-  font-size: 1.5vw;
-  font-weight: bold;
-  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.6px;
 }
 
 .landing-navbar-text {
-  font-size: 2vw;
+  font-size: 1.8rem;
   font-weight: 400;
-  letter-spacing: -0.5px;
-  margin-top: -5px;
+  letter-spacing: -0.6px;
+  margin-top: -0.5rem;
 }
 
 .landing-auth-button-container {
   display: flex;
-  gap: 1.5vw;
+  gap: 1.5rem;
 }
 
 .landing-auth-secondary-button {
-  font-size: 1vw;
-  height: 3vw;
-  width: 12vw;
+  font-size: 1rem;
+  width: 11rem;
+  height: 2.7rem;
   border: 1px solid #e7e7e7;
 
   border-radius: 100px;
@@ -47,9 +47,9 @@
 }
 
 .landing-auth-primary-button {
-  font-size: 1vw;
-  height: 3vw;
-  width: 12vw;
+  font-size: 1rem;
+  width: 11rem;
+  height: 2.7rem;
   border: 1px solid black;
 
   border-radius: 100px;
@@ -70,17 +70,17 @@
   justify-content: space-between;
   place-items: center;
 
-  gap: 2vw;
-  margin: 2vw;
+  gap: 1.5rem;
+  margin: 1.5rem;
 }
 
 .landing-modal {
-  width: calc(90vw / 4);
-  height: calc(90vw / 4);
+  width: calc((100vw - 7.5rem) / 4);
+  height: calc((100vw - 7.5rem) / 4);
   border: 1px solid #e7e7e7;
   background-color: white;
 
-  font-size: 1vw;
+  font-size: 1rem;
   font-weight: 400;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -95,7 +95,7 @@
 }
 
 .landing-modal-caption {
-  font-size: 1vw;
+  font-size: 0.9rem;
   margin-top: 0.5rem;
   color: #717171;
 }
@@ -114,111 +114,88 @@ br {
     height: 50vh;
   }
 
+  .landing-navbar {
+    padding: 1rem;
+  }
+
   .landing-navbar-logo {
-    font-size: 2vw;
+    font-size: 1.2rem;
   }
 
   .landing-navbar-text {
-    font-size: 2.5vw;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-top: 0rem;
+  }
+
+  .landing-auth-button-container {
+    gap: 1rem;
+  }
+
+  .landing-modal-container {
+    gap: 1rem;
+    margin: 1rem;
   }
 
   .landing-modal {
-    width: calc(94vw / 2);
-    height: calc(94vw / 2);
-    font-size: 1.7vw;
+    width: calc((100vw - 3rem) / 2);
+    height: calc((100vw - 3rem) / 2);
+    font-size: 1rem;
   }
 
   .landing-modal-caption {
-    font-size: 1.5vw;
+    font-size: 0.9rem;
   }
 
-  .landing-auth-secondary-button {
-    font-size: 1.5vw;
-    height: 4vw;
-    width: 13vw;
-    border: 1px solid #e7e7e7;
-    border-radius: 100px;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.2s ease;
-  }
-
+  .landing-auth-secondary-button,
   .landing-auth-primary-button {
-    font-size: 1.5vw;
-    height: 4vw;
-    width: 13vw;
-    border: 1px solid black;
-    border-radius: 100px;
-    background-color: black;
-    color: #fafafa;
-    cursor: pointer;
-    transition: 0.2s ease;
+    font-size: 1rem;
+    height: 5vw;
+    width: 14vw;
+  }
+
+  br {
+    display: block;
   }
 }
 
 @media screen and (max-width: 480px) {
   .landing-container {
-    width: auto;
-    height: auto;
     background: none;
   }
 
   .landing-navbar {
     display: block;
-    padding: 4vw;
-  }
-
-  .landing-navbar-logo {
-    font-size: 4.5vw;
-  }
-
-  .landing-navbar-text {
-    font-size: 5.5vw;
-    line-height: 1.2;
-    margin-top: 1vw;
+    padding: 0.8rem;
   }
 
   .landing-auth-button-container {
     display: flex;
-    margin-block: 5vw;
-    gap: 4vw;
+    margin-block: 1rem;
+    gap: 0.8rem;
   }
 
-  .landing-auth-secondary-button {
-    font-size: 3.8vw;
-    height: 11vw;
-    width: 50%;
-  }
-
+  .landing-auth-secondary-button,
   .landing-auth-primary-button {
-    font-size: 3.8vw;
-    height: 11vw;
+    font-size: 1rem;
+    height: 2.7rem;
     width: 50%;
   }
 
   .landing-modal-container {
     height: auto;
-
-    gap: 4vw;
-    margin: 4vw;
+    gap: 0.8rem;
+    margin: 0.8rem;
   }
 
   .landing-modal {
-    width: 92vw;
-    height: 92vw;
+    width: calc(100vw - 1.6rem);
+    height: calc(100vw - 1.6rem);
 
-    font-size: 3.8vw;
-    padding: 4vw;
+    font-size: 1rem;
+    padding: 1rem;
 
     overflow-wrap: break-word;
     word-wrap: break-word;
-  }
-
-  .landing-modal-caption {
-    font-size: 3.8vw;
-  }
-
-  br {
-    display: block;
   }
 }

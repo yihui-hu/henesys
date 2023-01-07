@@ -188,7 +188,7 @@ const AddBookmarkModal = ({
         <FocusOn
           autoFocus={false}
           onEscapeKey={() => setShown(false)}
-          onClickOutside={() => setShown(false)}
+          // onClickOutside={() => setShown(false)}
         >
           <m.div
             className="add-bookmark-modal"

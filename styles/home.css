@@ -1,6 +1,6 @@
 .home-container {
   padding: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .home-search-tags-container {
@@ -16,8 +16,8 @@
 }
 
 .search-logo {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .home-search-input {
@@ -25,7 +25,7 @@
   outline: 0px;
   font-weight: 400;
 
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-block: 0.4rem;
   width: 25vw;
 }
@@ -36,7 +36,7 @@
   border-radius: 100px;
   white-space: nowrap;
 
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-block: 0.4rem;
   padding-inline: 0.9rem;
 }
@@ -127,7 +127,7 @@
   height: calc((100vw - 7.5rem) / 4);
   border: 1px dashed black;
   border-radius: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   position: absolute;
   position: fixed;
   top: max(30vw, 50vh);

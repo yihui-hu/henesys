@@ -129,7 +129,7 @@ fade-text {
     width: calc((100vw - 4rem) / 3);
     height: calc((100vw - 4rem) / 3);
     font-size: 0.9rem;
-    padding: 0.8rem;
+    padding: 1rem;
   }
 
   .bookmark-modal-file {
@@ -142,7 +142,7 @@ fade-text {
   }
 
   .bookmark-info {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: calc((100vw - 4rem) / 3);
   }
 
@@ -158,6 +158,11 @@ fade-text {
   .bookmark-modal-file {
     width: calc(100vw - 1.6rem);
     height: calc(100vw - 1.6rem);
+  }
+
+  .bookmark-modal-text {
+    font-size: 1rem;
+    padding: 1rem;
   }
 
   .bookmark-info {
