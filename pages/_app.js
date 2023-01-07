@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>field-observer</title>
+        <title>henesys</title>
         <meta
           name="description"
           content="barebones bookmarking / note-taking site"
