@@ -34,4 +34,5 @@ yarn-error.log*
 # service workers
 **/public/workbox-*.js
 **/public/sw.js
+**/public/sw.map.js
 **/public/worker-*.js
