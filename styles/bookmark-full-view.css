@@ -168,6 +168,20 @@
   gap: 1.5rem;
 }
 
+.bookmark-full-view-menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: -0.15rem;
+  vertical-align: text-top;
+}
+
+.bookmark-full-view-close-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: -0.15rem;
+  vertical-align: text-top;
+}
+
 .bookmark-full-view-edit-button {
   color: black;
   cursor: pointer;
@@ -224,6 +238,13 @@
 .edit-bookmark-button:hover {
   background-color: #535353;
   border: 1px solid #535353;
+}
+
+.bookmark-full-view-link-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.1rem;
+  vertical-align: text-top;
 }
 
 @media screen and (max-width: 1024px) {

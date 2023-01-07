@@ -125,7 +125,14 @@ export default function BookmarkFullView({
                       setMenuOpen(!menuOpen);
                     }}
                   >
-                    •••
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="bookmark-full-view-menu-icon"
+                    >
+                      <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                    </svg>
                   </h4>
                   {menuOpen && (
                     <div className="bookmark-full-view-menu-container">
@@ -153,7 +160,14 @@ export default function BookmarkFullView({
               className="bookmark-full-view-close-button"
               onClick={() => setBookmarkFullView(false)}
             >
-              ✕
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="bookmark-full-view-close-icon"
+              >
+                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+              </svg>
             </div>
           </div>
         )}
@@ -177,7 +191,14 @@ export default function BookmarkFullView({
                         setMenuOpen(!menuOpen);
                       }}
                     >
-                      •••
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="bookmark-full-view-menu-icon"
+                      >
+                        <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                      </svg>
                     </h4>
                     {menuOpen && (
                       <div className="bookmark-full-view-menu-container">
@@ -205,7 +226,14 @@ export default function BookmarkFullView({
                 className="bookmark-full-view-close-button"
                 onClick={() => setBookmarkFullView(false)}
               >
-                ✕
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="bookmark-full-view-close-icon"
+                >
+                  <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                </svg>
               </div>
             </div>
           )}
@@ -217,7 +245,19 @@ export default function BookmarkFullView({
                 {url && (
                   <Link href={url} target="_blank">
                     <h4>
-                      ↗ {title ? title : metadata.title ? metadata.title : url}
+                      {title ? title : metadata.title ? metadata.title : url}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="bookmark-full-view-link-icon"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>{" "}
                     </h4>
                   </Link>
                 )}

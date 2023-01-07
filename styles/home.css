@@ -137,7 +137,18 @@
   text-align: center;
 }
 
+.empty-state-icon {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-top;
+}
+
+.empty-state-br {
+  display: block;
+}
+
 .loading-indicator-container {
+  color: rgba(0, 0, 0, 0.2);
   display: grid;
   place-items: center;
   position: absolute;
