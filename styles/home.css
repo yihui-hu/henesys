@@ -133,7 +133,7 @@
   top: max(30vw, 50vh);
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2.5rem;
+  padding: 4rem;
   text-align: center;
 }
 
@@ -232,7 +232,7 @@
   .empty-state-message {
     width: calc(100vw - 1.6rem);
     height: calc(100vw - 1.6rem);
-    padding: 3rem;
+    padding: 4rem;
     position: static;
     margin-top: 0vw;
     top: auto;
