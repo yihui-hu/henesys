@@ -1,6 +1,6 @@
 import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
-import { getPlaiceholder } from "plaiceholder";
+// import { getPlaiceholder } from "plaiceholder";
 const aws = require("aws-sdk");
 const jwt = require("jsonwebtoken");
 
@@ -45,19 +45,19 @@ const handler = async (req, res) => {
       });
     }
 
-    let blur64;
-    if (mimeImageTypes.includes(file.fileType)) {
-      try {
-        blur64 = await getPlaiceholder(file_url).then(({ base64 }) => {
-          return base64;
-        });
-      } catch (err) {
-        return res.json({
-          status: "error",
-          error: "Unable to generate blur64 data.",
-        });
-      }
-    }
+    // let blur64;
+    // if (mimeImageTypes.includes(file.fileType)) {
+    //   try {
+    //     blur64 = await getPlaiceholder(file_url).then(({ base64 }) => {
+    //       return base64;
+    //     });
+    //   } catch (err) {
+    //     return res.json({
+    //       status: "error",
+    //       error: "Unable to generate blur64 data.",
+    //     });
+    //   }
+    // }
 
     const bookmark = {
       username: decoded.username,
@@ -68,7 +68,7 @@ const handler = async (req, res) => {
         fileName: file.fileName,
         fileType: file.fileType,
         fileSize: file.fileSize,
-        blurPreview: blur64 ? blur64 : null,
+        // blurPreview: blur64 ? blur64 : null,
       },
       title: title != "" ? title : file.fileName,
       note: note,
