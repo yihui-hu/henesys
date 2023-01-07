@@ -39,7 +39,9 @@ export default function App({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon" sizes="512x512" href="logo-512x512.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/ios-icons/icon-512x512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/ios-icons/icon-180x180.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/ios-icons/icon-120x120.png" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_14_Pro_Max_landscape.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_14_Pro_landscape.png"/> 
