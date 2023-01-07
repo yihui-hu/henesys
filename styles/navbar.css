@@ -1,12 +1,17 @@
+h4 {
+  font-weight: 600;
+}
+
 .navbar-container {
   width: 100vw;
   position: sticky;
   top: 0;
   z-index: 9;
-  padding: 2vw;
+  padding: 1.5rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .navbar-navigation {
@@ -18,21 +23,14 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 
-  font-size: 1.2vw;
-  padding-inline: 1.8vw;
-  padding-block: 1.3vw;
-  gap: 1.5vw;
-}
-
-.navbar-logo {
-  width: 1.5vw;
-  height: 1.5vw;
-  cursor: pointer;
+  padding-inline: 1.4rem;
+  padding-block: 0.9rem;
+  gap: 1rem;
 }
 
 .navbar-profile-icon {
-  width: 3vw;
-  height: 3vw;
+  width: 3rem;
+  height: 3rem;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 200px;
@@ -47,62 +45,32 @@
 .navbar-nav-deselected {
   color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: 0.15s ease;
+  transition: 0.1s ease;
 }
 .navbar-nav-deselected:hover {
   color: rgba(0, 0, 0, 0.35);
 }
 
-h4 {
-  font-weight: 600;
-}
-
 @media screen and (max-width: 1024px) {
   .navbar-container {
-    align-items: center;
+    font-size: 1rem;
+    padding: 1rem;
   }
-
+  
   .navbar-navigation {
-    font-size: 1.8vw;
-    padding-inline: 2.5vw;
-    padding-block: 1.8vw;
-    gap: 2vw;
-  }
-
-  .navbar-logo {
-    width: 2vw;
-    height: 2vw;
-  }
-
-  .navbar-profile-icon {
-    width: 6vw;
-    height: 6vw;
+    padding-block: 0.8rem;
+    padding-inline: 1.2rem;
+    gap: 0.8rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .navbar-container {
-    padding: 4vw;
-  }
-
-  .navbar-navigation {
-    font-size: 4vw;
-    padding-inline: 7vw;
-    padding-block: 4vw;
-    gap: 4vw;
-  }
-
-  .navbar-logo {
-    display: none;
+    padding: 0.8rem;
   }
 
   .navbar-profile-icon {
-    width: 14vw;
-    height: 14vw;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 200px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
+    width: 3.2rem;
+    height: 3.2rem;
   }
 }

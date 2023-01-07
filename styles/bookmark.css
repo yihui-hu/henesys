@@ -1,6 +1,6 @@
 .bookmark-modal-image {
-  width: calc(90vw / 4);
-  height: calc(90vw / 4);
+  width: calc((100vw - 7.5rem) / 4);
+  height: calc((100vw - 7.5rem) / 4);
   border-radius: 0.5rem;
   background-color: white;
   border: 1px solid white;
@@ -16,11 +16,11 @@
 }
 
 .bookmark-modal-text {
-  font-size: 1vw;
+  font-size: 1rem;
   background-color: white;
-  padding: 1vw;
-  width: calc(90vw / 4);
-  height: calc(90vw / 4);
+  padding: 1rem;
+  width: calc((100vw - 7.5rem) / 4);
+  height: calc((100vw - 7.5rem) / 4);
   border-radius: 0.5rem;
   border: 1px solid rgb(236, 236, 236);
   cursor: pointer;
@@ -48,8 +48,8 @@
   display: grid;
   place-items: center;
   background-color: white;
-  width: calc(90vw / 4);
-  height: calc(90vw / 4);
+  width: calc((100vw - 7.5rem) / 4);
+  height: calc((100vw - 7.5rem) / 4);
   border-radius: 0.5rem;
   border: 1px solid rgb(236, 236, 236);
   cursor: pointer;
@@ -57,8 +57,8 @@
 }
 
 .bookmark-modal-file-text {
-  font-size: 1vw;
-  padding-inline: 1vw;
+  font-size: 1rem;
+  padding-inline: 1rem;
   padding-block: 0.5rem;
   border-radius: 100px;
   color: #b7b7b7;
@@ -72,11 +72,11 @@
 }
 
 .bookmark-info {
-  font-size: 1vw;
+  font-size: 0.9rem;
   display: flex;
-  width: calc(90vw / 4);
+  width: calc((100vw - 7.5rem) / 4);
   justify-content: space-between;
-  margin-top: 0.5vw;
+  margin-top: 0.5rem;
 }
 
 .bookmark-info-text {
@@ -106,10 +106,10 @@ a:hover {
 
 fade-text {
   position: absolute;
-  bottom: calc(2vw + 1px);
+  bottom: 2.3rem;
   border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
-  right: calc(1px);
-  width: calc(100% - 2px);
+  right: 1px;
+  width: calc(100% - 1rem);
   height: 100px;
   background-image: linear-gradient(
     to bottom,
@@ -121,91 +121,53 @@ fade-text {
 
 @media screen and (max-width: 1024px) {
   .bookmark-modal-image {
-    width: calc(92vw / 3);
-    height: calc(92vw / 3);
+    width: calc((100vw - 4rem) / 3);
+    height: calc((100vw - 4rem) / 3);
   }
 
   .bookmark-modal-text {
-    width: calc(92vw / 3);
-    height: calc(92vw / 3);
-    font-size: 1.6vw;
-    padding: 1.5vw;
+    width: calc((100vw - 4rem) / 3);
+    height: calc((100vw - 4rem) / 3);
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 
   .bookmark-modal-file {
-    width: calc(92vw / 3);
-    height: calc(92vw / 3);
+    width: calc((100vw - 4rem) / 3);
+    height: calc((100vw - 4rem) / 3);
   }
 
   .bookmark-modal-file-text {
-    font-size: 1.6vw;
-    padding-inline: 2vw;
-    padding-block: 1vw;
+    font-size: 0.9rem;
   }
 
   .bookmark-info {
-    font-size: 1.4vw;
-    width: calc(92vw / 3);
-    margin-top: 0.5vw;
+    font-size: 0.8rem;
+    width: calc((100vw - 4rem) / 3);
   }
 
   fade-text {
-    position: absolute;
-    bottom: calc(3vw + 1px);
-    border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
-    width: calc(100% - 2px);
-    height: 100px;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.92),
-      rgba(255, 255, 255, 1) 100%
-    );
+    bottom: 2rem;
+    width: calc(100% - 0.5rem);
   }
 }
 
 @media screen and (max-width: 480px) {
-    .bookmark-modal-image {
-      width: 92vw;
-      height: 92vw;
-    }
-  
-    .bookmark-modal-text {
-      width: 92vw;
-      height: 92vw;
-      font-size: 4vw;
-      padding: 4vw;
-    }
-  
-    .bookmark-modal-file {
-      width: 92vw;
-      height: 92vw;
-    }
-  
-    .bookmark-modal-file-text {
-      font-size: 4vw;
-      padding-inline: 6vw;
-      padding-block: 3vw;
-    }
-  
-    .bookmark-info {
-      font-size: 3.8vw;
-      width: 92vw;
-      margin-top: 2vw;
-      margin-bottom: 4vw;
-    }
-  
-    fade-text {
-      bottom: calc(12vw);
-      border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
-      width: calc(100% - 2px);
-      height: 100px;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.2),
-        rgba(255, 255, 255, 0.92),
-        rgba(255, 255, 255, 1) 100%
-      );
-    }
+  .bookmark-modal-image,
+  .bookmark-modal-text,
+  .bookmark-modal-file {
+    width: calc(100vw - 1.6rem);
+    height: calc(100vw - 1.6rem);
   }
-  
+
+  .bookmark-info {
+    width: calc(100vw - 1.6rem);
+  }
+
+  fade-text {
+    bottom: 2.5rem;
+    border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
+    width: calc(100% - 2px);
+    height: 100px;
+  }
+}

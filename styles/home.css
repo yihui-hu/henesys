@@ -1,13 +1,14 @@
 .home-container {
-  padding: 2vw;
+  padding: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .home-search-tags-container {
   display: flex;
   align-items: center;
 
-  gap: 0.7vw;
-  margin-bottom: 1.5vw;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .ReactTags__tagInput {
@@ -15,8 +16,8 @@
 }
 
 .search-logo {
-  width: 1.4vw;
-  height: 1.4vw;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .home-search-input {
@@ -24,8 +25,8 @@
   outline: 0px;
   font-weight: 400;
 
-  font-size: 1.2vw;
-  padding-block: 0.4vw;
+  font-size: 1.1rem;
+  padding-block: 0.4rem;
   width: 25vw;
 }
 
@@ -35,16 +36,16 @@
   border-radius: 100px;
   white-space: nowrap;
 
-  font-size: 1.2vw;
-  padding-block: 0.4vw;
-  padding-inline: 1vw;
+  font-size: 1.1rem;
+  padding-block: 0.4rem;
+  padding-inline: 0.9rem;
 }
 
 .home-tag-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.7vw;
+  gap: 0.8rem;
 }
 
 .home-remove-tag {
@@ -56,7 +57,7 @@
   height: auto;
   cursor: pointer;
 
-  margin-left: 0.7vw;
+  margin-left: 0.7rem;
 }
 
 .add-bookmark-button {
@@ -66,14 +67,13 @@
   background-color: black;
   border: 1px solid rgb(255, 255, 255, 0.2);
   border-radius: 200px;
-  width: 4.5vw;
-  height: 4.5vw;
+  width: 4rem;
+  height: 4rem;
   cursor: pointer;
   position: fixed;
   z-index: 18;
-  bottom: 2vw;
-  right: 2vw;
-  font-size: 1.8vw;
+  bottom: 1.5rem;
+  right: 1.5rem;
   transition: 0.2s ease;
 }
 
@@ -90,7 +90,7 @@
 .bookmarks-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 2vw;
+  gap: 1.5rem;
 }
 
 .show-more-button-container {
@@ -100,14 +100,13 @@
 
 .show-more-button {
   align-self: flex-end;
-  font-size: 1.2vw;
-  margin-top: 1.5vw;
-  padding-inline: 1rem;
+  margin-top: 1.5rem;
   padding-block: 0.5rem;
+  padding-inline: 1rem;
   border: 0px solid black;
   border-radius: 100px;
   background-color: black;
-  margin-bottom: 8vw;
+  margin-bottom: 6rem;
   color: white;
   cursor: pointer;
   transition: 0.15s ease;
@@ -124,17 +123,17 @@
 .empty-state-message {
   display: grid;
   place-items: center;
-  width: calc(90vw / 4);
-  height: calc(90vw / 4);
+  width: calc((100vw - 7.5rem) / 4);
+  height: calc((100vw - 7.5rem) / 4);
   border: 1px dashed black;
   border-radius: 0.5rem;
-  font-size: 1.2vw;
+  font-size: 1.1rem;
   position: absolute;
   position: fixed;
   top: max(30vw, 50vh);
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2vw;
+  padding: 1.5rem;
   text-align: center;
 }
 
@@ -153,98 +152,70 @@
 
 @media screen and (max-width: 1024px) {
   .home-container {
-    padding: 2vw;
+    padding: 1rem;
+    font-size: 1rem;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   }
 
   .home-search-tags-container {
-    gap: 1vw;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
   }
 
   .search-logo {
-    width: 2.2vw;
-    height: 2.2vw;
+    width: 1rem;
+    height: 1rem;
   }
 
   .home-search-input {
-    font-size: 1.8vw;
-    padding-block: 0.4vw;
+    font-size: 1rem;
+    padding-block: 0.3rem;
+    padding-inline: 0rem;
     width: 20vw;
   }
 
   .home-tag {
-    color: white;
-    background-color: black;
-    border-radius: 100px;
-    white-space: nowrap;
-
-    font-size: 1.8vw;
-    padding-block: 0.4vw;
-    padding-inline: 1.5vw;
-  }
-
-  .home-tag-container {
-    gap: 1vw;
+    font-size: 1rem;
+    padding-block: 0.3rem;
+    padding-inline: 0.8rem;
   }
 
   .home-remove-tag {
-    margin-left: 1vw;
+    margin-left: 0.6rem;
   }
 
   .add-bookmark-button {
-    width: 7vw;
-    height: 7vw;
-    font-size: 3.4vw;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .bookmarks-container {
+    gap: 1rem;
   }
 
   .empty-state-message {
-    width: calc(92vw / 3);
-    height: calc(92vw / 3);
+    width: calc((100vw - 4rem) / 3);
+    height: calc((100vw - 4rem) / 3);
     top: max(42vw, 50vh);
-    font-size: 1.8vw;
-    padding: 4vw;
-  }
-
-  .show-more-button {
-    font-size: 1.8vw;
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .home-container {
-    padding: 4vw;
+    padding: 0.8rem;
   }
 
   .home-search-tags-container {
-    gap: 3vw;
-    margin-bottom: 4vw;
-  }
-
-  .search-logo {
-    width: 5vw;
-    height: 5vw;
+    margin-bottom: 0.8rem;
   }
 
   .home-search-input {
-    font-size: 4vw;
     width: 30vw;
-    padding-block: 0.4vw;
-    padding-inline: 0;
-  }
-
-  .home-tag {
-    color: white;
-    background-color: black;
-    border-radius: 100px;
-    white-space: nowrap;
-
-    font-size: 4vw;
-    padding-block: 1.5vw;
-    padding-inline: 4vw;
   }
 
   .home-tag-container {
-    gap: 3vw;
+    gap: 0.5rem;
   }
 
   .home-remove-tag {
@@ -252,34 +223,20 @@
   }
 
   .add-bookmark-button {
-    color: white;
-    background-color: black;
-    border: 1px solid rgb(255, 255, 255, 0.2);
-    border-radius: 200px;
-    width: 16vw;
-    height: 16vw;
-    position: fixed;
-    z-index: 18;
-    bottom: 4vw;
-    right: 4vw;
-    font-size: 8vw;
-    transition: 0.2s ease;
+    width: 3.8rem;
+    height: 3.8rem;
+    bottom: 0.8rem;
+    right: 0.8rem;
   }
 
   .empty-state-message {
-    width: 92vw;
-    height: 92vw;
-    padding: 8vw;
-    font-size: 4vw;
+    width: calc(100vw - 1.6rem);
+    height: calc(100vw - 1.6rem);
+    padding: 1rem;
     position: static;
     margin-top: 0vw;
     top: auto;
     left: auto;
     transform: translate(0, 0);
-  }
-
-  .show-more-button {
-    font-size: 4vw;
-    margin-bottom: 20vw;
   }
 }

@@ -392,6 +392,7 @@
   .bookmark-full-view-info-content {
     border-top: 1px solid rgb(236, 236, 236);
     padding: 4vw;
+    margin-bottom: 20vh;
   }
 
   .bookmark-full-view-info-small-header {
@@ -418,6 +419,10 @@
     font-size: 3.8vw;
     padding-inline: 4vw;
     padding-block: 2vw;
+  }
+
+  .edit-button-container {
+    margin-bottom: 20vh;
   }
 
   .bookmark-full-view-menu-container {
