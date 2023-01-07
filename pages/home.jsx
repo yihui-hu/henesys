@@ -303,7 +303,7 @@ export default function Home({ token, profile_pic }) {
                     : getYourBookmarks(lastTimestamp);
                 }}
               >
-                Load more bookmarks ⭣
+                Load more bookmarks
               </button>
             </div>
           )}

@@ -267,7 +267,7 @@ export default function Community({ token, profile_pic }) {
                   : getCommunityBookmarks(lastTimestamp);
               }}
             >
-              Load more bookmarks ⭣
+              Load more bookmarks
             </button>
           </div>
         )}
