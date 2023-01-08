@@ -16,6 +16,12 @@ TimeAgo.addLocale(en);
 
 export default function App({ Component, pageProps }) {
 
+  if (typeof window !== "undefined") {
+    window.addEventListener('pagehide', () => {
+      document.body.style.opacity = 0
+    })
+  }
+
   return (
     <>
       <Head>
