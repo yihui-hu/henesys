@@ -301,7 +301,7 @@ export default function Home({ token, profile_pic }) {
           autoFocus={false}
           onEscapeKey={() => {
             setBookmarkFullView(false);
-            router.push("/home", {scroll: false});
+            router.push("/home", null, {scroll: false});
           }}
         >
           {/* <Modal
