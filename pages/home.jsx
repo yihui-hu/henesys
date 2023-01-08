@@ -31,12 +31,6 @@ export default function Home({ token, profile_pic }) {
 
   useEffect(() => {
     getYourBookmarks(lastTimestamp);
-
-    window.onpageshow = function (event) {
-      if (event.persisted) {
-        window.location.reload();
-      }
-    };
   }, []);
 
   async function getYourBookmarks(lastTimestamp) {
@@ -98,7 +92,7 @@ export default function Home({ token, profile_pic }) {
       setBookmarks(new_bookmarks);
       // setBookmarkFullView(false);
       setDeletedBookmarksCount(deletedBookmarksCount + 1);
-      router.push(`/home`, null, { shallow: true, scroll: false });
+      router.push(`/home`, null, { scroll: false });
     } else {
       alert("Error deleting bookmark, please try again later.");
     }
@@ -305,20 +299,21 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {router.query.bookmarkId && (
-          <FocusOn
-            autoFocus={false}
-            onEscapeKey={() => {
-              // setBookmarkFullView(false);
-              router.push("/home", null, { shallow: true, scroll: false });
-            }}
-          >
-            {/* <Modal
+          // <FocusOn
+          //   autoFocus={false}
+          //   onEscapeKey={() => {
+          //     // setBookmarkFullView(false);
+          //     router.push("/home", null, { shallow: true, scroll: false });
+          //   }}
+          // >
+          <Modal
             isOpen={router.query.bookmarkId}
-            onRequestClose={() => router.push("/home")}
+            onRequestClose={() => router.push("/home", null, { scroll: false })}
             contentLabel="Bookmark modal"
             style={{ overlay: { zIndex: 999999999 } }}
-          > */}
-            <BookmarkFullView
+          >
+            <h4>Hello</h4>
+            {/* <BookmarkFullView
               bookmarkFullViewData={bookmarkFullViewData}
               // setBookmarkFullView={setBookmarkFullView}
               bookmarks={bookmarks}
@@ -326,9 +321,9 @@ export default function Home({ token, profile_pic }) {
               deleteBookmark={deleteBookmark}
               homeView={true}
               token={token}
-            />
-            {/* </Modal> */}
-          </FocusOn>
+            /> */}
+          </Modal>
+          // </FocusOn>
         )}
       </AnimatePresence>
 
