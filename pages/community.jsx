@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
@@ -18,7 +18,6 @@ export default function Community({ token, profile_pic }) {
   const [loading, setLoading] = useState(true);
   const [endOfBookmarks, setEndOfBookmarks] = useState(false);
 
-  const [bookmarkFullView, setBookmarkFullView] = useState(false);
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
 
   const [tags, setTags] = useState([]);
@@ -27,32 +26,7 @@ export default function Community({ token, profile_pic }) {
 
   useEffect(() => {
     getCommunityBookmarks(lastTimestamp);
-
-    // function handleKeyDown(e) {
-    //   if (e.keyCode == 27) {
-    //     router.back();
-    //   }
-    // }
-
-    // document.addEventListener("keydown", handleKeyDown);
-
-    // window.addEventListener("popstate", (event) => {
-    //   setBookmarkFullView(false);
-    //   router.back();
-    // });
   }, []);
-
-  // useEffect(() => {
-  //   if (bookmarkFullView) {
-  //     window.history.pushState(
-  //       null,
-  //       null,
-  //       `/bookmark/${bookmarkFullViewData._id}`
-  //     );
-  //   } else {
-  //     window.history.pushState(null, null, `/community`);
-  //   }
-  // }, [bookmarkFullView]);
 
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
@@ -95,14 +69,13 @@ export default function Community({ token, profile_pic }) {
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
-    // window.history.replaceState(
-    //   null,
-    //   null,
-    //   `/bookmark/${bookmarkFullViewData._id}`
-    // );
-
-    setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
+
+    router.push(
+      `/community/?bookmarkId=${bookmarkFullViewData._id}`,
+      `/bookmark/${bookmarkFullViewData._id}`,
+      { scroll: false }
+    );
   }
 
   async function getTaggedBookmarks(lastTimestamp, tags) {
@@ -272,18 +245,20 @@ export default function Community({ token, profile_pic }) {
       </div>
 
       <AnimatePresence>
-        {bookmarkFullView && (
+        {router.query.bookmarkId && (
           <FocusOn
             autoFocus={false}
             onEscapeKey={() => {
-              setBookmarkFullView(false);
-              // router.back();
+              router.push("/community", null, { scroll: false });
             }}
           >
             <BookmarkFullView
+              bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
-              setBookmarkFullView={setBookmarkFullView}
+              bookmarks={bookmarks}
+              setBookmarks={setBookmarks}
               homeView={false}
+              token={token}
             />
           </FocusOn>
         )}

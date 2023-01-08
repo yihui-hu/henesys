@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
@@ -7,10 +7,7 @@ import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
-import Modal from "react-modal";
 import BookmarkFullView from "../components/BookmarkFullView";
-
-Modal.setAppElement("#__next");
 
 export default function Home({ token, profile_pic }) {
   const router = useRouter();
@@ -22,7 +19,6 @@ export default function Home({ token, profile_pic }) {
   const [endOfBookmarks, setEndOfBookmarks] = useState(false);
 
   const [deletedBookmarksCount, setDeletedBookmarksCount] = useState(0);
-  // const [bookmarkFullView, setBookmarkFullView] = useState(false);
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
 
   const [tags, setTags] = useState([]);
@@ -90,7 +86,6 @@ export default function Home({ token, profile_pic }) {
     if (data.status == "ok") {
       let new_bookmarks = bookmarks.filter((item) => item !== bookmark);
       setBookmarks(new_bookmarks);
-      // setBookmarkFullView(false);
       setDeletedBookmarksCount(deletedBookmarksCount + 1);
       router.push(`/home`, null, { scroll: false });
     } else {
@@ -99,7 +94,6 @@ export default function Home({ token, profile_pic }) {
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
-    // setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
 
     router.push(
@@ -107,8 +101,6 @@ export default function Home({ token, profile_pic }) {
       `/bookmark/${bookmarkFullViewData._id}`,
       { scroll: false }
     );
-    // href={`/home/?bookmarkId=${id}`}
-    // as={`/bookmark/${id}`}
   }
 
   async function getTaggedBookmarks(lastTimestamp, tags) {
@@ -302,28 +294,18 @@ export default function Home({ token, profile_pic }) {
           <FocusOn
             autoFocus={false}
             onEscapeKey={() => {
-              // setBookmarkFullView(false);
               router.push("/home", null, { scroll: false });
             }}
           >
-          { /* <Modal
-             isOpen={router.query.bookmarkId}
-             onRequestClose={() => router.push("/home", null, { scroll: false })}
-             contentLabel="Bookmark modal"
-             style={{ overlay: { zIndex: 999999999 } }}
-          > */ }
-            {/* <h4>Hello</h4> */}
             <BookmarkFullView
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
-              // setBookmarkFullView={setBookmarkFullView}
               bookmarks={bookmarks}
               setBookmarks={setBookmarks}
               deleteBookmark={deleteBookmark}
               homeView={true}
               token={token}
             />
-          {/* </Modal> */}
           </FocusOn>
         )}
       </AnimatePresence>

@@ -12,7 +12,6 @@ const dayjs = require("dayjs");
 export default function BookmarkFullView({
   bookmarkId,
   bookmarkFullViewData,
-  // setBookmarkFullView,
   bookmarks,
   setBookmarks,
   deleteBookmark,
@@ -66,23 +65,23 @@ export default function BookmarkFullView({
     }
   }
 
-  const [id, setId] = useState(bookmarkFullViewData._id);
-  const [username, setUsername] = useState(bookmarkFullViewData.username);
-  const [text, setText] = useState(bookmarkFullViewData.text);
-  const [file, setFile] = useState(bookmarkFullViewData.file);
-  const [url, setUrl] = useState(bookmarkFullViewData.url);
-  const [metadata, setMetadata] = useState(bookmarkFullViewData.metadata);
-  const [timestamp, setTimestamp] = useState(bookmarkFullViewData.timestamp);
+  const [id, setId] = useState(bookmarkFullViewData ? bookmarkFullViewData._id : "");
+  const [username, setUsername] = useState(bookmarkFullViewData? bookmarkFullViewData.username : "");
+  const [text, setText] = useState(bookmarkFullViewData ? bookmarkFullViewData.text : "");
+  const [file, setFile] = useState(bookmarkFullViewData ? bookmarkFullViewData.file : "");
+  const [url, setUrl] = useState(bookmarkFullViewData ? bookmarkFullViewData.url : "");
+  const [metadata, setMetadata] = useState(bookmarkFullViewData ? bookmarkFullViewData.metadata : {});
+  const [timestamp, setTimestamp] = useState(bookmarkFullViewData ? bookmarkFullViewData.timestamp : "");
 
   const [originalTitle, setOriginalTitle] = useState(
-    bookmarkFullViewData.title ? bookmarkFullViewData.title : ""
+    bookmarkFullViewData ? bookmarkFullViewData.title ? bookmarkFullViewData.title : "" : ""
   );
-  const [originalNote, setOriginalNote] = useState(bookmarkFullViewData.note);
-  const [originalTags, setOriginalTags] = useState(bookmarkFullViewData.tags);
+  const [originalNote, setOriginalNote] = useState(bookmarkFullViewData ? bookmarkFullViewData.note : "");
+  const [originalTags, setOriginalTags] = useState(bookmarkFullViewData ? bookmarkFullViewData.tags : []);
 
-  const [title, setTitle] = useState(originalTitle);
-  const [note, setNote] = useState(originalNote);
-  const [tags, setTags] = useState(originalTags);
+  const [title, setTitle] = useState(originalTitle ? originalTitle : "");
+  const [note, setNote] = useState(originalNote ? originalNote : "");
+  const [tags, setTags] = useState(originalTags ? originalTags : []);
   const [editableTags, setEditableTags] = useState(
     originalTags.map((tag, i) => {
       return { id: tag, text: tag };
@@ -206,8 +205,7 @@ export default function BookmarkFullView({
             <div
               className="bookmark-full-view-close-button"
               onClick={() => {
-                // setBookmarkFullView(false);
-                router.push("/home", null, { scroll: false });
+                router.push(`${homeView ? "/home" : "/community"}`, null, { scroll: false });
               }}
             >
               <svg
@@ -275,8 +273,7 @@ export default function BookmarkFullView({
               <div
                 className="bookmark-full-view-close-button"
                 onClick={() => {
-                  // setBookmarkFullView(false);
-                  router.push("/home", null, { scroll: false });
+                  router.push(`${homeView ? "/home" : "/community"}`, null, { scroll: false });
                 }}
               >
                 <svg
