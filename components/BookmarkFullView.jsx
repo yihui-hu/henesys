@@ -12,6 +12,7 @@ const dayjs = require("dayjs");
 export default function BookmarkFullView({
   bookmarkId,
   bookmarkFullViewData,
+  setBookmarkFullViewData,
   bookmarks,
   setBookmarks,
   deleteBookmark,
@@ -24,6 +25,19 @@ export default function BookmarkFullView({
   useEffect(() => {
     getBookmark();
   }, []);
+
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+        if (as !== router.asPath) {
+          setBookmarkFullViewData(null);
+        }
+        return true;
+    });
+
+    return () => {
+        router.beforePopState(() => true);
+    };
+}, [router]);
 
   async function getBookmark() {
     const res = await fetch(`/api/get-bookmark-from-id`, {

@@ -29,6 +29,19 @@ export default function Home({ token, profile_pic }) {
     getYourBookmarks(lastTimestamp);
   }, []);
 
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        setBookmarkFullViewData(null);
+      }
+      return true;
+    });
+
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [router]);
+
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`/api/your-bookmarks`, {
       method: "POST",
@@ -300,6 +313,7 @@ export default function Home({ token, profile_pic }) {
             <BookmarkFullView
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
+              setBookmarkFullViewData={setBookmarkFullViewData}
               bookmarks={bookmarks}
               setBookmarks={setBookmarks}
               deleteBookmark={deleteBookmark}

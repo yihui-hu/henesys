@@ -28,6 +28,19 @@ export default function Community({ token, profile_pic }) {
     getCommunityBookmarks(lastTimestamp);
   }, []);
 
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        setBookmarkFullViewData(null);
+      }
+      return true;
+    });
+
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [router]);
+
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
       method: "POST",
@@ -255,6 +268,7 @@ export default function Community({ token, profile_pic }) {
             <BookmarkFullView
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
+              setBookmarkFullViewData={setBookmarkFullViewData}
               bookmarks={bookmarks}
               setBookmarks={setBookmarks}
               homeView={false}
