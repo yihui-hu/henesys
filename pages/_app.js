@@ -15,6 +15,7 @@ TimeAgo.setDefaultLocale(en.locale);
 TimeAgo.addLocale(en);
 
 export default function App({ Component, pageProps }) {
+
   return (
     <>
       <Head>

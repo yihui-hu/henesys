@@ -31,6 +31,12 @@ export default function Home({ token, profile_pic }) {
 
   useEffect(() => {
     getYourBookmarks(lastTimestamp);
+
+    window.onpageshow = function (event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    };
   }, []);
 
   async function getYourBookmarks(lastTimestamp) {
@@ -298,14 +304,15 @@ export default function Home({ token, profile_pic }) {
       </div>
 
       <AnimatePresence>
-        { router.query.bookmarkId && <FocusOn
-          autoFocus={false}
-          onEscapeKey={() => {
-            // setBookmarkFullView(false);
-            router.push("/home", null, {shallow: true, scroll: false});
-          }}
-        >
-          {/* <Modal
+        {router.query.bookmarkId && (
+          <FocusOn
+            autoFocus={false}
+            onEscapeKey={() => {
+              // setBookmarkFullView(false);
+              router.push("/home", null, { shallow: true, scroll: false });
+            }}
+          >
+            {/* <Modal
             isOpen={router.query.bookmarkId}
             onRequestClose={() => router.push("/home")}
             contentLabel="Bookmark modal"
@@ -320,8 +327,9 @@ export default function Home({ token, profile_pic }) {
               homeView={true}
               token={token}
             />
-          {/* </Modal> */}
-        </FocusOn> }
+            {/* </Modal> */}
+          </FocusOn>
+        )}
       </AnimatePresence>
 
       <AnimatePresence>
