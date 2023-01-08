@@ -105,7 +105,7 @@ export default function Home({ token, profile_pic }) {
     router.push(
       `/home/?bookmarkId=${bookmarkFullViewData._id}`,
       `/bookmark/${bookmarkFullViewData._id}`,
-      { shallow: true, scroll: false }
+      { scroll: false }
     );
     // href={`/home/?bookmarkId=${id}`}
     // as={`/bookmark/${id}`}
@@ -303,7 +303,7 @@ export default function Home({ token, profile_pic }) {
             autoFocus={false}
             onEscapeKey={() => {
               // setBookmarkFullView(false);
-              router.push("/home", null, { shallow: true, scroll: false });
+              router.push("/home", null, { scroll: false });
             }}
           >
           { /* <Modal

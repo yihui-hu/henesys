@@ -2,7 +2,7 @@
 
 const withPlugins = require("next-compose-plugins");
 const withPWA = require("next-pwa");
-const { withPlaiceholder } = require("@plaiceholder/next");
+// const { withPlaiceholder } = require("@plaiceholder/next");
 const runtimeCaching = require("next-pwa/cache");
 
 const withTM = require("next-transpile-modules")([
@@ -32,7 +32,7 @@ const nextConfiguration = {
 module.exports = withPlugins(
   [
     withTM({
-      experimental: { esmExternals: "loose" },
+      experimental: { esmExternals: "loose", scrollRestoration: true, },
     }),
     withPWA({
       dest: "public",
@@ -40,7 +40,6 @@ module.exports = withPlugins(
       skipWaiting: true,
       runtimeCaching,
     }),
-    withPlaiceholder,
   ],
   nextConfiguration
 );

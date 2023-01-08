@@ -14,8 +14,6 @@ const handler = async (req, res) => {
       });
     }
 
-    console.log(bookmark);
-
     return res.json({ status: "ok", bookmark: bookmark });
   } catch (err) {
     return res.json({ status: "error", error: "Unable to retrieve bookmark." });
