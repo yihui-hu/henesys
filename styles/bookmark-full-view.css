@@ -321,10 +321,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  .bookmark-full-view-container {
-    height: 99.9vh;
-  }
-
   .bookmark-full-view-file-preview,
   .bookmark-full-view-url-preview {
     height: max(60vh, 60vw);
