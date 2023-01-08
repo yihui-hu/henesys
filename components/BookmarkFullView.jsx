@@ -21,49 +21,49 @@ export default function BookmarkFullView({
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
-  useEffect(() => {
-    getBookmark();
-  }, []);
+  // useEffect(() => {
+  //   getBookmark();
+  // }, []);
 
-  async function getBookmark() {
-    const res = await fetch(`/api/get-bookmark-from-id`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: bookmarkId,
-      }),
-    });
+  // async function getBookmark() {
+  //   const res = await fetch(`/api/get-bookmark-from-id`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       id: bookmarkId,
+  //     }),
+  //   });
 
-    const data = await res.json();
+  //   const data = await res.json();
 
-    if (data.status == "ok") {
-      setId(data.bookmark._id);
-      setUsername(data.bookmark.username);
-      setText(data.bookmark.text);
-      setFile(data.bookmark.file);
-      setUrl(data.bookmark.url);
-      setMetadata(data.bookmark.metadata);
-      setTimestamp(data.bookmark.timestamp);
+  //   if (data.status == "ok") {
+  //     setId(data.bookmark._id);
+  //     setUsername(data.bookmark.username);
+  //     setText(data.bookmark.text);
+  //     setFile(data.bookmark.file);
+  //     setUrl(data.bookmark.url);
+  //     setMetadata(data.bookmark.metadata);
+  //     setTimestamp(data.bookmark.timestamp);
 
-      setOriginalTitle(data.bookmark.title ? data.bookmark.title : "");
-      setOriginalNote(data.bookmark.note);
-      setOriginalTags(data.bookmark.tags);
+  //     setOriginalTitle(data.bookmark.title ? data.bookmark.title : "");
+  //     setOriginalNote(data.bookmark.note);
+  //     setOriginalTags(data.bookmark.tags);
 
-      setTitle(data.bookmark.title ? data.bookmark.title : "");
-      setNote(data.bookmark.note);
-      setTags(data.bookmark.tags);
+  //     setTitle(data.bookmark.title ? data.bookmark.title : "");
+  //     setNote(data.bookmark.note);
+  //     setTags(data.bookmark.tags);
 
-      setEditableTags(
-        data.bookmark.tags.map((tag, i) => {
-          return { id: tag, text: tag };
-        })
-      );
-    } else {
-      console.log(data.error);
-    }
-  }
+  //     setEditableTags(
+  //       data.bookmark.tags.map((tag, i) => {
+  //         return { id: tag, text: tag };
+  //       })
+  //     );
+  //   } else {
+  //     console.log(data.error);
+  //   }
+  // }
 
   const [id, setId] = useState(bookmarkFullViewData ? bookmarkFullViewData._id : "");
   const [username, setUsername] = useState(bookmarkFullViewData? bookmarkFullViewData.username : "");
