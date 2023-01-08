@@ -1,6 +1,7 @@
 .home-container {
   padding: 1.5rem;
   font-size: 1rem;
+  margin-bottom: 6rem;
 }
 
 .home-search-tags-container {
@@ -106,7 +107,6 @@
   border: 0px solid black;
   border-radius: 100px;
   background-color: black;
-  margin-bottom: 6rem;
   color: white;
   cursor: pointer;
   transition: 0.15s ease;
