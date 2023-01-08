@@ -312,8 +312,8 @@ export default function Home({ token, profile_pic }) {
              contentLabel="Bookmark modal"
              style={{ overlay: { zIndex: 999999999 } }}
           > */ }
-            {/* <h4>Hello</h4> */}
-            <BookmarkFullView
+            <h4 style={{ zIndex: 999999 }}>Hello</h4>
+            {/* <BookmarkFullView
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
               // setBookmarkFullView={setBookmarkFullView}
@@ -322,7 +322,7 @@ export default function Home({ token, profile_pic }) {
               deleteBookmark={deleteBookmark}
               homeView={true}
               token={token}
-            />
+            /> */}
           {/* </Modal> */}
           </FocusOn>
         )}
