@@ -22,7 +22,7 @@ export default function Home({ token, profile_pic }) {
   const [endOfBookmarks, setEndOfBookmarks] = useState(false);
 
   const [deletedBookmarksCount, setDeletedBookmarksCount] = useState(0);
-  const [bookmarkFullView, setBookmarkFullView] = useState(false);
+  // const [bookmarkFullView, setBookmarkFullView] = useState(false);
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
 
   const [tags, setTags] = useState([]);
