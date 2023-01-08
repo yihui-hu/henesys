@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { useRouter } from "next/router";
@@ -10,6 +10,7 @@ import FullTextPreview from "../components/FullTextPreview";
 const dayjs = require("dayjs");
 
 export default function BookmarkFullView({
+  bookmarkId,
   bookmarkFullViewData,
   // setBookmarkFullView,
   bookmarks,
@@ -19,16 +20,59 @@ export default function BookmarkFullView({
   token,
 }) {
   const router = useRouter();
-
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
-  const id = bookmarkFullViewData._id;
-  const username = bookmarkFullViewData.username;
-  const text = bookmarkFullViewData.text;
-  const file = bookmarkFullViewData.file;
-  const url = bookmarkFullViewData.url;
-  const metadata = bookmarkFullViewData.metadata;
-  const timestamp = bookmarkFullViewData.timestamp;
+  useEffect(() => {
+    getBookmark();
+  }, []);
+
+  async function getBookmark() {
+    const res = await fetch(`/api/get-bookmark-from-id`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: bookmarkId,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.status == "ok") {
+      setId(data.bookmark._id);
+      setUsername(data.bookmark.username);
+      setText(data.bookmark.text);
+      setFile(data.bookmark.file);
+      setUrl(data.bookmark.url);
+      setMetadata(data.bookmark.metadata);
+      setTimestamp(data.bookmark.timestamp);
+
+      setOriginalTitle(data.bookmark.title ? data.bookmark.title : "");
+      setOriginalNote(data.bookmark.note);
+      setOriginalTags(data.bookmark.tags);
+
+      setTitle(data.bookmark.title ? data.bookmark.title : "");
+      setNote(data.bookmark.note);
+      setTags(data.bookmark.tags);
+
+      setEditableTags(
+        data.bookmark.tags.map((tag, i) => {
+          return { id: tag, text: tag };
+        })
+      );
+    } else {
+      console.log(data.error);
+    }
+  }
+
+  const [id, setId] = useState(bookmarkFullViewData._id);
+  const [username, setUsername] = useState(bookmarkFullViewData.username);
+  const [text, setText] = useState(bookmarkFullViewData.text);
+  const [file, setFile] = useState(bookmarkFullViewData.file);
+  const [url, setUrl] = useState(bookmarkFullViewData.url);
+  const [metadata, setMetadata] = useState(bookmarkFullViewData.metadata);
+  const [timestamp, setTimestamp] = useState(bookmarkFullViewData.timestamp);
 
   const [originalTitle, setOriginalTitle] = useState(
     bookmarkFullViewData.title ? bookmarkFullViewData.title : ""

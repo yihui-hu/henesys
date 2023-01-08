@@ -299,21 +299,22 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {router.query.bookmarkId && (
-          // <FocusOn
-          //   autoFocus={false}
-          //   onEscapeKey={() => {
-          //     // setBookmarkFullView(false);
-          //     router.push("/home", null, { shallow: true, scroll: false });
-          //   }}
-          // >
-          <Modal
-            isOpen={router.query.bookmarkId}
-            onRequestClose={() => router.push("/home", null, { scroll: false })}
-            contentLabel="Bookmark modal"
-            style={{ overlay: { zIndex: 999999999 } }}
+          <FocusOn
+            autoFocus={false}
+            onEscapeKey={() => {
+              // setBookmarkFullView(false);
+              router.push("/home", null, { shallow: true, scroll: false });
+            }}
           >
-            <h4>Hello</h4>
-            {/* <BookmarkFullView
+          { /* <Modal
+             isOpen={router.query.bookmarkId}
+             onRequestClose={() => router.push("/home", null, { scroll: false })}
+             contentLabel="Bookmark modal"
+             style={{ overlay: { zIndex: 999999999 } }}
+          > */ }
+            {/* <h4>Hello</h4> */}
+            <BookmarkFullView
+              bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
               // setBookmarkFullView={setBookmarkFullView}
               bookmarks={bookmarks}
@@ -321,9 +322,9 @@ export default function Home({ token, profile_pic }) {
               deleteBookmark={deleteBookmark}
               homeView={true}
               token={token}
-            /> */}
-          </Modal>
-          // </FocusOn>
+            />
+          {/* </Modal> */}
+          </FocusOn>
         )}
       </AnimatePresence>
 
