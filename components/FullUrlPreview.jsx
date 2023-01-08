@@ -8,13 +8,13 @@ const FullUrlPreview = ({ url, metadata }) => {
     return (
       <div className="bookmark-full-view-file-preview">
         <Link href={url} target="_blank">
-          <Image
+          <img
             src={imageURL}
-            fill
-            sizes="(max-width: 480px) 100vw,
-                   (max-width: 1024px) 100vw,
-                   70vw"
-            priority={true} 
+            // fill
+            // sizes="(max-width: 480px) 100vw,
+            //        (max-width: 1024px) 100vw,
+            //        70vw"
+            // priority={true} 
           />
         </Link>
       </div>
