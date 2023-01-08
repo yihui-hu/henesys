@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import Link from "next/link";
 import ReactTimeAgo from "react-time-ago";
 import FilePreview from "./FilePreview";
 import UrlPreview from "./UrlPreview";
@@ -12,6 +13,7 @@ const Bookmark = ({
   showBookmarkFullView,
   deletedBookmarks,
 }) => {
+  const id = bookmark._id;
   const username = bookmark.username;
   const text = bookmark.text;
   const file = bookmark.file;
@@ -39,11 +41,16 @@ const Bookmark = ({
         onMouseEnter={() => setHoverInfo(true)}
         onMouseLeave={() => setHoverInfo(false)}
       >
+        {/* <Link
+          href={`/home/?bookmarkId=${id}`}
+          as={`/bookmark/${id}`}
+        > */}
         <div onClick={() => showBookmarkFullView(bookmark)}>
           {file && <FilePreview file={file} metadata={metadata} />}
           {url && <UrlPreview url={url} metadata={metadata} />}
           {text && <TextPreview text={text} />}
         </div>
+        {/* </Link> */}
         <div className="bookmark-info">
           {communityView && !hoverInfo && (
             <h4 className="bookmark-info-text">{`@${username}`}</h4>

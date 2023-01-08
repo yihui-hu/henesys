@@ -2,12 +2,15 @@ import { React, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { getServerSideProps } from "../lib/authHomeCommunity";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
+import Modal from "react-modal";
 import BookmarkFullView from "../components/BookmarkFullView";
+
+Modal.setAppElement("#__next");
 
 export default function Home({ token, profile_pic }) {
   const router = useRouter();
@@ -28,24 +31,7 @@ export default function Home({ token, profile_pic }) {
 
   useEffect(() => {
     getYourBookmarks(lastTimestamp);
-
-    // window.addEventListener("popstate", (event) => {
-    //   setBookmarkFullView(false);
-    //   window.history.back();
-    // });
   }, []);
-
-  // useEffect(() => {
-  //   if (bookmarkFullView) {
-  //     window.history.pushState(
-  //       null,
-  //       null,
-  //       `/bookmark/${bookmarkFullViewData._id}`
-  //     );
-  //   } else {
-  //     window.history.pushState(null, null, `/home`);
-  //   }
-  // }, [bookmarkFullView]);
 
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`/api/your-bookmarks`, {
@@ -112,14 +98,16 @@ export default function Home({ token, profile_pic }) {
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
-    // window.history.pushState(
-    //   null,
-    //   null,
-    //   `/bookmark/${bookmarkFullViewData._id}`
-    // );
-
     setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
+    
+    router.push(
+      `/home/?bookmarkId=${bookmarkFullViewData._id}`,
+      `/bookmark/${bookmarkFullViewData._id}`,
+      { shallow: true, scroll: false }
+    );
+    // href={`/home/?bookmarkId=${id}`}
+    // as={`/bookmark/${id}`}
   }
 
   async function getTaggedBookmarks(lastTimestamp, tags) {
@@ -268,7 +256,8 @@ export default function Home({ token, profile_pic }) {
         {!loading && bookmarks.length == 0 && !searchTagsMode && (
           <div className="empty-state-message">
             <h4>
-              Add your first bookmark <br className="empty-state-br"></br>using the{" "}
+              Add your first bookmark <br className="empty-state-br"></br>using
+              the{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -308,14 +297,19 @@ export default function Home({ token, profile_pic }) {
       </div>
 
       <AnimatePresence>
-        {bookmarkFullView && (
-          <FocusOn
-            autoFocus={false}
-            onEscapeKey={() => {
-              setBookmarkFullView(false);
-              // router.back();
-            }}
-          >
+        { router.query.bookmarkId && <FocusOn
+          autoFocus={false}
+          onEscapeKey={() => {
+            setBookmarkFullView(false);
+            router.push("/home");
+          }}
+        >
+          {/* <Modal
+            isOpen={router.query.bookmarkId}
+            onRequestClose={() => router.push("/home")}
+            contentLabel="Bookmark modal"
+            style={{ overlay: { zIndex: 999999999 } }}
+          > */}
             <BookmarkFullView
               bookmarkFullViewData={bookmarkFullViewData}
               setBookmarkFullView={setBookmarkFullView}
@@ -325,8 +319,8 @@ export default function Home({ token, profile_pic }) {
               homeView={true}
               token={token}
             />
-          </FocusOn>
-        )}
+          {/* </Modal> */}
+        </FocusOn> }
       </AnimatePresence>
 
       <AnimatePresence>

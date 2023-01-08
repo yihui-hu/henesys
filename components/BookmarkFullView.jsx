@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import useMediaQuery from "../hooks/useMediaQuery";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Textarea from "react-textarea-autosize";
 import FullFilePreview from "../components/FullFilePreview";
@@ -17,6 +18,8 @@ export default function BookmarkFullView({
   homeView,
   token,
 }) {
+  const router = useRouter();
+
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
   const id = bookmarkFullViewData._id;
@@ -158,7 +161,10 @@ export default function BookmarkFullView({
             </div>
             <div
               className="bookmark-full-view-close-button"
-              onClick={() => setBookmarkFullView(false)}
+              onClick={() => {
+                setBookmarkFullView(false);
+                router.push("/home");
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +230,10 @@ export default function BookmarkFullView({
               </div>
               <div
                 className="bookmark-full-view-close-button"
-                onClick={() => setBookmarkFullView(false)}
+                onClick={() => {
+                  setBookmarkFullView(false);
+                  router.push("/home");
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
