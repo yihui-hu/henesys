@@ -6,13 +6,14 @@ const FilePreview = ({ file, metadata }) => {
   if (mimeImageTypes.includes(metadata.fileType)) {
     return (
       <div className="bookmark-modal-image">
-        <Image
+        <img
           src={file}
-          fill
-          sizes="(max-width: 480px) calc(100vw - 1.6rem),
-                 (max-width: 1024px) calc((100vw - 4rem) / 3),
-                 calc((100vw - 7.5rem) / 4)"
-          priority={true}
+          // fill
+          // quality={50}
+          // sizes="(max-width: 480px) calc(100vw - 1.6rem),
+          //        (max-width: 1024px) calc((100vw - 4rem) / 3),
+          //        calc((100vw - 7.5rem) / 4)"
+          // priority={true}
         />
       </div>
     );
