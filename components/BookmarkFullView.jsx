@@ -163,7 +163,7 @@ export default function BookmarkFullView({
               className="bookmark-full-view-close-button"
               onClick={() => {
                 setBookmarkFullView(false);
-                router.push("/home");
+                router.push("/home", {scroll: false});
               }}
             >
               <svg
@@ -232,7 +232,7 @@ export default function BookmarkFullView({
                 className="bookmark-full-view-close-button"
                 onClick={() => {
                   setBookmarkFullView(false);
-                  router.push("/home");
+                  router.push("/home", {scroll: false});
                 }}
               >
                 <svg
