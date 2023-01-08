@@ -11,7 +11,6 @@ const FullUrlPreview = ({ url, metadata }) => {
           <Image
             src={imageURL}
             fill
-            quality={75}
             sizes="(max-width: 480px) 100vw,
                    (max-width: 1024px) 100vw,
                    70vw"

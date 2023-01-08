@@ -9,7 +9,6 @@ const FilePreview = ({ file, metadata }) => {
         <Image
           src={file}
           fill
-          quality={50}
           sizes="(max-width: 480px) calc(100vw - 1.6rem),
                  (max-width: 1024px) calc((100vw - 4rem) / 3),
                  calc((100vw - 7.5rem) / 4)"
