@@ -11,7 +11,7 @@ const dayjs = require("dayjs");
 
 export default function BookmarkFullView({
   bookmarkFullViewData,
-  setBookmarkFullView,
+  // setBookmarkFullView,
   bookmarks,
   setBookmarks,
   deleteBookmark,
@@ -162,8 +162,8 @@ export default function BookmarkFullView({
             <div
               className="bookmark-full-view-close-button"
               onClick={() => {
-                setBookmarkFullView(false);
-                router.push("/home", null, {scroll: false});
+                // setBookmarkFullView(false);
+                router.push("/home", null, {shallow: true, scroll: false});
               }}
             >
               <svg
@@ -231,8 +231,8 @@ export default function BookmarkFullView({
               <div
                 className="bookmark-full-view-close-button"
                 onClick={() => {
-                  setBookmarkFullView(false);
-                  router.push("/home", null, {scroll: false});
+                  // setBookmarkFullView(false);
+                  router.push("/home", null, {shallow: true, scroll: false});
                 }}
               >
                 <svg

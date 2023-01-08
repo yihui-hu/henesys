@@ -90,15 +90,16 @@ export default function Home({ token, profile_pic }) {
     if (data.status == "ok") {
       let new_bookmarks = bookmarks.filter((item) => item !== bookmark);
       setBookmarks(new_bookmarks);
-      setBookmarkFullView(false);
+      // setBookmarkFullView(false);
       setDeletedBookmarksCount(deletedBookmarksCount + 1);
+      router.push(`/home`, null, { shallow: true, scroll: false });
     } else {
       alert("Error deleting bookmark, please try again later.");
     }
   }
 
   function showBookmarkFullView(bookmarkFullViewData) {
-    setBookmarkFullView(true);
+    // setBookmarkFullView(true);
     setBookmarkFullViewData(bookmarkFullViewData);
 
     router.push(
@@ -300,8 +301,8 @@ export default function Home({ token, profile_pic }) {
         { router.query.bookmarkId && <FocusOn
           autoFocus={false}
           onEscapeKey={() => {
-            setBookmarkFullView(false);
-            router.push("/home", null, {scroll: false});
+            // setBookmarkFullView(false);
+            router.push("/home", null, {shallow: true, scroll: false});
           }}
         >
           {/* <Modal
@@ -312,7 +313,7 @@ export default function Home({ token, profile_pic }) {
           > */}
             <BookmarkFullView
               bookmarkFullViewData={bookmarkFullViewData}
-              setBookmarkFullView={setBookmarkFullView}
+              // setBookmarkFullView={setBookmarkFullView}
               bookmarks={bookmarks}
               setBookmarks={setBookmarks}
               deleteBookmark={deleteBookmark}
