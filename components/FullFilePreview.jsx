@@ -18,8 +18,10 @@ const FullFilePreview = ({ file, metadata }) => {
           <Image
             src={file}
             fill
-            // placeholder="blur"
-            // blurDataURL={metadata.blurPreview ? metadata.blurPreview : "//"}
+            sizes="(max-width: 480px) 100vw,
+                   (max-width: 1024px) 100vw,
+                   70vw"
+            priority={true}
           />
         </Link>
       </div>
