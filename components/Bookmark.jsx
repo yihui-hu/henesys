@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
-import Link from "next/link";
+import useMediaQuery from "../hooks/useMediaQuery";
 import ReactTimeAgo from "react-time-ago";
 import FilePreview from "./FilePreview";
 import UrlPreview from "./UrlPreview";
@@ -13,7 +13,8 @@ const Bookmark = ({
   showBookmarkFullView,
   deletedBookmarks,
 }) => {
-  const id = bookmark._id;
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   const username = bookmark.username;
   const text = bookmark.text;
   const file = bookmark.file;
@@ -38,19 +39,14 @@ const Bookmark = ({
           type: "spring",
           delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.02,
         }}
-        onMouseEnter={() => setHoverInfo(true)}
-        onMouseLeave={() => setHoverInfo(false)}
+        onMouseEnter={() => isDesktop ? setHoverInfo(true) : undefined}
+        onMouseLeave={() => isDesktop ? setHoverInfo(false) : undefined}
       >
-        {/* <Link
-          href={`/home/?bookmarkId=${id}`}
-          as={`/bookmark/${id}`}
-        > */}
         <div onClick={() => showBookmarkFullView(bookmark)}>
           {file && <FilePreview file={file} metadata={metadata} />}
           {url && <UrlPreview url={url} metadata={metadata} />}
           {text && <TextPreview text={text} />}
         </div>
-        {/* </Link> */}
         <div className="bookmark-info">
           {communityView && !hoverInfo && (
             <h4 className="bookmark-info-text">{`@${username}`}</h4>
