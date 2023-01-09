@@ -82,7 +82,7 @@ export default function BookmarkPage({ isLoggedIn }) {
             <description>henesys bookmark added by {username}</description>
             <meta
               property="og:image"
-              content={`https://henesys.online/api/og/${searchParams.toString()}?`}
+              content={`https://henesys.online/api/og/?${searchParams.toString()}?`}
             />
           </Head>
           <div className="bookmark-full-view-container">
