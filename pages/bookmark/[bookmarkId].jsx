@@ -79,7 +79,7 @@ export default function BookmarkPage({ isLoggedIn }) {
         <>
           <Head>
             <title>{title ? `${title} — henesys` : "henesys"}</title>
-            <description>henesys bookmark added by {username}</description>
+            <meta name="description">henesys bookmark added by {username}</meta>
             <meta property="og:title" content={`${title ? `${title} — henesys` : "henesys"}`}/>
             <meta property="og:description" content={`henesys bookmark added by ${username}`}/>
             <meta property="og:url" content={`https://henesys.online/bookmark/${id}`}/>
