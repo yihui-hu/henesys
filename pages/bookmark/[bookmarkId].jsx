@@ -79,24 +79,24 @@ export default function BookmarkPage({ isLoggedIn }) {
         <>
           <Head>
             <title>{title ? `${title} — henesys` : "henesys"}</title>
-            <meta name="description">henesys bookmark added by {username}</meta>
-            <meta property="og:title" content={`${title ? `${title} — henesys` : "henesys"}`}/>
-            <meta property="og:description" content={`henesys bookmark added by ${username}`}/>
-            <meta property="og:url" content={`https://henesys.online/bookmark/${id}`}/>
-            <meta property="og:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
-            <meta property="og:image:alt" content={`henesys bookmark added by ${username}`}/>
-            <meta property="og:image:width" content="1200"/>
-            <meta property="og:image:height" content="630"/>
-            <meta property="og:site_name" content="henesys"/>
-            <meta property="og:type" content="website"/>
-            <meta property="twitter:domain" content="henesys.online" />
-            <meta property="twitter:url" content="https://henesys.online" />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@_yihui" />
-            <meta name="twitter:title" content={title ? `${title} — henesys` : "henesys"} />
-            <meta name="twitter:description" content={`henesys bookmark added by ${username}`} />
-            <meta name="twitter:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
-            <meta name="twitter:image:alt" content={`henesys bookmark added by ${username}`} />
+            <meta data-rh="true" name="description">henesys bookmark added by {username}</meta>
+            <meta data-rh="true" property="og:title" content={`${title ? `${title} — henesys` : "henesys"}`}/>
+            <meta data-rh="true" property="og:description" content={`henesys bookmark added by ${username}`}/>
+            <meta data-rh="true" property="og:url" content={`https://henesys.online/bookmark/${id}`}/>
+            <meta data-rh="true" property="og:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
+            <meta data-rh="true" property="og:image:alt" content={`henesys bookmark added by ${username}`}/>
+            <meta data-rh="true" property="og:image:width" content="1200"/>
+            <meta data-rh="true" property="og:image:height" content="630"/>
+            <meta data-rh="true" property="og:site_name" content="henesys"/>
+            <meta data-rh="true" property="og:type" content="website"/>
+            <meta data-rh="true" property="twitter:domain" content="henesys.online" />
+            <meta data-rh="true" property="twitter:url" content="https://henesys.online" />
+            <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+            <meta data-rh="true" name="twitter:site" content="@_yihui" />
+            <meta data-rh="true" name="twitter:title" content={title ? `${title} — henesys` : "henesys"} />
+            <meta data-rh="true" name="twitter:description" content={`henesys bookmark added by ${username}`} />
+            <meta data-rh="true" name="twitter:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
+            <meta data-rh="true" name="twitter:image:alt" content={`henesys bookmark added by ${username}`} />
           </Head>
           <div className="bookmark-full-view-container">
             <div className="bookmark-full-view">
