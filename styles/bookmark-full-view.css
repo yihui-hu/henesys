@@ -76,7 +76,7 @@
   width: 30vw;
   height: 100vh;
   overflow: scroll;
-  border-left: 1px solid rgb(236, 236, 236);
+  border-left: 1px solid #ececec;
 }
 
 .bookmark-full-view-info-header {

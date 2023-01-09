@@ -13,6 +13,7 @@
     "@next/font": "^13.1.1",
     "@plaiceholder/next": "^2.5.0",
     "@radix-ui/react-toast": "^1.1.2",
+    "@vercel/og": "^0.0.23",
     "aws-sdk": "^2.1285.0",
     "bcrypt": "^5.1.0",
     "chrome-aws-lambda": "6.0.0",
