@@ -65,6 +65,14 @@ export default function BookmarkPage({ isLoggedIn }) {
 
   const [linkCopied, setLinkCopied] = useState(false);
 
+  const paramsObj = {
+    username: username,
+    title: title ? title : "null",
+    previewImg: file ? file : "null",
+    previewText: text ? text : "null",
+  };
+  const searchParams = new URLSearchParams(paramsObj);
+
   return (
     <>
       {!isLoading && (
@@ -74,11 +82,7 @@ export default function BookmarkPage({ isLoggedIn }) {
             <description>henesys bookmark added by {username}</description>
             <meta
               property="og:image"
-              content={`https://henesys.online/api/og/username=${username}&title=${
-                title ? title : "null"
-              }&previewImg=${file ? file : "null"}&previewText=${
-                text ? text : "null"
-              }`}
+              content={`https://henesys.online/api/og/${searchParams.toString()}?`}
             />
           </Head>
           <div className="bookmark-full-view-container">
