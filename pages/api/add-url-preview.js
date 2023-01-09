@@ -1,5 +1,5 @@
 import chromium from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer-extra";
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const reachableUrl = require("reachable-url");
 const jwt = require("jsonwebtoken");
