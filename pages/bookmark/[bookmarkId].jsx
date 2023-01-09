@@ -41,7 +41,7 @@ export default function BookmarkPage({ isLoggedIn }) {
       setNote(data.bookmark.note);
       setTags(data.bookmark.tags);
     } else {
-      alert("Invalid bookmark");
+      router.push("/404");
     }
   }
 
