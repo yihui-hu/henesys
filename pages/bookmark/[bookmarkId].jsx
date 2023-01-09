@@ -84,6 +84,23 @@ export default function BookmarkPage({ isLoggedIn }) {
               property="og:image"
               content={`https://henesys.online/api/og/?${searchParams.toString()}?`}
             />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta
+              name="twitter:image:alt"
+              content={`henesys bookmark added by ${username}`}
+            />
+            <meta
+              name="twitter:title"
+              content={title ? `${title} — henesys` : "henesys"}
+            />
+            <meta
+              name="twitter:description"
+              content={`henesys bookmark added by ${username}`}
+            />
+            <meta
+              name="twitter:image"
+              content={`https://henesys.online/api/og/?${searchParams.toString()}?`}
+            />
           </Head>
           <div className="bookmark-full-view-container">
             <div className="bookmark-full-view">
