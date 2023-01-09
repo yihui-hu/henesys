@@ -80,27 +80,20 @@ export default function BookmarkPage({ isLoggedIn }) {
           <Head>
             <title>{title ? `${title} — henesys` : "henesys"}</title>
             <description>henesys bookmark added by {username}</description>
-            <meta
-              property="og:image"
-              content={`https://henesys.online/api/og/?${searchParams.toString()}?`}
-            />
+            <meta property="og:title" content={`${title ? `${title} — henesys` : "henesys"}`}/>
+            <meta property="og:description" content={`henesys bookmark added by ${username}`}/>
+            <meta property="og:url" content={`https://henesys.online/bookmark/${id}`}/>
+            <meta property="og:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
+            <meta property="og:image:alt" content={`henesys bookmark added by ${username}`}/>
+            <meta property="og:image:width" content="1200"/>
+            <meta property="og:image:height" content="630"/>
+            <meta property="og:site_name" content="henesys"/>
+            <meta property="og:type" content="website"/>
             <meta name="twitter:card" content="summary_large_image" />
-            <meta
-              name="twitter:image:alt"
-              content={`henesys bookmark added by ${username}`}
-            />
-            <meta
-              name="twitter:title"
-              content={title ? `${title} — henesys` : "henesys"}
-            />
-            <meta
-              name="twitter:description"
-              content={`henesys bookmark added by ${username}`}
-            />
-            <meta
-              name="twitter:image"
-              content={`https://henesys.online/api/og/?${searchParams.toString()}?`}
-            />
+            <meta name="twitter:title" content={title ? `${title} — henesys` : "henesys"} />
+            <meta name="twitter:description" content={`henesys bookmark added by ${username}`} />
+            <meta name="twitter:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
+            <meta name="twitter:image:alt" content={`henesys bookmark added by ${username}`} />
           </Head>
           <div className="bookmark-full-view-container">
             <div className="bookmark-full-view">
