@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { WithContext as ReactTags } from "react-tag-input";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import Textarea from "react-textarea-autosize";
 import FullFilePreview from "../components/FullFilePreview";
@@ -28,16 +28,16 @@ export default function BookmarkFullView({
 
   useEffect(() => {
     router.beforePopState(({ as }) => {
-        if (as !== router.asPath) {
-          setBookmarkFullViewData(null);
-        }
-        return true;
+      if (as !== router.asPath) {
+        setBookmarkFullViewData(null);
+      }
+      return true;
     });
 
     return () => {
-        router.beforePopState(() => true);
+      router.beforePopState(() => true);
     };
-}, [router]);
+  }, [router]);
 
   async function getBookmark() {
     const res = await fetch(`/api/get-bookmark-from-id`, {
@@ -79,19 +79,41 @@ export default function BookmarkFullView({
     }
   }
 
-  const [id, setId] = useState(bookmarkFullViewData ? bookmarkFullViewData._id : "");
-  const [username, setUsername] = useState(bookmarkFullViewData ? bookmarkFullViewData.username : "");
-  const [text, setText] = useState(bookmarkFullViewData ? bookmarkFullViewData.text : "");
-  const [file, setFile] = useState(bookmarkFullViewData ? bookmarkFullViewData.file : "");
-  const [url, setUrl] = useState(bookmarkFullViewData ? bookmarkFullViewData.url : "");
-  const [metadata, setMetadata] = useState(bookmarkFullViewData ? bookmarkFullViewData.metadata : {});
-  const [timestamp, setTimestamp] = useState(bookmarkFullViewData ? bookmarkFullViewData.timestamp : "");
+  const [id, setId] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData._id : ""
+  );
+  const [username, setUsername] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.username : ""
+  );
+  const [text, setText] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.text : ""
+  );
+  const [file, setFile] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.file : ""
+  );
+  const [url, setUrl] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.url : ""
+  );
+  const [metadata, setMetadata] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.metadata : {}
+  );
+  const [timestamp, setTimestamp] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.timestamp : ""
+  );
 
   const [originalTitle, setOriginalTitle] = useState(
-    bookmarkFullViewData ? bookmarkFullViewData.title ? bookmarkFullViewData.title : "" : ""
+    bookmarkFullViewData
+      ? bookmarkFullViewData.title
+        ? bookmarkFullViewData.title
+        : ""
+      : ""
   );
-  const [originalNote, setOriginalNote] = useState(bookmarkFullViewData ? bookmarkFullViewData.note : "");
-  const [originalTags, setOriginalTags] = useState(bookmarkFullViewData ? bookmarkFullViewData.tags : []);
+  const [originalNote, setOriginalNote] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.note : ""
+  );
+  const [originalTags, setOriginalTags] = useState(
+    bookmarkFullViewData ? bookmarkFullViewData.tags : []
+  );
 
   const [title, setTitle] = useState(originalTitle ? originalTitle : "");
   const [note, setNote] = useState(originalNote ? originalNote : "");
@@ -219,7 +241,9 @@ export default function BookmarkFullView({
             <div
               className="bookmark-full-view-close-button"
               onClick={() => {
-                router.push(`${homeView ? "/home" : "/community"}`, null, { scroll: false });
+                router.push(`${homeView ? "/home" : "/community"}`, null, {
+                  scroll: false,
+                });
               }}
             >
               <svg
@@ -287,7 +311,9 @@ export default function BookmarkFullView({
               <div
                 className="bookmark-full-view-close-button"
                 onClick={() => {
-                  router.push(`${homeView ? "/home" : "/community"}`, null, { scroll: false });
+                  router.push(`${homeView ? "/home" : "/community"}`, null, {
+                    scroll: false,
+                  });
                 }}
               >
                 <svg

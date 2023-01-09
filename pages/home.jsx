@@ -189,7 +189,11 @@ export default function Home({ token, profile_pic }) {
 
   return (
     <>
-      <Navbar homeView={true} communityView={false} profilePic={profile_pic} />
+      <Navbar 
+        homeView={true} 
+        communityView={false} 
+        profilePic={profile_pic} 
+      />
       <div className="home-container">
         <div className="home-search-tags-container">
           {tags.length == 0 && (
