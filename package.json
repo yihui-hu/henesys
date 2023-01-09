@@ -44,6 +44,7 @@
     "plaiceholder": "^2.5.0",
     "puppeteer": "^19.4.1",
     "puppeteer-core": "6.0.0",
+    "puppeteer-extra": "^3.3.4",
     "reachable-url": "^1.7.1",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",

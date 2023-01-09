@@ -1,7 +1,10 @@
 import chromium from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core";
+const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const reachableUrl = require("reachable-url");
 const jwt = require("jsonwebtoken");
+
+puppeteer.use(AdblockerPlugin({blockTrackers: true}))
 
 const handler = async (req, res) => {
   try {
