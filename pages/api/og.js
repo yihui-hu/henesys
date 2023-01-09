@@ -41,10 +41,10 @@ const handler = async (req) => {
             <div
               style={{
                 display: "flex",
-                width: "300px !important",
+                width: "540px",
                 fontSize: 48,
-                marginTop: -200,
                 overflow: "hidden",
+                whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
               }}
             >
