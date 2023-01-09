@@ -49,7 +49,7 @@ const Bookmark = ({
         </div>
         <div className="bookmark-info">
           {communityView && !hoverInfo && (
-            <h4 className="bookmark-info-text">{`@${username}`}</h4>
+            <h4 className="bookmark-info-text">{`added by ${username}`}</h4>
           )}
           {file && (!communityView || (communityView && hoverInfo)) && (
             <h4 className="bookmark-info-text">
