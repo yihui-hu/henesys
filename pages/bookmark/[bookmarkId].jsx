@@ -89,8 +89,10 @@ export default function BookmarkPage({ isLoggedIn }) {
             <meta property="og:image:height" content="630"/>
             <meta property="og:site_name" content="henesys"/>
             <meta property="og:type" content="website"/>
+            <meta property="twitter:domain" content="henesys.online" />
+            <meta property="twitter:url" content="https://henesys.online" />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@_yihui"/>
+            <meta name="twitter:site" content="@_yihui" />
             <meta name="twitter:title" content={title ? `${title} — henesys` : "henesys"} />
             <meta name="twitter:description" content={`henesys bookmark added by ${username}`} />
             <meta name="twitter:image" content={`https://henesys.online/api/og/?${searchParams.toString()}?`} />
