@@ -7,6 +7,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import FullFilePreview from "../../components/FullFilePreview";
 import FullUrlPreview from "../../components/FullUrlPreview";
 import FullTextPreview from "../../components/FullTextPreview";
+import truncate from "../../js/truncateText"
 const dayjs = require("dayjs");
 
 export default function BookmarkPage({ isLoggedIn, bookmarkData }) {
@@ -30,9 +31,9 @@ export default function BookmarkPage({ isLoggedIn, bookmarkData }) {
 
   const paramsObj = {
     username: username,
-    title: title ? title : "null",
+    title: title ? truncate(title, 100) : "null",
     previewImg: file ? file : "null",
-    previewText: text ? text : "null",
+    previewText: text ? truncate(text, 300) : "null",
   };
   const searchParams = new URLSearchParams(paramsObj);
 
@@ -43,20 +44,20 @@ export default function BookmarkPage({ isLoggedIn, bookmarkData }) {
         <meta data-rh="true" name="description" content={`bookmark added by ${username}`} />
         <meta data-rh="true" property="og:title" content={`${title ? `${title} — henesys` : "henesys"}`}/>
         <meta data-rh="true" property="og:description" content={note ? note : `bookmark added by ${username}`}/>
-        <meta data-rh="true" property="og:url" content={`https://henesys.online/bookmark/${id}`}/>
-        <meta data-rh="true" property="og:image" content={`https://henesys.online/api/og/?${searchParams.toString()}`} />
+        <meta data-rh="true" property="og:url" content={`http://localhost:3000/bookmark/${id}`}/>
+        <meta data-rh="true" property="og:image" content={`http://localhost:3000/api/og/?${searchParams.toString()}`} />
         <meta data-rh="true" property="og:image:alt" content={`bookmark added by ${username}`}/>
         <meta data-rh="true" property="og:image:width" content="1200"/>
         <meta data-rh="true" property="og:image:height" content="630"/>
         <meta data-rh="true" property="og:site_name" content="henesys"/>
         <meta data-rh="true" property="og:type" content="website"/>
         <meta data-rh="true" property="twitter:domain" content="henesys.online" />
-        <meta data-rh="true" property="twitter:url" content="https://henesys.online" />
+        <meta data-rh="true" property="twitter:url" content="http://localhost:3000" />
         <meta data-rh="true" name="twitter:card" content="summary_large_image" />
         <meta data-rh="true" name="twitter:site" content="@_yihui" />
         <meta data-rh="true" name="twitter:title" content={title ? `${title} — henesys` : "henesys"} />
         <meta data-rh="true" name="twitter:description" content={note ? note : `bookmark added by ${username}`} />
-        <meta data-rh="true" name="twitter:image" content={`https://henesys.online/api/og/?${searchParams.toString()}`} />
+        <meta data-rh="true" name="twitter:image" content={`http://localhost:3000/api/og/?${searchParams.toString()}`} />
         <meta data-rh="true" name="twitter:image:alt" content={`bookmark added by ${username}`} />
       </Head>
       <div className="bookmark-full-view-container">

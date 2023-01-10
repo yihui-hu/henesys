@@ -1,4 +1,5 @@
 import { ImageResponse } from "@vercel/og";
+import { wrap } from "framer-motion";
 import { NextRequest } from "next/server";
 
 export const config = {
@@ -18,7 +19,6 @@ const handler = async (req) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          fontSize: 64,
           fontFamily: "",
           background: "white",
           width: "100%",
@@ -31,8 +31,8 @@ const handler = async (req) => {
             flexDirection: "column",
             justifyContent: "space-between",
             padding: 30,
-            fontSize: 32,
-            width: "560px",
+            fontSize: 27,
+            width: "600px",
             height: "640px",
           }}
         >
@@ -40,13 +40,14 @@ const handler = async (req) => {
           {title != "null" && (
             <div
               style={{
-                display: "inline-block",
-                width: "540px",
-                height: "200px",
-                fontSize: 48,
+                display: "flex",
+                fontSize: 36,
+                maxWidth: "520px",
+                height: "300px",
                 overflow: "hidden",
-                whiteSpace: "nowrap",
+                whiteSpace: "no-wrap",
                 textOverflow: "ellipsis",
+                overflowWrap: "break-word",
               }}
             >
               <h4>{title}</h4>
@@ -59,8 +60,8 @@ const handler = async (req) => {
         <div
           style={{
             display: "flex",
-            fontSize: 32,
-            width: "640px",
+            fontSize: 27,
+            width: "600px",
             height: "640px",
             borderLeft: "1px solid #dcdcdc",
           }}
@@ -76,27 +77,33 @@ const handler = async (req) => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: 96,
-                marginTop: -24,
-                width: "640px",
+                justifyContent: "space-between",
+                paddingTop: 81,
+                paddingLeft: 81,
+                maxWidth: "504px",
                 height: "664px",
                 overflow: "hidden",
               }}
             >
-              {previewText}
               <div
                 style={{
-                  width: "640px",
-                  height: "200px",
+                  display: "flex",
+                  overflowWrap: "break-word",
+                }}
+              >
+                {previewText}
+              </div>
+              <div
+                style={{
+                  width: "600px",
+                  height: "664px",
                   backgroundImage: `linear-gradient(
-                  to bottom,
-                  rgba(255, 255, 255, 0.2),
-                  rgba(255, 255, 255, 0.85),
-                  rgba(255, 255, 255, 1),
-                  rgba(255, 255, 255, 1) 100%
-                )`,
-                  marginTop: -382,
-                  marginLeft: -96,
+                    to bottom,
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.85),
+                    rgba(255, 255, 255, 1),
+                    rgba(255, 255, 255, 1) 100%
+                  )`,
                 }}
               ></div>
             </div>
