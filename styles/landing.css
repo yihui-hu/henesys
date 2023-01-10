@@ -162,6 +162,11 @@ br {
   br {
     display: block;
   }
+
+  .navbar-logo {
+    width: 100px;
+    height: 25px;
+  }
 }
 
 @media screen and (max-width: 480px) {

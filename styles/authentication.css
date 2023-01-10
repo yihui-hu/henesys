@@ -12,9 +12,6 @@
   position: fixed;
   top: 1.5rem;
   left: 1.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: -0.6px;
   cursor: pointer;
 }
 
@@ -108,7 +105,6 @@
 
 @media screen and (max-width: 1024px) {
   .auth-nav {
-    font-size: 1.2rem;
     top: 1rem;
     left: 1rem;
   }
