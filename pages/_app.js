@@ -7,6 +7,7 @@ import "../styles/bookmark.css";
 import "../styles/bookmark-full-view.css";
 import "../styles/navbar.css";
 import "../styles/add-bookmark.css";
+import "../styles/profile.css";
 import "../styles/404.css";
 
 import TimeAgo from "javascript-time-ago";

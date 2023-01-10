@@ -1,0 +1,84 @@
+.profile-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 1.5rem;
+  background: url("../assets/grid-bg.svg") center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile-user-container {
+  display: grid;
+  place-items: center;
+}
+
+.profile-user-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding-block: 1.5rem;
+  min-width: 25rem;
+}
+
+.profile-pic {
+  width: 6rem;
+  height: 6rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 200px;
+}
+
+.profile-username {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.back-icon {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.back-icon:hover {
+  color: gray;
+}
+
+.profile-button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 25rem;
+}
+
+.profile-secondary-button {
+  width: 100%;
+  border: 1px solid #f60000;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  color: red;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.profile-secondary-button:hover {
+  color: white;
+  background-color: red;
+}
+
+.profile-primary-button {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 100px;
+  padding-block: 0.5rem;
+  background-color: black;
+  color: #fafafa;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.profile-primary-button:hover {
+  background-color: #535353;
+  border: 1px solid #535353;
+}
