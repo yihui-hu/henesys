@@ -32,7 +32,7 @@ export default function BookmarkPage({ isLoggedIn, bookmarkData }) {
   const paramsObj = {
     username: username,
     title: title ? truncate(title, 100) : "null",
-    previewImg: file ? file : "null",
+    previewImg: file ? file : url ? metadata.preview_image_url : "null",
     previewText: text ? truncate(text, 300) : "null",
   };
   const searchParams = new URLSearchParams(paramsObj);

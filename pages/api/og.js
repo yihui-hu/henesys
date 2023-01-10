@@ -56,7 +56,7 @@ const handler = async (req) => {
               viewBox="0 0 60 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              style={{ width: "160px", height: "40px" }}
+              style={{ width: "140px", height: "35px" }}
             >
               <rect y="1" width="12" height="12" rx="1" fill="black" />
               <path
