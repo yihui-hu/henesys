@@ -9,14 +9,6 @@ const s3 = new aws.S3({
   region: process.env.FO_S3_REGION,
 });
 
-const mimeImageTypes = [
-  "image/png",
-  "image/jpeg",
-  "image/gif",
-  "image/webp",
-  "image/jpg",
-];
-
 const handler = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
@@ -61,7 +53,8 @@ const handler = async (req, res) => {
       timestamp: Date.now(),
     };
 
-    bookmark = Bookmark.create(bookmark);
+    let new_bookmark = await Bookmark.create(bookmark);
+    bookmark._id = new_bookmark._id;
     return res.json({ status: "ok", bookmark: bookmark });
   } catch (err) {
     return res.json({

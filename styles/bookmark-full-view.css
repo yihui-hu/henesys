@@ -61,10 +61,10 @@
   overflow-wrap: break-word;
   white-space: pre-wrap;
   word-wrap: break-word;
-  -webkit-hyphens: auto;
+  /* -webkit-hyphens: auto;
   -ms-hyphens: auto;
   -moz-hyphens: auto;
-  hyphens: auto;
+  hyphens: auto; */
 }
 
 .bookmark-full-view-text-preview > h4 {
@@ -306,6 +306,7 @@
   .bookmark-full-view-text-preview {
     width: 100vw;
     height: auto;
+    min-height: max(60vh, 60vw);
     padding: 4rem;
     overflow: scroll;
   }

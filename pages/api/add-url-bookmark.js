@@ -51,7 +51,8 @@ const handler = async (req, res) => {
       timestamp: Date.now(),
     };
 
-    bookmark = Bookmark.create(bookmark);
+    let new_bookmark = await Bookmark.create(bookmark);
+    bookmark._id = new_bookmark._id;
     return res.json({ status: "ok", bookmark: bookmark });
   } catch (err) {
     return res.json({
