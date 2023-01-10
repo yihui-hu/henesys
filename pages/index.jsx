@@ -1,6 +1,7 @@
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";
+import Link from "next/link";
 
 export default function Landing() {
   const router = useRouter();
@@ -35,18 +36,18 @@ export default function Landing() {
             </svg>
             <m.h2
               className="landing-navbar-text"
-              initial={{ y: "30px", opacity: 0 }}
+              initial={{ y: "60px", opacity: 0 }}
               animate={{ y: "0px", opacity: 1 }}
-              transition={{ duration: 0.5, type: "spring" }}
+              transition={{ duration: 0.7, type: "spring" }}
             >
               is a barebones bookmarking / <br></br> capture-anything site
             </m.h2>
           </div>
           <m.div
             className="landing-auth-button-container"
-            initial={{ y: "30px", opacity: 0 }}
+            initial={{ y: "60px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.05 }}
+            transition={{ duration: 0.7, type: "spring", delay: 0.07 }}
           >
             <button
               className="landing-auth-secondary-button"
@@ -66,49 +67,60 @@ export default function Landing() {
         </div>
         <div className="landing-modal-container">
           <m.div
-            initial={{ y: "30px", opacity: 0 }}
+            initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
+            transition={{ duration: 0.7, type: "spring", delay: 0.14 }}
           >
             <m.div className="landing-modal">
-              this site is basically an are.na lite / mymind lite. you can use
-              it however you like honestly. whether to jot down quick notes, or
-              bookmark something interesting you came across
+              A simple and streamlined bookmarking application. Save files,
+              images, URLs or plaintext for future reference.
             </m.div>
-            <h4 className="landing-modal-caption">what</h4>
+            <h4 className="landing-modal-caption">what is this</h4>
           </m.div>
           <m.div
-            initial={{ y: "30px", opacity: 0 }}
+            initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.13 }}
+            transition={{ duration: 0.7, type: "spring", delay: 0.21 }}
           >
             <div className="landing-modal">
-              save / add either files (images, pdfs, etc), urls or plaintext.
-              tag them for easy search-up / grouping. community view allows you
-              to view unprivated blocks of peers and friends. (you can get
-              pretty far with tags tbh to create your own systems of
-              organization)
+              Tag bookmarks for fast lookups or for your own system(s) of
+              organization. And with the community tab, keep up to date on what
+              your friends and others are bookmarking.
             </div>
-            <h4 className="landing-modal-caption">features.gif</h4>
+            <h4 className="landing-modal-caption">some features</h4>
           </m.div>
           <m.div
-            initial={{ y: "30px", opacity: 0 }}
+            initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.16 }}
-          >
-            <div className="landing-modal">dk, dc</div>
-            <h4 className="landing-modal-caption">how.jpg</h4>
-          </m.div>
-          <m.div
-            initial={{ y: "30px", opacity: 0 }}
-            animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.19 }}
+            transition={{ duration: 0.7, type: "spring", delay: 0.28 }}
           >
             <div className="landing-modal">
-              i love are.na, and wanted to try building a simpler, less
-              feature-full but also less complex version of it.
+              You can use it however you like honestly. Keep a private repository of interesting references or foster a small community of bookmarking fiends.
             </div>
-            <h4 className="landing-modal-caption">why.pdf</h4>
+            <h4 className="landing-modal-caption">how to use</h4>
+          </m.div>
+          <m.div
+            initial={{ y: "100px", opacity: 0 }}
+            animate={{ y: "0px", opacity: 1 }}
+            transition={{ duration: 0.7, type: "spring", delay: 0.35 }}
+          >
+            <div className="landing-modal">
+              I love {" "}
+              <Link
+                href="https://are.na"
+                target="_blank"
+                referrer="noreferrer"
+                style={{
+                  textDecoration: "underline",
+                  textDecorationStyle: "dotted",
+                }}
+              >
+                ✶✶ Are.na
+              </Link>
+              , and wanted to try building a simpler, less feature-full but also
+              less complex version of it.
+            </div>
+            <h4 className="landing-modal-caption">why make this</h4>
           </m.div>
         </div>
       </div>
