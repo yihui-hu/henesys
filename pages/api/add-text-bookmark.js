@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 
     let { text, title, note, tags } = req.body;
 
-    const bookmark = {
+    let bookmark = {
       username: decoded.username,
       file: null,
       text: text,
@@ -22,7 +22,7 @@ const handler = async (req, res) => {
       timestamp: Date.now(),
     };
 
-    await Bookmark.create(bookmark);
+    bookmark = await Bookmark.create(bookmark);
     return res.json({ status: "ok", bookmark: bookmark });
   } catch (err) {
     return res.json({

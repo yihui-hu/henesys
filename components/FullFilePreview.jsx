@@ -22,6 +22,7 @@ const FullFilePreview = ({ file, metadata }) => {
                    (max-width: 1024px) 100vw,
                    70vw"
             priority={true}
+            alt={file}
           />
         </Link>
       </div>

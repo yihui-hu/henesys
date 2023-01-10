@@ -13,6 +13,7 @@ const UrlPreview = ({ url, metadata }) => {
                  (max-width: 1024px) calc((100vw - 4rem) / 3),
                  calc((100vw - 7.5rem) / 4)"
           priority={true}
+          alt={imageURL}
         />
       </div>
     );

@@ -15,6 +15,7 @@ const FullUrlPreview = ({ url, metadata }) => {
                    (max-width: 1024px) 100vw,
                    70vw"
             priority={true} 
+            alt={imageURL}
           />
         </Link>
       </div>
