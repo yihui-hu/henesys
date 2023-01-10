@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { destroyCookie } from "nookies";
 destroyCookie({}, "access");
 import { getServerSideProps } from "../lib/authProfile";
+const dayjs = require('dayjs');
 
 export default function Profile({ user }) {
   const router = useRouter();
@@ -39,7 +40,10 @@ export default function Profile({ user }) {
             className="profile-pic"
             style={{ backgroundImage: `url(${userData.profile_pic})` }}
           />
-          <h4 className="profile-username">{userData.username}</h4>
+          <div>
+            <h4 className="profile-username">{userData.username}</h4>
+            <h4 style={{color: "#acacac", fontWeight: 400}}>Joined {dayjs(userData.createdAt).format("MMM YYYY")}</h4>
+          </div>
         </div>
         <div className="profile-button-container">
           <button className="profile-secondary-button">Delete account</button>
