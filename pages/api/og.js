@@ -40,8 +40,9 @@ const handler = async (req) => {
           {title != "null" && (
             <div
               style={{
-                display: "flex",
+                display: "inline-block",
                 width: "540px",
+                height: "200px",
                 fontSize: 48,
                 overflow: "hidden",
                 whiteSpace: "nowrap",
