@@ -39,7 +39,7 @@
   border-radius: 100px;
   color: black;
   background-color: white;
-  cursor: pointer;
+  
   transition: 0.2s ease;
 }
 .landing-auth-secondary-button:hover {
@@ -55,7 +55,7 @@
   border-radius: 100px;
   background-color: black;
   color: white;
-  cursor: pointer;
+  
   transition: 0.2s ease;
 }
 .landing-auth-primary-button:hover {
@@ -87,7 +87,7 @@
 
   overflow-wrap: break-word;
   word-wrap: break-word;
-  cursor: pointer;
+  
   transition: 0.1s ease;
 }
 .landing-modal:hover {

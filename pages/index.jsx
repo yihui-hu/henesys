@@ -75,7 +75,7 @@ export default function Landing() {
               A simple and streamlined bookmarking application. Save files,
               images, URLs or plaintext for future reference.
             </m.div>
-            <h4 className="landing-modal-caption">what is this</h4>
+            <h4 className="landing-modal-caption">what</h4>
           </m.div>
           <m.div
             initial={{ y: "100px", opacity: 0 }}
@@ -87,7 +87,7 @@ export default function Landing() {
               organization. And with the community tab, keep up to date on what
               your friends and others are bookmarking.
             </div>
-            <h4 className="landing-modal-caption">some features</h4>
+            <h4 className="landing-modal-caption">features</h4>
           </m.div>
           <m.div
             initial={{ y: "100px", opacity: 0 }}
@@ -97,7 +97,7 @@ export default function Landing() {
             <div className="landing-modal">
               You can use it however you like honestly. Keep a private repository of interesting references or foster a small community of bookmarking fiends.
             </div>
-            <h4 className="landing-modal-caption">how to use</h4>
+            <h4 className="landing-modal-caption">how</h4>
           </m.div>
           <m.div
             initial={{ y: "100px", opacity: 0 }}
@@ -118,9 +118,9 @@ export default function Landing() {
                 ✶✶ Are.na
               </Link>
               , and wanted to try building a simpler, less feature-full but also
-              less complex version of it.
+              less complex version of it. More than anything, it's an experiment / exploration.
             </div>
-            <h4 className="landing-modal-caption">why make this</h4>
+            <h4 className="landing-modal-caption">why</h4>
           </m.div>
         </div>
       </div>
