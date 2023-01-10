@@ -19,10 +19,12 @@ const handler = async (req) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          fontFamily: "",
+          fontFamily: "Arial",
           background: "white",
           width: "100%",
           height: "100%",
+          margin: 0,
+          padding: 0,
         }}
       >
         <div
@@ -31,19 +33,17 @@ const handler = async (req) => {
             flexDirection: "column",
             justifyContent: "space-between",
             padding: 30,
-            fontSize: 27,
             width: "600px",
             height: "640px",
           }}
         >
-          <div>henesys</div>
+          <div style={{ fontSize: 27 }}>henesys</div>
           {title != "null" && (
             <div
               style={{
                 display: "flex",
                 fontSize: 36,
-                maxWidth: "520px",
-                height: "300px",
+                width: "100%",
                 overflow: "hidden",
                 whiteSpace: "no-wrap",
                 textOverflow: "ellipsis",
@@ -78,25 +78,28 @@ const handler = async (req) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                paddingTop: 81,
-                paddingLeft: 81,
-                maxWidth: "504px",
-                height: "664px",
-                overflow: "hidden",
+                padding: 48,
+                width: "600px",
+                height: "640px",
               }}
             >
               <div
                 style={{
                   display: "flex",
+                  fontSize: 27,
+                  width: "100%",
+                  overflow: "hidden",
+                  whiteSpace: "no-wrap",
+                  textOverflow: "ellipsis",
                   overflowWrap: "break-word",
                 }}
               >
-                {previewText}
+                <h4>{previewText}</h4>
               </div>
               <div
                 style={{
-                  width: "600px",
-                  height: "664px",
+                  width: "100%",
+                  height: "640px",
                   backgroundImage: `linear-gradient(
                     to bottom,
                     rgba(255, 255, 255, 0.2),
@@ -104,6 +107,9 @@ const handler = async (req) => {
                     rgba(255, 255, 255, 1),
                     rgba(255, 255, 255, 1) 100%
                   )`,
+                  // background: "black",
+                  zIndex: 9,
+                  marginTop: "-300px",
                 }}
               ></div>
             </div>
