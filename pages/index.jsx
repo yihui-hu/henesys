@@ -118,7 +118,7 @@ export default function Landing() {
                 ✶✶ Are.na
               </Link>
               , and wanted to try building a simpler, less feature-full but also
-              less complex version of it. More than anything, it's an experiment / exploration.
+              less complex version of it. More than anything, it is an experiment / exploration.
             </div>
             <h4 className="landing-modal-caption">why</h4>
           </m.div>
