@@ -48,6 +48,8 @@ export default function Home({ token, profile_pic }) {
   );
 
   async function fetchBookmarks(url) {
+    console.log(token);
+    
     const res = await fetch(url, {
       method: "POST",
       headers: {

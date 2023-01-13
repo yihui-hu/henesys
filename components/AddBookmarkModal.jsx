@@ -143,9 +143,6 @@ const AddBookmarkModal = ({
     const data = await response.json();
 
     if (data.status == "ok") {
-      // if (!communityView) {
-      //   updateBookmarks([data.bookmark, ...bookmarks]);
-      // }
       displaySuccessMsg("Successfully added bookmark.");
       resetDefault();
     } else {
