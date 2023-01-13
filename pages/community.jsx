@@ -1,96 +1,85 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "../lib/authHomeCommunity";
-import useSWRInfinite from "swr/infinite";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
 import BookmarkFullView from "../components/BookmarkFullView";
 
-export default function Home({ token, profile_pic }) {
+export default function Community({ token, profile_pic }) {
   const router = useRouter();
 
   const [showAddBookmark, setShowAddBookmark] = useState(false);
+
+  const [bookmarks, setBookmarks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [endOfBookmarks, setEndOfBookmarks] = useState(false);
+
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
+
   const [tags, setTags] = useState([]);
   const [searchTagsMode, setSearchTagsMode] = useState(false);
+  const [lastTimestamp, setLastTimestamp] = useState(9999);
 
-  const getKey = (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.bookmarks) return null;
-    if (pageIndex === 0) return `/api/community-bookmarks?lastTimestamp=9999`;
-    return `/api/community-bookmarks?lastTimestamp=${previousPageData.new_lastTimestamp}`;
-  };
+  useEffect(() => {
+    getCommunityBookmarks(lastTimestamp);
+  }, []);
 
-  const getTaggedKey = (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.bookmarks) return null;
-    if (pageIndex === 0) return `/api/community-bookmarks-tags?lastTimestamp=9999`;
-    return `/api/community-bookmarks-tags?lastTimestamp=${previousPageData.new_lastTimestamp}`;
-  };
-
-  const { data, isLoading, size, setSize } = useSWRInfinite(
-    !searchTagsMode ? getKey : null,
-    fetchBookmarks,
-    { refreshInterval: 1000 }
-  );
-
-  const {
-    data: taggedData,
-    isLoading: isTaggedLoading,
-    size: taggedSize,
-    setSize: setTaggedSize,
-  } = useSWRInfinite(
-    searchTagsMode ? getTaggedKey : null,
-    (url) => fetchTaggedBookmarks(url),
-    { refreshInterval: 1, keepPreviousData: true }
-  );
-
-  async function fetchBookmarks(url) {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "x-access-token": token,
-        "Content-Type": "application/json",
-      },
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        setBookmarkFullViewData(null);
+      }
+      return true;
     });
 
-    let fetchedData = await res.json();
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [router]);
 
-    if (fetchedData.status == "ok") {
-      return fetchedData;
-    } else {
-      console.log(fetchedData.error);
-      return [];
-    }
-  }
-
-  async function fetchTaggedBookmarks(url) {
-    const tags_array = tags.map((tag) => tag.text.toLowerCase());
-
-    const res = await fetch(url, {
+  async function getCommunityBookmarks(lastTimestamp) {
+    const res = await fetch(`api/community-bookmarks`, {
       method: "POST",
       headers: {
         "x-access-token": token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        tags: tags_array,
+        lastTimestamp,
       }),
     });
 
-    let fetchedData = await res.json();
-    if (fetchedData.status == "ok") {
-      return fetchedData;
-    } else {
-      console.log(fetchedData.error);
-      return [];
-    }
-  }
+    const data = await res.json();
 
-  let bookmarksArray = data ? [].concat(...data) : [];
-  let taggedBookmarksArray = taggedData ? [].concat(...taggedData) : [];
+    if (data.status == "ok") {
+      if (lastTimestamp == 9999) {
+        setBookmarks(data.bookmarks);
+      } else {
+        setBookmarks([...bookmarks, ...data.bookmarks]);
+      }
+
+      if (data.bookmarks.length < 35) {
+        setEndOfBookmarks(true);
+      }
+
+      if (data.bookmarks.length != 0) {
+        setLastTimestamp(data.bookmarks.at(-1).timestamp);
+      }
+
+      if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
+        console.log("No more bookmarks to load.");
+      }
+    } else {
+      console.log(data.error);
+    }
+
+    setLoading(false);
+    setSearchTagsMode(false);
+  }
 
   function showBookmarkFullView(bookmarkFullViewData) {
     setBookmarkFullViewData(bookmarkFullViewData);
@@ -102,19 +91,75 @@ export default function Home({ token, profile_pic }) {
     );
   }
 
+  async function getTaggedBookmarks(lastTimestamp, tags) {
+    const tags_array = tags.map((tag) => tag.text.toLowerCase());
+
+    const res = await fetch(`api/community-bookmarks-tags`, {
+      method: "POST",
+      headers: {
+        "x-access-token": token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lastTimestamp,
+        tags: tags_array,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.status == "ok") {
+      if (data.bookmarks.length != 0) {
+        if (lastTimestamp != 9999) {
+          setBookmarks([...bookmarks, ...data.bookmarks]);
+        } else {
+          setBookmarks(data.bookmarks);
+        }
+
+        if (data.bookmarks.length < 35) {
+          setEndOfBookmarks(true);
+        }
+
+        if (data.bookmarks.length != 0) {
+          setLastTimestamp(data.bookmarks.at(-1).timestamp);
+        }
+      } else {
+        if (lastTimestamp == 9999) {
+          setBookmarks([]);
+        } else {
+          setEndOfBookmarks(true);
+        }
+      }
+    } else {
+      console.log(data.error);
+    }
+
+    setLoading(false);
+    setSearchTagsMode(true);
+  }
+
   const handleDelete = (i) => {
     let new_tags = tags.filter((tag, index) => index !== i);
     setTags(new_tags);
+    let new_timestamp = 9999;
+    setLastTimestamp(new_timestamp);
 
-    if (new_tags.length == 0) {
-      setSearchTagsMode(false);
+    if (new_tags.length != 0) {
+      getTaggedBookmarks(new_timestamp, new_tags);
+    } else {
+      setEndOfBookmarks(false);
+      getCommunityBookmarks(new_timestamp);
     }
   };
 
   const handleAddition = (tag) => {
     let new_tags = [...tags, tag];
     setTags(new_tags);
-    setSearchTagsMode(true);
+    let new_timestamp = 9999;
+    setLastTimestamp(new_timestamp);
+
+    setEndOfBookmarks(false);
+    getTaggedBookmarks(new_timestamp, new_tags);
   };
 
   return (
@@ -170,66 +215,46 @@ export default function Home({ token, profile_pic }) {
               </svg>
             </div>
           )}
-          {(isLoading || isTaggedLoading) && (
+          {loading && (
             <div className="loading-indicator-container">
               <h4>Loading...</h4>
             </div>
           )}
-          {!isLoading && !searchTagsMode && 
-            bookmarksArray.map((entries) => {
-              return entries?.bookmarks.map((item, i) => {
-                return (
-                  <Bookmark
-                    bookmark={item}
-                    key={i}
-                    index={i}
-                    communityView={false}
-                    showBookmarkFullView={showBookmarkFullView}
-                  />
-                );
-              });
-            })}
-          {!isTaggedLoading && searchTagsMode && 
-            taggedBookmarksArray.map((entries) => {
-              return entries?.bookmarks.map((item, i) => {
-                return (
-                  <Bookmark
-                    bookmark={item}
-                    key={i}
-                    index={i}
-                    communityView={false}
-                    showBookmarkFullView={showBookmarkFullView}
-                  />
-                );
-              });
+          {!loading &&
+            bookmarks.map(function (item, i) {
+              return (
+                <Bookmark
+                  bookmark={item}
+                  key={i}
+                  index={i}
+                  communityView={true}
+                  showBookmarkFullView={showBookmarkFullView}
+                  deletedBookmarks={0}
+                />
+              );
             })}
         </div>
-        {!isLoading && bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length == 0 && !searchTagsMode && (
-          <div className="empty-state-message">
-            No bookmarks to display.
+        {!loading && bookmarks.length == 0 && !searchTagsMode && (
+          <h4 className="empty-state-message">No bookmarks to display.</h4>
+        )}
+        {!loading && bookmarks.length == 0 && searchTagsMode && (
+          <h4 className="empty-state-message">No bookmarks found.</h4>
+        )}
+        {!loading && bookmarks.length >= 35 && !endOfBookmarks && (
+          <div className="show-more-button-container">
+            <button
+              type="button"
+              className="show-more-button"
+              onClick={() => {
+                searchTagsMode
+                  ? getTaggedBookmarks(lastTimestamp, tags)
+                  : getCommunityBookmarks(lastTimestamp);
+              }}
+            >
+              Load more bookmarks
+            </button>
           </div>
         )}
-        {!isTaggedLoading &&
-          taggedBookmarksArray[taggedBookmarksArray.length - 1]?.bookmarks.length == 0 &&
-          searchTagsMode && (
-            <h4 className="empty-state-message">No bookmarks found.</h4>
-          )}
-        {!isLoading &&
-          bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length >= 35 && (
-            <div className="show-more-button-container">
-              <button
-                type="button"
-                className="show-more-button"
-                onClick={() => {
-                  searchTagsMode
-                    ? setTaggedSize(taggedSize + 1)
-                    : setSize(size + 1);
-                }}
-              >
-                Load more bookmarks
-              </button>
-            </div>
-          )}
       </div>
 
       <AnimatePresence>
@@ -244,6 +269,8 @@ export default function Home({ token, profile_pic }) {
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
               setBookmarkFullViewData={setBookmarkFullViewData}
+              bookmarks={bookmarks}
+              setBookmarks={setBookmarks}
               homeView={false}
               token={token}
             />
@@ -253,7 +280,13 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {showAddBookmark && (
-          <AddBookmarkModal setShown={setShowAddBookmark} token={token} />
+          <AddBookmarkModal
+            setShown={setShowAddBookmark}
+            communityView={true}
+            bookmarks={bookmarks}
+            updateBookmarks={setBookmarks}
+            token={token}
+          />
         )}
       </AnimatePresence>
     </>
