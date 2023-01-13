@@ -41,21 +41,17 @@ const handler = async (req, res) => {
       });
     }
 
-    let new_lastTimestamp;
+    let new_lastTimestamp = 9999;
     try {
       new_lastTimestamp = bookmarks?.at(bookmarks.length - 1)?.timestamp;
     } catch (err) {
-      return res.json({
-        status: "error",
-        error: "Unable to retrieve new last timestamp.",
-      });
+      console.log("Error retrieving new lastTimestamp.")
     }
 
     return res.json({
       status: "ok",
       bookmarks: bookmarks,
-      new_lastTimestamp:
-        new_lastTimestamp == undefined ? 9999 : new_lastTimestamp,
+      new_lastTimestamp: new_lastTimestamp
     });
   } catch (err) {
     return res.json({ status: "error", error: err });
