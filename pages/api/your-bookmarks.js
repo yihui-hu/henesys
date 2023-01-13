@@ -6,9 +6,14 @@ const handler = async (req, res) => {
   // res.setHeader("Cache-Control", "s-maxage=1", "stale-while-revalidate");
 
   try {
-    const token = req.headers["x-access-token"];
-    console.log(token);
-    const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    let token;
+    let decoded;
+    try {
+      token = req.headers["x-access-token"];
+      decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
+    } catch (err) {
+      return res.json({ status: "error", error: "Invalid token." });
+    }
 
     const lastTimestamp = req.query.lastTimestamp;
     const limit = 36;
@@ -30,7 +35,7 @@ const handler = async (req, res) => {
       new_lastTimestamp: new_lastTimestamp,
     });
   } catch (err) {
-    return res.json({ status: "ok", bookmarks: [], new_lastTimestamp: 9999 });
+    return res.json({ status: "error", error: err });
   }
 };
 

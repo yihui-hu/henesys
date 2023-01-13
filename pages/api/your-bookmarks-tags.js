@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       new_lastTimestamp: new_lastTimestamp,
     });
   } catch (err) {
-    return res.json({ status: "ok", bookmarks: [], new_lastTimestamp: 9999 });
+    return res.json({ status: "error", error: err });
   }
 };
 
