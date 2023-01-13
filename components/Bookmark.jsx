@@ -11,7 +11,6 @@ const Bookmark = ({
   index,
   communityView,
   showBookmarkFullView,
-  deletedBookmarks,
 }) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
@@ -37,10 +36,10 @@ const Bookmark = ({
         transition={{
           duration: 0.5,
           type: "spring",
-          delay: ((index + deletedBookmarks) % delaySkipAmt) * 0.02,
+          delay: (index % delaySkipAmt) * 0.02,
         }}
-        onMouseEnter={() => isDesktop ? setHoverInfo(true) : undefined}
-        onMouseLeave={() => isDesktop ? setHoverInfo(false) : undefined}
+        onMouseEnter={() => (isDesktop ? setHoverInfo(true) : undefined)}
+        onMouseLeave={() => (isDesktop ? setHoverInfo(false) : undefined)}
       >
         <div onClick={() => showBookmarkFullView(bookmark)}>
           {file && <FilePreview file={file} metadata={metadata} />}

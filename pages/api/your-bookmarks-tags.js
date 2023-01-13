@@ -7,7 +7,8 @@ const handler = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
-    const { lastTimestamp, tags } = req.body;
+    const { tags } = req.body;
+    const lastTimestamp = req.query.lastTimestamp;
     const limit = 36;
 
     const bookmarks = await Bookmark.find({
@@ -18,7 +19,13 @@ const handler = async (req, res) => {
       .limit(limit)
       .sort({ timestamp: -1 });
 
-    return res.json({ status: "ok", bookmarks: bookmarks });
+    const new_lastTimestamp = bookmarks?.at(-1).timestamp;
+
+    return res.json({
+      status: "ok",
+      bookmarks: bookmarks,
+      new_lastTimestamp: new_lastTimestamp,
+    });
   } catch (err) {
     return res.json({ status: "error", error: err });
   }
