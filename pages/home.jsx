@@ -48,9 +48,6 @@ export default function Home({ token, profile_pic }) {
   );
 
   async function fetchBookmarks(url) {
-    console.log(token);
-    console.log(url);
-
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -61,8 +58,6 @@ export default function Home({ token, profile_pic }) {
 
     let fetchedData = await res.json();
 
-    console.log(fetchedData);
-    
     if (fetchedData.status == "ok") {
       return fetchedData;
     } else {

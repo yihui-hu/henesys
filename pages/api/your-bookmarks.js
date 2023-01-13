@@ -3,9 +3,10 @@ import Bookmark from "../../models/bookmark.model.js";
 const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
-  res.setHeader("Cache-Control", "s-maxage=1", "stale-while-revalidate");
+  // res.setHeader("Cache-Control", "s-maxage=1", "stale-while-revalidate");
 
   try {
+    console.log(token);
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
@@ -20,6 +21,8 @@ const handler = async (req, res) => {
       .sort({ timestamp: -1 });
 
     const new_lastTimestamp = bookmarks?.at(-1).timestamp;
+
+    console.log(bookmarks);
 
     return res.json({
       status: "ok",
