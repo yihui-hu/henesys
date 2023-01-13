@@ -31,8 +31,8 @@ registerPlugin(
 const AddBookmarkModal = ({
   setShown,
   communityView,
-  // bookmarks,
-  // updateBookmarks,
+  bookmarks,
+  updateBookmarks,
   token,
 }) => {
   const isDesktop = useMediaQuery("(min-width: 480px)");
@@ -143,6 +143,9 @@ const AddBookmarkModal = ({
     const data = await response.json();
 
     if (data.status == "ok") {
+      if (!communityView) {
+        updateBookmarks([data.bookmark, ...bookmarks]);
+      }
       displaySuccessMsg("Successfully added bookmark.");
       resetDefault();
     } else {
