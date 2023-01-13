@@ -47,7 +47,7 @@ export default function Landing() {
             className="landing-auth-button-container"
             initial={{ y: "60px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.05 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.06 }}
           >
             <button
               className="landing-auth-secondary-button"
@@ -69,7 +69,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.10 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.12 }}
           >
             <m.div className="landing-modal">
               A simple and streamlined bookmarking application. Save files,
@@ -80,7 +80,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.15 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.18 }}
           >
             <div className="landing-modal">
               Tag bookmarks for fast lookups or for your own system(s) of
@@ -92,7 +92,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.20 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.24 }}
           >
             <div className="landing-modal">
               You can use it however you like honestly. Keep a private repository of interesting references or foster a small community of bookmarking fiends.
@@ -102,7 +102,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.25 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.30 }}
           >
             <div className="landing-modal">
               I love {" "}
