@@ -7,6 +7,7 @@ const handler = async (req, res) => {
 
   try {
     const token = req.headers["x-access-token"];
+    console.log(token);
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
 
     const lastTimestamp = req.query.lastTimestamp;
@@ -29,7 +30,7 @@ const handler = async (req, res) => {
       new_lastTimestamp: new_lastTimestamp,
     });
   } catch (err) {
-    return res.json({ status: "error", error: err });
+    return res.json({ status: "ok", bookmarks: [], new_lastTimestamp: 9999 });
   }
 };
 
