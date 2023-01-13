@@ -30,9 +30,6 @@ registerPlugin(
 
 const AddBookmarkModal = ({
   setShown,
-  communityView,
-  // bookmarks,
-  // updateBookmarks,
   token,
 }) => {
   const isDesktop = useMediaQuery("(min-width: 480px)");

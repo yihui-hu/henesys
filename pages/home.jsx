@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
@@ -33,18 +33,19 @@ export default function Home({ token, profile_pic }) {
   const { data, isLoading, size, setSize } = useSWRInfinite(
     !searchTagsMode ? getKey : null,
     fetchBookmarks,
-    { refreshInterval: 1000, keepPreviousData: false }
+    { refreshInterval: 1000 }
   );
 
   const {
     data: taggedData,
     isLoading: isTaggedLoading,
+    mutate: taggedMutate,
     size: taggedSize,
     setSize: setTaggedSize,
   } = useSWRInfinite(
     searchTagsMode ? getTaggedKey : null,
-    fetchTaggedBookmarks,
-    { refreshInterval: 1000, keepPreviousData: false }
+    (url) => fetchTaggedBookmarks(url),
+    { refreshInterval: 1000 }
   );
 
   async function fetchBookmarks(url) {
@@ -61,12 +62,13 @@ export default function Home({ token, profile_pic }) {
     if (fetchedData.status == "ok") {
       return fetchedData;
     } else {
-      // console.log(fetchedData.error);
+      console.log(fetchedData.error);
       return [];
     }
   }
 
   async function fetchTaggedBookmarks(url) {
+    console.log("Fetching tagged bookmarks");
     const tags_array = tags.map((tag) => tag.text.toLowerCase());
 
     const res = await fetch(url, {
@@ -84,15 +86,18 @@ export default function Home({ token, profile_pic }) {
     if (fetchedData.status == "ok") {
       return fetchedData;
     } else {
-      // console.log(fetchedData.error);
+      console.log(fetchedData.error);
       return [];
     }
   }
 
-  const bookmarksArray = 
-    searchTagsMode ? 
-    (taggedData ? [].concat(...taggedData) : []) : 
-    (data ? [].concat(...data) : []);
+  let bookmarksArray = searchTagsMode
+    ? taggedData
+      ? [].concat(...taggedData)
+      : []
+    : data
+    ? [].concat(...data)
+    : [];
 
   async function deleteBookmark(bookmark) {
     const res = await fetch("/api/delete-bookmark", {
@@ -111,7 +116,7 @@ export default function Home({ token, profile_pic }) {
     if (data.status == "ok") {
       router.push(`/home`, null, { scroll: false });
     } else {
-      // console.log(data.error);
+      console.log(data.error);
     }
   }
 
@@ -131,16 +136,15 @@ export default function Home({ token, profile_pic }) {
 
     if (new_tags.length == 0) {
       setSearchTagsMode(false);
-    } 
+    }
   };
 
   const handleAddition = (tag) => {
     let new_tags = [...tags, tag];
     setTags(new_tags);
     setSearchTagsMode(true);
+    taggedMutate({ getTaggedKey });
   };
-
-  // console.log(bookmarksArray);
 
   return (
     <>
@@ -200,7 +204,8 @@ export default function Home({ token, profile_pic }) {
               <h4>Loading...</h4>
             </div>
           )}
-          {!isLoading && !isTaggedLoading &&
+          {!isLoading &&
+            !isTaggedLoading &&
             bookmarksArray.map((entries) => {
               return entries?.bookmarks.map((item, i) => {
                 return (
@@ -236,24 +241,27 @@ export default function Home({ token, profile_pic }) {
             </h4>
           </div>
         )}
-        {(!isTaggedLoading && bookmarksArray.length == 0 && searchTagsMode) && (
-          <h4 className="empty-state-message">No bookmarks found.</h4>
-        )}
-        {!isLoading && bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length >= 35 && (
-          <div className="show-more-button-container">
-            <button
-              type="button"
-              className="show-more-button"
-              onClick={() => {
-                searchTagsMode ? 
-                setTaggedSize(taggedSize + 1) :
-                setSize(size + 1);
-              }}
-            >
-              Load more bookmarks
-            </button>
-          </div>
-        )}
+        {!isTaggedLoading &&
+          bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length == 0 &&
+          searchTagsMode && (
+            <h4 className="empty-state-message">No bookmarks found.</h4>
+          )}
+        {!isLoading &&
+          bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length >= 35 && (
+            <div className="show-more-button-container">
+              <button
+                type="button"
+                className="show-more-button"
+                onClick={() => {
+                  searchTagsMode
+                    ? setTaggedSize(taggedSize + 1)
+                    : setSize(size + 1);
+                }}
+              >
+                Load more bookmarks
+              </button>
+            </div>
+          )}
       </div>
 
       <AnimatePresence>
@@ -280,7 +288,6 @@ export default function Home({ token, profile_pic }) {
         {showAddBookmark && (
           <AddBookmarkModal
             setShown={setShowAddBookmark}
-            communityView={false}
             token={token}
           />
         )}
