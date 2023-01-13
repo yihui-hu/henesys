@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       new_lastTimestamp: new_lastTimestamp,
     });
   } catch (err) {
-    return res.json({ status: "error", error: "Invalid login token." });
+    return res.json({ status: "error", error: err });
   }
 };
 
