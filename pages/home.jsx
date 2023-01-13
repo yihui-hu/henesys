@@ -33,7 +33,7 @@ export default function Home({ token, profile_pic }) {
   const { data, isLoading, size, setSize } = useSWRInfinite(
     !searchTagsMode ? getKey : null,
     fetchBookmarks,
-    { keepPreviousData: false }
+    { refreshInterval: 1000, keepPreviousData: false }
   );
 
   const {
@@ -44,7 +44,7 @@ export default function Home({ token, profile_pic }) {
   } = useSWRInfinite(
     searchTagsMode ? getTaggedKey : null,
     fetchTaggedBookmarks,
-    { keepPreviousData: false }
+    { refreshInterval: 1000, keepPreviousData: false }
   );
 
   async function fetchBookmarks(url) {
