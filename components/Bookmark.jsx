@@ -5,7 +5,11 @@ import FilePreview from "./FilePreview";
 import UrlPreview from "./UrlPreview";
 import TextPreview from "./TextPreview";
 
-const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView }) => {
+const Bookmark = ({
+  bookmark,
+  communityView,
+  showBookmarkFullView,
+}) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const username = bookmark.username;
@@ -18,8 +22,6 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView }) => {
   const timestamp = bookmark.timestamp;
 
   const [hoverInfo, setHoverInfo] = useState(false);
-
-  let delaySkipAmt = 36;
 
   return (
     <div
@@ -42,9 +44,7 @@ const Bookmark = ({ bookmark, index, communityView, showBookmarkFullView }) => {
           </h4>
         )}
         {text && (!communityView || (communityView && hoverInfo)) && (
-          <h4 className="bookmark-info-text">
-            {title ? title : note}
-          </h4>
+          <h4 className="bookmark-info-text">{title ? title : note}</h4>
         )}
         {url && (!communityView || (communityView && hoverInfo)) && (
           <h4 className="bookmark-info-text">

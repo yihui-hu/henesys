@@ -13,6 +13,8 @@ export default function BookmarkFullView({
   bookmarkId,
   bookmarkFullViewData,
   setBookmarkFullViewData,
+  bookmarks,
+  setBookmarks,
   deleteBookmark,
   homeView,
   token,
@@ -156,6 +158,22 @@ export default function BookmarkFullView({
       setOriginalTags(editableTags_array);
       setMenuOpen(false);
       setEditing(false);
+
+      var old_bookmark_index = bookmarks.findIndex(
+        (bookmark) =>
+          bookmark.username == username && bookmark.timestamp == timestamp
+      );
+
+      let updated_bookmarks = [...bookmarks];
+      let updated_bookmark = {
+        ...bookmarks[old_bookmark_index],
+        title: title,
+        note: note,
+        tags: editableTags_array,
+      };
+      updated_bookmarks[old_bookmark_index] = updated_bookmark;
+
+      setBookmarks(updated_bookmarks);
     } else {
       alert("Something went wrong. Please try again later.");
     }

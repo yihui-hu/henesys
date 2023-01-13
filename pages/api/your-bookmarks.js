@@ -3,8 +3,6 @@ import Bookmark from "../../models/bookmark.model.js";
 const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
-  res.setHeader('Cache-Control', 's-maxage=1', 'stale-while-revalidate');
-
   try {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);

@@ -26,10 +26,6 @@ export default function Home({ token, profile_pic }) {
   const [lastTimestamp, setLastTimestamp] = useState(9999);
 
   useEffect(() => {
-    getYourBookmarks(lastTimestamp);
-  }, []);
-
-  useEffect(() => {
     router.beforePopState(({ as }) => {
       if (as !== router.asPath) {
         setBookmarkFullViewData(null);
@@ -81,6 +77,8 @@ export default function Home({ token, profile_pic }) {
     setLoading(false);
     setSearchTagsMode(false);
   }
+
+  getYourBookmarks(lastTimestamp);
 
   async function deleteBookmark(bookmark) {
     const res = await fetch("/api/delete-bookmark", {
@@ -258,7 +256,6 @@ export default function Home({ token, profile_pic }) {
                   index={i}
                   communityView={false}
                   showBookmarkFullView={showBookmarkFullView}
-                  deletedBookmarks={deletedBookmarksCount}
                 />
               );
             })}
