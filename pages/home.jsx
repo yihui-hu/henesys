@@ -33,7 +33,7 @@ export default function Home({ token, profile_pic }) {
   const { data, isLoading, size, setSize } = useSWRInfinite(
     !searchTagsMode ? getKey : null,
     fetchBookmarks,
-    { refreshInterval: 1000 }
+    { refreshInterval: 1000, keepPreviousData: false }
   );
 
   const {
@@ -48,8 +48,6 @@ export default function Home({ token, profile_pic }) {
   );
 
   async function fetchBookmarks(url) {
-    console.log(token);
-    
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -63,6 +61,7 @@ export default function Home({ token, profile_pic }) {
       return fetchedData;
     } else {
       console.log(fetchedData.error);
+      return [];
     }
   }
 
@@ -85,6 +84,7 @@ export default function Home({ token, profile_pic }) {
       return fetchedData;
     } else {
       console.log(fetchedData.error);
+      return [];
     }
   }
 
@@ -92,11 +92,6 @@ export default function Home({ token, profile_pic }) {
     searchTagsMode ? 
     (taggedData ? [].concat(...taggedData) : []) : 
     (data ? [].concat(...data) : []);
-  
-  const isEmpty =
-    bookmarksArray &&
-    (bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length < 36 ||
-      bookmarksArray[bookmarksArray.length - 1]?.bookmarks === undefined);
 
   async function deleteBookmark(bookmark) {
     const res = await fetch("/api/delete-bookmark", {
@@ -217,7 +212,7 @@ export default function Home({ token, profile_pic }) {
               });
             })}
         </div>
-        {!isLoading && bookmarksArray.length == 0 && !searchTagsMode && (
+        {!isLoading && bookmarksArray.length === 0 && !searchTagsMode && (
           <div className="empty-state-message">
             <h4>
               Add your first bookmark <br className="empty-state-br"></br>using
@@ -238,10 +233,10 @@ export default function Home({ token, profile_pic }) {
             </h4>
           </div>
         )}
-        {!isLoading && bookmarksArray.length == 0 && isEmpty && (
+        {(!isTaggedLoading && bookmarksArray.length == 0 && searchTagsMode) && (
           <h4 className="empty-state-message">No bookmarks found.</h4>
         )}
-        {!isLoading && bookmarksArray.length != 0 && !isEmpty && (
+        {!isLoading && bookmarksArray[0]?.length >= 35 && (
           <div className="show-more-button-container">
             <button
               type="button"
