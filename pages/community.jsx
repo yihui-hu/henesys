@@ -25,10 +25,6 @@ export default function Community({ token, profile_pic }) {
   const [lastTimestamp, setLastTimestamp] = useState(9999);
 
   useEffect(() => {
-    getCommunityBookmarks(lastTimestamp);
-  }, []);
-
-  useEffect(() => {
     router.beforePopState(({ as }) => {
       if (as !== router.asPath) {
         setBookmarkFullViewData(null);
@@ -40,6 +36,10 @@ export default function Community({ token, profile_pic }) {
       router.beforePopState(() => true);
     };
   }, [router]);
+
+  useEffect(() => {
+    getCommunityBookmarks(lastTimestamp);
+  }, []);
 
   async function getCommunityBookmarks(lastTimestamp) {
     const res = await fetch(`api/community-bookmarks`, {
@@ -56,22 +56,11 @@ export default function Community({ token, profile_pic }) {
     const data = await res.json();
 
     if (data.status == "ok") {
-      if (lastTimestamp == 9999) {
-        setBookmarks(data.bookmarks);
-      } else {
-        setBookmarks([...bookmarks, ...data.bookmarks]);
-      }
+      setBookmarks([...bookmarks, ...data.bookmarks]);
+      setLastTimestamp(data?.bookmarks?.at(-1)?.timestamp);
 
       if (data.bookmarks.length < 35) {
         setEndOfBookmarks(true);
-      }
-
-      if (data.bookmarks.length != 0) {
-        setLastTimestamp(data.bookmarks.at(-1).timestamp);
-      }
-
-      if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
-        console.log("No more bookmarks to load.");
       }
     } else {
       console.log(data.error);
@@ -110,18 +99,11 @@ export default function Community({ token, profile_pic }) {
 
     if (data.status == "ok") {
       if (data.bookmarks.length != 0) {
-        if (lastTimestamp != 9999) {
-          setBookmarks([...bookmarks, ...data.bookmarks]);
-        } else {
-          setBookmarks(data.bookmarks);
-        }
+        setBookmarks([...bookmarks, ...data.bookmarks]);
+        setLastTimestamp(data?.bookmarks?.at(-1)?.timestamp);
 
         if (data.bookmarks.length < 35) {
           setEndOfBookmarks(true);
-        }
-
-        if (data.bookmarks.length != 0) {
-          setLastTimestamp(data.bookmarks.at(-1).timestamp);
         }
       } else {
         if (lastTimestamp == 9999) {

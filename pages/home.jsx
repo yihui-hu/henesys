@@ -44,7 +44,6 @@ export default function Home({ token, profile_pic }) {
 
   async function getYourBookmarks(lastTimestamp) {
     const res = await fetch(`/api/your-bookmarks`, {
-      next: { revalidate: 5},
       method: "POST",
       headers: {
         "x-access-token": token,
