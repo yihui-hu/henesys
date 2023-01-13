@@ -143,7 +143,6 @@ export default function Home({ token, profile_pic }) {
     let new_tags = [...tags, tag];
     setTags(new_tags);
     setSearchTagsMode(true);
-    taggedMutate({ getTaggedKey });
   };
 
   return (
