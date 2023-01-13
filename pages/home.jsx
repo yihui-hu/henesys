@@ -48,6 +48,9 @@ export default function Home({ token, profile_pic }) {
   );
 
   async function fetchBookmarks(url) {
+    console.log(token);
+    console.log(url);
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -57,6 +60,9 @@ export default function Home({ token, profile_pic }) {
     });
 
     let fetchedData = await res.json();
+
+    console.log(fetchedData);
+    
     if (fetchedData.status == "ok") {
       return fetchedData;
     } else {
@@ -138,6 +144,8 @@ export default function Home({ token, profile_pic }) {
     setTags(new_tags);
     setSearchTagsMode(true);
   };
+
+  console.log(bookmarksArray);
 
   return (
     <>
@@ -236,7 +244,7 @@ export default function Home({ token, profile_pic }) {
         {(!isTaggedLoading && bookmarksArray.length == 0 && searchTagsMode) && (
           <h4 className="empty-state-message">No bookmarks found.</h4>
         )}
-        {!isLoading && bookmarksArray[0]?.length >= 35 && (
+        {!isLoading && bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length >= 35 && (
           <div className="show-more-button-container">
             <button
               type="button"
