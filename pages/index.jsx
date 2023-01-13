@@ -38,7 +38,7 @@ export default function Landing() {
               className="landing-navbar-text"
               initial={{ y: "60px", opacity: 0 }}
               animate={{ y: "0px", opacity: 1 }}
-              transition={{ duration: 0.7, type: "spring" }}
+              transition={{ duration: 0.5, type: "spring" }}
             >
               is a barebones bookmarking / <br></br> capture-anything site
             </m.h2>
@@ -47,7 +47,7 @@ export default function Landing() {
             className="landing-auth-button-container"
             initial={{ y: "60px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.07 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.06 }}
           >
             <button
               className="landing-auth-secondary-button"
@@ -69,7 +69,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.14 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.12 }}
           >
             <m.div className="landing-modal">
               A simple and streamlined bookmarking application. Save files,
@@ -80,7 +80,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.21 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.18 }}
           >
             <div className="landing-modal">
               Tag bookmarks for fast lookups or for your own system(s) of
@@ -92,7 +92,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.28 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.24 }}
           >
             <div className="landing-modal">
               You can use it however you like honestly. Keep a private repository of interesting references or foster a small community of bookmarking fiends.
@@ -102,7 +102,7 @@ export default function Landing() {
           <m.div
             initial={{ y: "100px", opacity: 0 }}
             animate={{ y: "0px", opacity: 1 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.35 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.30 }}
           >
             <div className="landing-modal">
               I love {" "}

@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { WithContext as ReactTags } from "react-tag-input";
 import { FocusOn } from "react-focus-on";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "../lib/authHomeCommunity";
+import useSWRInfinite from "swr/infinite";
 import AddBookmarkModal from "../components/AddBookmarkModal";
 import Bookmark from "../components/Bookmark";
 import Navbar from "../components/Navbar";
@@ -13,72 +14,83 @@ export default function Home({ token, profile_pic }) {
   const router = useRouter();
 
   const [showAddBookmark, setShowAddBookmark] = useState(false);
-
-  const [bookmarks, setBookmarks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [endOfBookmarks, setEndOfBookmarks] = useState(false);
-
-  const [deletedBookmarksCount, setDeletedBookmarksCount] = useState(0);
   const [bookmarkFullViewData, setBookmarkFullViewData] = useState(null);
-
   const [tags, setTags] = useState([]);
   const [searchTagsMode, setSearchTagsMode] = useState(false);
-  const [lastTimestamp, setLastTimestamp] = useState(9999);
 
-  useEffect(() => {
-    router.beforePopState(({ as }) => {
-      if (as !== router.asPath) {
-        setBookmarkFullViewData(null);
-      }
-      return true;
+  const getKey = (pageIndex, previousPageData) => {
+    if (previousPageData && !previousPageData.bookmarks) return null;
+    if (pageIndex === 0) return `/api/your-bookmarks?lastTimestamp=9999`;
+    return `/api/your-bookmarks?lastTimestamp=${previousPageData.new_lastTimestamp}`;
+  };
+
+  const getTaggedKey = (pageIndex, previousPageData) => {
+    if (previousPageData && !previousPageData.bookmarks) return null;
+    if (pageIndex === 0) return `/api/your-bookmarks-tags?lastTimestamp=9999`;
+    return `/api/your-bookmarks-tags?lastTimestamp=${previousPageData.new_lastTimestamp}`;
+  };
+
+  const { data, isLoading, size, setSize } = useSWRInfinite(
+    !searchTagsMode ? getKey : null,
+    fetchBookmarks,
+    { refreshInterval: 1000 }
+  );
+
+  const {
+    data: taggedData,
+    isLoading: isTaggedLoading,
+    size: taggedSize,
+    setSize: setTaggedSize,
+  } = useSWRInfinite(
+    searchTagsMode ? getTaggedKey : null,
+    (url) => fetchTaggedBookmarks(url),
+    { refreshInterval: 1, keepPreviousData: true }
+  );
+
+  async function fetchBookmarks(url) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "x-access-token": token,
+        "Content-Type": "application/json",
+      },
     });
 
-    return () => {
-      router.beforePopState(() => true);
-    };
-  }, [router]);
+    let fetchedData = await res.json();
 
-  async function getYourBookmarks(lastTimestamp) {
-    const res = await fetch(`/api/your-bookmarks`, {
+    if (fetchedData.status == "ok") {
+      return fetchedData;
+    } else {
+      console.log(fetchedData.error);
+      return [];
+    }
+  }
+
+  async function fetchTaggedBookmarks(url) {
+    const tags_array = tags.map((tag) => tag.text.toLowerCase());
+
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "x-access-token": token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        lastTimestamp,
+        tags: tags_array,
       }),
     });
 
-    const data = await res.json();
-
-    if (data.status == "ok") {
-      if (lastTimestamp == 9999) {
-        setBookmarks(data.bookmarks);
-      } else {
-        setBookmarks([...bookmarks, ...data.bookmarks]);
-      }
-
-      if (data.bookmarks.length < 35) {
-        setEndOfBookmarks(true);
-      }
-
-      if (data.bookmarks.length != 0) {
-        setLastTimestamp(data.bookmarks.at(-1).timestamp);
-      }
-
-      if (data.bookmarks.length == 0 && lastTimestamp != 9999) {
-        console.log("No more bookmarks to load.");
-      }
+    let fetchedData = await res.json();
+    if (fetchedData.status == "ok") {
+      return fetchedData;
     } else {
-      console.log(data.error);
+      console.log(fetchedData.error);
+      return [];
     }
-
-    setLoading(false);
-    setSearchTagsMode(false);
   }
 
-  getYourBookmarks(lastTimestamp);
+  let bookmarksArray = data ? [].concat(...data) : [];
+  let taggedBookmarksArray = taggedData ? [].concat(...taggedData) : [];
 
   async function deleteBookmark(bookmark) {
     const res = await fetch("/api/delete-bookmark", {
@@ -95,12 +107,9 @@ export default function Home({ token, profile_pic }) {
     const data = await res.json();
 
     if (data.status == "ok") {
-      let new_bookmarks = bookmarks.filter((item) => item !== bookmark);
-      setBookmarks(new_bookmarks);
-      setDeletedBookmarksCount(deletedBookmarksCount + 1);
       router.push(`/home`, null, { scroll: false });
     } else {
-      alert("Error deleting bookmark, please try again later.");
+      console.log(data.error);
     }
   }
 
@@ -114,84 +123,24 @@ export default function Home({ token, profile_pic }) {
     );
   }
 
-  async function getTaggedBookmarks(lastTimestamp, tags) {
-    const tags_array = tags.map((tag) => tag.text.toLowerCase());
-
-    const res = await fetch(`/api/your-bookmarks-tags`, {
-      method: "POST",
-      headers: {
-        "x-access-token": token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        lastTimestamp,
-        tags: tags_array,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (data.status == "ok") {
-      if (data.bookmarks.length != 0) {
-        if (lastTimestamp != 9999) {
-          setBookmarks([...bookmarks, ...data.bookmarks]);
-        } else {
-          setBookmarks(data.bookmarks);
-        }
-
-        if (data.bookmarks.length < 35) {
-          setEndOfBookmarks(true);
-        }
-
-        if (data.bookmarks.length != 0) {
-          setLastTimestamp(data.bookmarks.at(-1).timestamp);
-        }
-      } else {
-        if (lastTimestamp == 9999) {
-          setBookmarks([]);
-        } else {
-          setEndOfBookmarks(true);
-        }
-      }
-    } else {
-      console.log(data.error);
-    }
-
-    setLoading(false);
-    setSearchTagsMode(true);
-  }
-
   const handleDelete = (i) => {
     let new_tags = tags.filter((tag, index) => index !== i);
     setTags(new_tags);
-    let new_timestamp = 9999;
-    setLastTimestamp(new_timestamp);
 
-    if (new_tags.length != 0) {
-      getTaggedBookmarks(new_timestamp, new_tags);
-    } else {
-      setEndOfBookmarks(false);
-      getYourBookmarks(new_timestamp);
+    if (new_tags.length == 0) {
+      setSearchTagsMode(false);
     }
   };
 
   const handleAddition = (tag) => {
     let new_tags = [...tags, tag];
     setTags(new_tags);
-    let new_timestamp = 9999;
-    setLastTimestamp(new_timestamp);
-
-    setEndOfBookmarks(false);
-    getTaggedBookmarks(new_timestamp, new_tags);
+    setSearchTagsMode(true);
   };
 
   return (
     <>
-      <Navbar 
-        homeView={true} 
-        communityView={false} 
-        profilePic={profile_pic} 
-      />
+      <Navbar homeView={true} communityView={false} profilePic={profile_pic} />
       <div className="home-container">
         <div className="home-search-tags-container">
           {tags.length == 0 && (
@@ -242,25 +191,41 @@ export default function Home({ token, profile_pic }) {
               </svg>
             </div>
           )}
-          {loading && (
+          {(isLoading || isTaggedLoading) && (
             <div className="loading-indicator-container">
               <h4>Loading...</h4>
             </div>
           )}
-          {!loading &&
-            bookmarks.map(function (item, i) {
-              return (
-                <Bookmark
-                  bookmark={item}
-                  key={i}
-                  index={i}
-                  communityView={false}
-                  showBookmarkFullView={showBookmarkFullView}
-                />
-              );
+          {!isLoading && !searchTagsMode && 
+            bookmarksArray.map((entries) => {
+              return entries?.bookmarks.map((item, i) => {
+                return (
+                  <Bookmark
+                    bookmark={item}
+                    key={i}
+                    index={i}
+                    communityView={false}
+                    showBookmarkFullView={showBookmarkFullView}
+                  />
+                );
+              });
+            })}
+          {!isTaggedLoading && searchTagsMode && 
+            taggedBookmarksArray.map((entries) => {
+              return entries?.bookmarks.map((item, i) => {
+                return (
+                  <Bookmark
+                    bookmark={item}
+                    key={i}
+                    index={i}
+                    communityView={false}
+                    showBookmarkFullView={showBookmarkFullView}
+                  />
+                );
+              });
             })}
         </div>
-        {!loading && bookmarks.length == 0 && !searchTagsMode && (
+        {!isLoading && bookmarksArray.length === 0 && !searchTagsMode && (
           <div className="empty-state-message">
             <h4>
               Add your first bookmark <br className="empty-state-br"></br>using
@@ -281,20 +246,21 @@ export default function Home({ token, profile_pic }) {
             </h4>
           </div>
         )}
-        {!loading && bookmarks.length == 0 && searchTagsMode && (
-          <h4 className="empty-state-message">No bookmarks found.</h4>
-        )}
-        {!loading &&
-          bookmarks.length + deletedBookmarksCount >= 35 &&
-          !endOfBookmarks && (
+        {!isTaggedLoading &&
+          taggedBookmarksArray[taggedBookmarksArray.length - 1]?.bookmarks.length == 0 &&
+          searchTagsMode && (
+            <h4 className="empty-state-message">No bookmarks found.</h4>
+          )}
+        {!isLoading &&
+          bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length >= 35 && (
             <div className="show-more-button-container">
               <button
                 type="button"
                 className="show-more-button"
                 onClick={() => {
                   searchTagsMode
-                    ? getTaggedBookmarks(lastTimestamp, tags)
-                    : getYourBookmarks(lastTimestamp);
+                    ? setTaggedSize(taggedSize + 1)
+                    : setSize(size + 1);
                 }}
               >
                 Load more bookmarks
@@ -315,8 +281,6 @@ export default function Home({ token, profile_pic }) {
               bookmarkId={router.query.bookmarkId}
               bookmarkFullViewData={bookmarkFullViewData}
               setBookmarkFullViewData={setBookmarkFullViewData}
-              bookmarks={bookmarks}
-              setBookmarks={setBookmarks}
               deleteBookmark={deleteBookmark}
               homeView={true}
               token={token}
@@ -327,13 +291,7 @@ export default function Home({ token, profile_pic }) {
 
       <AnimatePresence>
         {showAddBookmark && (
-          <AddBookmarkModal
-            setShown={setShowAddBookmark}
-            communityView={false}
-            bookmarks={bookmarks}
-            updateBookmarks={setBookmarks}
-            token={token}
-          />
+          <AddBookmarkModal setShown={setShowAddBookmark} token={token} />
         )}
       </AnimatePresence>
     </>
