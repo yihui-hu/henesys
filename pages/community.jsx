@@ -204,7 +204,7 @@ export default function Home({ token, profile_pic }) {
               });
             })}
         </div>
-        {!isLoading && bookmarksArray.length === 0 && !searchTagsMode && (
+        {!isLoading && bookmarksArray[bookmarksArray.length - 1]?.bookmarks.length == 0 && !searchTagsMode && (
           <div className="empty-state-message">
             No bookmarks to display.
           </div>

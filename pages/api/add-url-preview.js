@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 puppeteer.use(AdblockerPlugin({blockTrackers: true}))
 
 const handler = async (req, res) => {
+  res.setHeader('Cache-Control', 's-maxage=86400');
+
   try {
     const token = req.headers["x-access-token"];
     jwt.verify(token, process.env.FO_JWT_SECRET_KEY);

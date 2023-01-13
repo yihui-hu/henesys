@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { WithContext as ReactTags } from "react-tag-input";
 import useMediaQuery from "../hooks/useMediaQuery";
+import useSWR from "swr";
 import Link from "next/link";
 import Textarea from "react-textarea-autosize";
 import FullFilePreview from "../components/FullFilePreview";
@@ -20,9 +21,11 @@ export default function BookmarkFullView({
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
-  useEffect(() => {
-    getBookmark();
-  }, []);
+  const { data, isLoading } = useSWR(
+    `/api/get-bookmark-from-id`,
+    fetchBookmark,
+    { refreshInterval: 1000 }
+  );
 
   useEffect(() => {
     router.beforePopState(({ as }) => {
@@ -37,8 +40,8 @@ export default function BookmarkFullView({
     };
   }, [router]);
 
-  async function getBookmark() {
-    const res = await fetch(`/api/get-bookmark-from-id`, {
+  async function fetchBookmark(url) {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -338,10 +341,15 @@ export default function BookmarkFullView({
               <div className="bookmark-full-view-info-small-header">
                 <div>
                   <h4>added by {username}</h4>
-                  <h4 className="copy-link" onClick={() => {
-                    setLinkCopied(true);
-                    navigator.clipboard.writeText(`https://henesys.online/bookmark/${id}`);
-                  }}>
+                  <h4
+                    className="copy-link"
+                    onClick={() => {
+                      setLinkCopied(true);
+                      navigator.clipboard.writeText(
+                        `https://henesys.online/bookmark/${id}`
+                      );
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
@@ -354,7 +362,7 @@ export default function BookmarkFullView({
                         clipRule="evenodd"
                       />
                     </svg>{" "}
-                    { !linkCopied ? "Copy link" : "Copied!" }
+                    {!linkCopied ? "Copy link" : "Copied!"}
                   </h4>
                 </div>
                 <h4>

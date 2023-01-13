@@ -2,6 +2,8 @@ import connectDB from "../../middleware/mongodb";
 import Bookmark from "../../models/bookmark.model.js";
 
 const handler = async (req, res) => {
+  res.setHeader('Cache-Control', 's-maxage=86400');
+
   try {
     const { id } = req.body;
 

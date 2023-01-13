@@ -10,6 +10,8 @@ const s3 = new aws.S3({
 });
 
 const handler = async (req, res) => {
+  res.setHeader('Cache-Control', 's-maxage=86400');
+
   try {
     const token = req.headers["x-access-token"];
     const decoded = jwt.verify(token, process.env.FO_JWT_SECRET_KEY);
