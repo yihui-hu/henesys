@@ -19,7 +19,12 @@ const handler = async (req, res) => {
       .limit(limit)
       .sort({ timestamp: -1 });
 
-    const new_lastTimestamp = bookmarks?.at(-1).timestamp;
+    let new_lastTimestamp = 9999;
+    try {
+      new_lastTimestamp = bookmarks?.at(bookmarks.length - 1)?.timestamp;
+    } catch (err) {
+      console.log("Error retrieving new lastTimestamp.");
+    }
 
     return res.json({
       status: "ok",

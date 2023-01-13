@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
   // res.setHeader("Cache-Control", "s-maxage=1", "stale-while-revalidate");
+  
   try {
     let token;
     let decoded;
