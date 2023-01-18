@@ -123,6 +123,29 @@ export default function Landing() {
             <h4 className="landing-modal-caption">why</h4>
           </m.div>
         </div>
+        <m.div
+          className="landing-auth-secondary-button more"
+          style={{textAlign: "center", display: "grid", placeItems: "center", margin: "auto"}}
+          initial={{ y: "100px", opacity: 0 }}
+          animate={{ y: "0px", opacity: 1 }}
+          transition={{ duration: 0.7, type: "spring", delay: 0.42 }}
+        >
+              Scroll for demo reels
+        </m.div>
+        <div className="landing-reel-container">
+          <div className="landing-reel-modal">
+            <h4 className="landing-reel-header">Bookmark text, URLs, images and more in a flash</h4>
+            <video controls autoPlay muted loop playsinline src={"/reels/henesys_1.mov"} />
+          </div>
+          <div className="landing-reel-modal">
+            <h4 className="landing-reel-header">Search for bookmarks with tags... also in a flash</h4>
+            <video controls autoPlay muted loop playsinline src={"/reels/henesys_2.mov"} />
+          </div>
+          <div className="landing-reel-modal">
+            <h4 className="landing-reel-header">Fast updates to bookmark edits</h4>
+            <video controls autoPlay muted loop playsinline src={"/reels/henesys_3.mov"} />
+          </div>
+        </div>
       </div>
     </LazyMotion>
   );
