@@ -74,7 +74,7 @@ export default function Landing() {
             <m.div className="landing-modal">
               A simple and streamlined bookmarking application. Save files,
               images, URLs or plaintext for future reference. Add notes or tags
-              if you want or need to. That's it.
+              if you want or need to. That&apos;s it.
             </m.div>
             <h4 className="landing-modal-caption">what</h4>
           </m.div>
