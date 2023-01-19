@@ -153,7 +153,7 @@ export default function Landing() {
               muted
               loop
               playsinline
-              src={"/reels/henesys_1.mov"}
+              src={"/reels/henesys_1.mp4"}
             />
           </div>
           <h4 className="landing-reel-header">
@@ -165,7 +165,7 @@ export default function Landing() {
               muted
               loop
               playsinline
-              src={"/reels/henesys_2.mov"}
+              src={"/reels/henesys_2.mp4"}
             />
           </div>
           <h4 className="landing-reel-header">
@@ -177,7 +177,7 @@ export default function Landing() {
               muted
               loop
               playsinline
-              src={"/reels/henesys_3.mov"}
+              src={"/reels/henesys_3.mp4"}
             />
           </div>
           <h4 className="landing-reel-header">
@@ -189,7 +189,7 @@ export default function Landing() {
               muted
               loop
               playsinline
-              src={"/reels/henesys_3.mov"}
+              src={"/reels/henesys_3.mp4"}
             />
           </div>
         </div>
