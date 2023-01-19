@@ -152,7 +152,7 @@ export default function Landing() {
               autoPlay
               muted
               loop
-              playsinline
+              playsInline
               src={"/reels/henesys_1.mp4"}
             />
           </div>
@@ -164,7 +164,7 @@ export default function Landing() {
               autoPlay
               muted
               loop
-              playsinline
+              playsInline
               src={"/reels/henesys_2.mp4"}
             />
           </div>
@@ -176,7 +176,7 @@ export default function Landing() {
               autoPlay
               muted
               loop
-              playsinline
+              playsInline
               src={"/reels/henesys_3.mp4"}
             />
           </div>
@@ -188,7 +188,7 @@ export default function Landing() {
               autoPlay
               muted
               loop
-              playsinline
+              playsInline
               src={"/reels/henesys_3.mp4"}
             />
           </div>
