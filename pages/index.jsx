@@ -73,7 +73,8 @@ export default function Landing() {
           >
             <m.div className="landing-modal">
               A simple and streamlined bookmarking application. Save files,
-              images, URLs or plaintext for future reference.
+              images, URLs or plaintext for future reference. Add notes or tags
+              if you want or need to. That's it.
             </m.div>
             <h4 className="landing-modal-caption">what</h4>
           </m.div>
@@ -83,9 +84,9 @@ export default function Landing() {
             transition={{ duration: 0.7, type: "spring", delay: 0.21 }}
           >
             <div className="landing-modal">
-              Tag bookmarks for fast lookups or for your own system(s) of
-              organization. And with the community tab, keep up to date on what
-              your friends and others are bookmarking.
+              Tag bookmarks for fast lookups or create your own system(s) of
+              organization with them. And with the community tab, keep up to
+              date on what your friends and others are bookmarking.
             </div>
             <h4 className="landing-modal-caption">features</h4>
           </m.div>
@@ -95,7 +96,9 @@ export default function Landing() {
             transition={{ duration: 0.7, type: "spring", delay: 0.28 }}
           >
             <div className="landing-modal">
-              You can use it however you like honestly. Keep a private repository of interesting references or foster a small community of bookmarking fiends.
+              You can use it however you like honestly. There is the option to
+              keep your bookmarks private, but sharing interesting articles and
+              joining our small community of bookmarking fiends is recommended.
             </div>
             <h4 className="landing-modal-caption">how</h4>
           </m.div>
@@ -105,7 +108,7 @@ export default function Landing() {
             transition={{ duration: 0.7, type: "spring", delay: 0.35 }}
           >
             <div className="landing-modal">
-              I love {" "}
+              I love{" "}
               <Link
                 href="https://are.na"
                 target="_blank"
@@ -117,33 +120,77 @@ export default function Landing() {
               >
                 ✶✶ Are.na
               </Link>
-              , and wanted to try building a simpler, less feature-full but also
-              less complex version of it. More than anything, it is an experiment / exploration.
+              , and wanted to build a simpler, less feature-full but also less
+              complex version of it. More than anything, it is a small
+              experiment and exploration of mine, and I hope you enjoy using it
+              nonetheless.
             </div>
             <h4 className="landing-modal-caption">why</h4>
           </m.div>
         </div>
         <m.div
-          className="landing-auth-secondary-button more"
-          style={{textAlign: "center", display: "grid", placeItems: "center", margin: "auto"}}
+          className="landing-demo-reels"
+          style={{
+            textAlign: "center",
+            display: "grid",
+            placeItems: "center",
+            margin: "auto",
+            boxShadow: "rgba(0, 0, 0, 0.15) 0px 18px 50px -10px",
+          }}
           initial={{ y: "100px", opacity: 0 }}
           animate={{ y: "0px", opacity: 1 }}
           transition={{ duration: 0.7, type: "spring", delay: 0.42 }}
         >
-              Scroll for demo reels
+          Demo reels below
         </m.div>
         <div className="landing-reel-container">
-          <div className="landing-reel-modal">
-            <h4 className="landing-reel-header">Bookmark text, URLs, images and more in a flash</h4>
-            <video controls autoPlay muted loop playsinline src={"/reels/henesys_1.mov"} />
+          <h4 className="landing-reel-header">
+            Bookmark text, URLs, images and more
+          </h4>
+          <div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsinline
+              src={"/reels/henesys_1.mov"}
+            />
           </div>
-          <div className="landing-reel-modal">
-            <h4 className="landing-reel-header">Search for bookmarks with tags... also in a flash</h4>
-            <video controls autoPlay muted loop playsinline src={"/reels/henesys_2.mov"} />
+          <h4 className="landing-reel-header">
+            Search for bookmarks with tags
+          </h4>
+          <div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsinline
+              src={"/reels/henesys_2.mov"}
+            />
           </div>
-          <div className="landing-reel-modal">
-            <h4 className="landing-reel-header">Fast updates to bookmark edits</h4>
-            <video controls autoPlay muted loop playsinline src={"/reels/henesys_3.mov"} />
+          <h4 className="landing-reel-header">
+            Edit, modify and reorganise your bookmarks quickly
+          </h4>
+          <div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsinline
+              src={"/reels/henesys_3.mov"}
+            />
+          </div>
+          <h4 className="landing-reel-header">
+            View what others are bookmarking in the community
+          </h4>
+          <div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsinline
+              src={"/reels/henesys_3.mov"}
+            />
           </div>
         </div>
       </div>
