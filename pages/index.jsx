@@ -74,7 +74,7 @@ export default function Landing() {
             <m.div className="landing-modal">
               A simple and streamlined bookmarking application. Save files,
               images, URLs or plaintext for future reference. Add notes or tags
-              if you want or need to. That&apos;s it.
+              if you&apos;d like to. That&apos;s it.
             </m.div>
             <h4 className="landing-modal-caption">what</h4>
           </m.div>
@@ -97,8 +97,7 @@ export default function Landing() {
           >
             <div className="landing-modal">
               You can use it however you like honestly. There is the option to
-              keep your bookmarks private, but sharing interesting articles and
-              joining our small community of bookmarking fiends is recommended.
+              keep your bookmarks private, but joining our small community of bookmarking fiends and sharing interesting articles is recommended.
             </div>
             <h4 className="landing-modal-caption">how</h4>
           </m.div>
@@ -121,7 +120,7 @@ export default function Landing() {
                 ✶✶ Are.na
               </Link>
               , and wanted to build a simpler, less feature-full but also less
-              complex version of it. More than anything, it is a small
+              complex version of it. More than anything, it&apos;s a small
               experiment and exploration of mine, and I hope you enjoy using it
               nonetheless.
             </div>
@@ -143,11 +142,16 @@ export default function Landing() {
         >
           Demo reels below
         </m.div>
-        <div className="landing-reel-container">
+        <m.div
+          className="landing-reel-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, type: "spring", delay: 0.49 }}
+        >
           <h4 className="landing-reel-header">
             Bookmark text, URLs, images and more
           </h4>
-          <div>
+          <div className="landing-reel-video-div">
             <video
               autoPlay
               muted
@@ -157,9 +161,9 @@ export default function Landing() {
             />
           </div>
           <h4 className="landing-reel-header">
-            Search for bookmarks with tags
+            Fast, combinable lookup with tags
           </h4>
-          <div>
+          <div className="landing-reel-video-div">
             <video
               autoPlay
               muted
@@ -171,7 +175,7 @@ export default function Landing() {
           <h4 className="landing-reel-header">
             Edit, modify and reorganise your bookmarks quickly
           </h4>
-          <div>
+          <div className="landing-reel-video-div">
             <video
               autoPlay
               muted
@@ -183,7 +187,7 @@ export default function Landing() {
           <h4 className="landing-reel-header">
             View what others are bookmarking in the community
           </h4>
-          <div>
+          <div className="landing-reel-video-div">
             <video
               autoPlay
               muted
@@ -192,7 +196,7 @@ export default function Landing() {
               src={"/reels/henesys_3.mp4"}
             />
           </div>
-        </div>
+        </m.div>
       </div>
     </LazyMotion>
   );
