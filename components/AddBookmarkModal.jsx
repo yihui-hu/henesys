@@ -111,7 +111,6 @@ const AddBookmarkModal = ({
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "x-access-token": token,
             },
           }
         );
