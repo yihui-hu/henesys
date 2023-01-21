@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getServerSideProps } from "../lib/authStaticPages";
+import useMediaQuery from "../hooks/useMediaQuery";
 import Link from "next/link";
 
 export default function Landing() {
   const router = useRouter();
+  const isDesktop = useMediaQuery("(min-width: 1025px)");
+
+  const [isShown, setIsShown] = useState(true);
+  const [modalShown, setModalShown] = useState(false);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -96,8 +102,10 @@ export default function Landing() {
             transition={{ duration: 0.7, type: "spring", delay: 0.28 }}
           >
             <div className="landing-modal">
-              You can use it however you like honestly. There is an upcoming option to
-              keep your bookmarks private, but joining our small community of bookmarking fiends and sharing interesting articles is recommended.
+              You can use it however you like honestly. There is an upcoming
+              option to keep your bookmarks private, but joining our small
+              community of bookmarking fiends and sharing interesting articles
+              is recommended.
             </div>
             <h4 className="landing-modal-caption">how</h4>
           </m.div>
@@ -197,6 +205,120 @@ export default function Landing() {
             />
           </div> */}
         </m.div>
+        {!isDesktop && isShown && (
+          <div className="landing-add-to-homescreen">
+            <h4 onClick={() => setModalShown(true)}>
+              Add to homescreen{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="landing-arrow-up"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                />
+              </svg>
+            </h4>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="landing-cross"
+              onClick={() => setIsShown(false)}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        )}
+        {!isDesktop && modalShown && (
+          <div className="landing-add-to-homescreen-modal-container">
+            <div className="landing-add-to-homescreen-modal">
+              <div className="landing-add-to-homescreen-modal-header">
+                <h4>Add to homescreen!</h4>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="landing-cross"
+                  onClick={() => setModalShown(false)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+              <hr style={{ border: "0.5px solid #f6f6f6" }}></hr>
+              <div className="landing-add-to-homescreen-instruction">
+                <h4>For iOS devices</h4>
+                <ul>
+                  <li>Visit henesys on Safari</li>
+                  <li>
+                    Tap the share &nbsp;
+                    <svg width="13.0005" height="17.6147">
+                      <g>
+                        <rect
+                          height="17.6147"
+                          opacity="0"
+                          width="13.0005"
+                          x="0"
+                          y="0"
+                        />
+                        <path
+                          d="M2.2998 16.5308L10.7007 16.5308C12.2314 16.5308 13.0005 15.769 13.0005 14.2603L13.0005 6.95068C13.0005 5.44189 12.2314 4.68018 10.7007 4.68018L8.65723 4.68018L8.65723 5.85938L10.6787 5.85938C11.4038 5.85938 11.8213 6.25488 11.8213 7.0166L11.8213 14.1943C11.8213 14.9561 11.4038 15.3516 10.6787 15.3516L2.31445 15.3516C1.58203 15.3516 1.1792 14.9561 1.1792 14.1943L1.1792 7.0166C1.1792 6.25488 1.58203 5.85938 2.31445 5.85938L4.34326 5.85938L4.34326 4.68018L2.2998 4.68018C0.769043 4.68018 0 5.44189 0 6.95068L0 14.2603C0 15.769 0.769043 16.5308 2.2998 16.5308ZM6.49658 10.7959C6.81152 10.7959 7.08252 10.5322 7.08252 10.2246L7.08252 2.70264L7.03857 1.604L7.5293 2.12402L8.64258 3.31055C8.74512 3.42773 8.8916 3.48633 9.03809 3.48633C9.33838 3.48633 9.57275 3.2666 9.57275 2.96631C9.57275 2.8125 9.50684 2.69531 9.39697 2.58545L6.92139 0.197754C6.7749 0.0512695 6.65039 0 6.49658 0C6.3501 0 6.22559 0.0512695 6.07178 0.197754L3.59619 2.58545C3.48633 2.69531 3.42773 2.8125 3.42773 2.96631C3.42773 3.2666 3.64746 3.48633 3.95508 3.48633C4.09424 3.48633 4.25537 3.42773 4.35791 3.31055L5.46387 2.12402L5.96191 1.604L5.91797 2.70264L5.91797 10.2246C5.91797 10.5322 6.18164 10.7959 6.49658 10.7959Z"
+                          fill="#000000"
+                          fill-opacity="0.85"
+                        />
+                      </g>
+                    </svg>
+                    &nbsp; icon
+                  </li>
+                  <li>Scroll and tap "Add to Home Screen"</li>
+                </ul>
+              </div>
+              <hr style={{ border: "0.5px solid #f6f6f6" }}></hr>
+              <div className="landing-add-to-homescreen-instruction">
+                <h4>For Android devices</h4>
+                <ul>
+                  <li>Visit henesys on Chrome</li>
+                  <li>
+                    Tap the menu
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="landing-ellipse-menu"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                      />
+                    </svg>
+                    icon
+                  </li>
+                  <li>Tap "Add to Home Screen"</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </LazyMotion>
   );

@@ -234,9 +234,89 @@ button {
     border: 1px solid #e7e7e7;
     margin-bottom: 5rem;
   }
+
+  .landing-add-to-homescreen {
+    position: sticky;
+    bottom: 0;
+    width: 100vw;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+
+  .landing-arrow-up {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-cross {
+    width: 1.1rem;
+    height: 1.1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-share-icon {
+    width: 1rem;
+    height: 1rem;
+    color: black;
+  }
+
+  .landing-ellipse-menu {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-add-to-homescreen-modal-container {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .landing-add-to-homescreen-modal {
+    font-size: 1rem;
+    background-color: white;
+    width: 27rem;
+    max-height: 70vh;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: rgba(17, 12, 46, 0.1) 0px 48px 100px 0px;
+    overflow: scroll;
+  }
+
+  .landing-add-to-homescreen-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+  }
+
+  .landing-add-to-homescreen-instruction {
+    margin-top: 1rem;
+  }
+
+  li {
+    margin-left: -1rem;
+  }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 540px) {
   .landing-navbar {
     display: block;
     padding: 0.8rem;
@@ -292,5 +372,85 @@ button {
     border-radius: 0px;
     border: 0px solid black;
     margin-bottom: 5rem;
+  }
+
+  .landing-add-to-homescreen {
+    position: sticky;
+    bottom: 0;
+    width: 100vw;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    padding: 0.8rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+
+  .landing-arrow-up {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-cross {
+    width: 1.1rem;
+    height: 1.1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-share-icon {
+    width: 1rem;
+    height: 1rem;
+    color: black;
+  }
+
+  .landing-ellipse-menu {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+  }
+
+  .landing-add-to-homescreen-modal-container {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .landing-add-to-homescreen-modal {
+    font-size: 1rem;
+    background-color: white;
+    width: calc(100vw - 1.6rem);
+    max-height: 70vh;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: rgba(17, 12, 46, 0.1) 0px 48px 100px 0px;
+    overflow: scroll;
+  }
+
+  .landing-add-to-homescreen-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+  }
+
+  .landing-add-to-homescreen-instruction {
+    margin-top: 1rem;
+  }
+
+  li {
+    margin-left: -1rem;
   }
 }
