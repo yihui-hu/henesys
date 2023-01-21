@@ -94,19 +94,8 @@ const AddBookmarkModal = ({
     } else {
       // parse as URL
       if (isUrl(text)) {
-        // let s3_response = await fetch("api/add-url-preview", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     "x-access-token": token,
-        //   },
-        //   body: JSON.stringify({
-        //     url: text,
-        //   }),
-        // });
-
         let s3_response = await fetch(
-          `https://us-central1-lucky-wonder-374503.cloudfunctions.net/henesys-puppeteer?url=${text}`,
+          `https://henesys-puppeteer-v2-2m77xje5da-ue.a.run.app/?url=${text}`,
           {
             method: "POST",
             headers: {
