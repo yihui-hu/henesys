@@ -262,7 +262,7 @@ export default function Landing() {
                   />
                 </svg>
               </div>
-              <hr style={{ border: "0.5px solid #f6f6f6" }}></hr>
+              <hr style={{ border: "0.5px solid #e6e6e6" }}></hr>
               <div className="landing-add-to-homescreen-instruction">
                 <h4>For iOS devices</h4>
                 <ul>
@@ -290,7 +290,7 @@ export default function Landing() {
                   <li>Scroll and tap &quot;Add to Home Screen&quot;</li>
                 </ul>
               </div>
-              <hr style={{ border: "0.5px solid #f6f6f6" }}></hr>
+              <hr style={{ border: "0.5px solid #e6e6e6" }}></hr>
               <div className="landing-add-to-homescreen-instruction">
                 <h4>For Android devices</h4>
                 <ul>
@@ -313,7 +313,7 @@ export default function Landing() {
                     </svg>
                     icon
                   </li>
-                  <li>Tap &quot;Add to Home Screen&quot;</li>
+                  <li>Tap &quot;Add to Home screen&quot;</li>
                 </ul>
               </div>
             </div>
