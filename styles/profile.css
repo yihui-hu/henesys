@@ -82,3 +82,64 @@
   background-color: #535353;
   border: 1px solid #535353;
 }
+
+@media screen and (max-width: 1024px) {
+  .profile-container {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .profile-container {
+    padding: 0.8rem;
+  }
+
+  .profile-user-container {
+    display: flex;
+    flex-direction: column;
+    place-items: flex-start;
+  }
+
+  .profile-user-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: left;
+    min-width: auto;
+  }
+
+  .profile-pic {
+    width: 6rem;
+    height: 6rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 200px;
+  }
+
+  .profile-username {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .back-icon {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .profile-button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    min-width: 0;
+    max-width: 100vw !important;
+  }
+
+  .profile-secondary-button {
+    width: calc((100vw - 2.4rem) / 2);
+  }
+
+  .profile-primary-button {
+    width: calc((100vw - 2.4rem) / 2);
+  }
+}
