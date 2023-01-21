@@ -287,7 +287,7 @@ export default function Landing() {
                     </svg>
                     &nbsp; icon
                   </li>
-                  <li>Scroll and tap "Add to Home Screen"</li>
+                  <li>Scroll and tap &quot;Add to Home Screen&quot;</li>
                 </ul>
               </div>
               <hr style={{ border: "0.5px solid #f6f6f6" }}></hr>
@@ -313,7 +313,7 @@ export default function Landing() {
                     </svg>
                     icon
                   </li>
-                  <li>Tap "Add to Home Screen"</li>
+                  <li>Tap &quot;Add to Home Screen&quot;</li>
                 </ul>
               </div>
             </div>
