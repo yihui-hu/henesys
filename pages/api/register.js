@@ -23,7 +23,7 @@ const handler = async (req, res) => {
       profile_pic: default_profile_pic,
       username: req.body.username,
       email: req.body.email,
-      password: process.env.FO_WAITLIST_PASSWORD,
+      password: hashed_password,
     });
 
     try {
@@ -42,7 +42,7 @@ const handler = async (req, res) => {
       return res.json({ status: "error", message: "Error signing up. Please try again later." });
     }
 
-    res.json({ status: "ok", message: "Thanks for signing up! You'll receive an email shortly letting you know that you're in." });
+    res.json({ status: "ok", message: "" });
   } catch (err) {
     if (err.keyPattern.username == 1) {
       return res.json({ status: "error", error: "Username already in use." });

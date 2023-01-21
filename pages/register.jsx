@@ -50,7 +50,7 @@ export default function Register() {
     const data = await response.json();
 
     if (data.status == "ok") {
-      displaySuccessMsg(data.message);
+      router.push("/login");
     } else {
       displayErrorMsg(data.error);
     }
