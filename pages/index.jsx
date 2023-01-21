@@ -184,7 +184,7 @@ export default function Landing() {
               src={"/reels/henesys_3.mp4"}
             />
           </div>
-          <h4 className="landing-reel-header">
+          {/* <h4 className="landing-reel-header">
             View what others are bookmarking in the community
           </h4>
           <div className="landing-reel-video-div">
@@ -195,7 +195,7 @@ export default function Landing() {
               playsInline
               src={"/reels/henesys_3.mp4"}
             />
-          </div>
+          </div> */}
         </m.div>
       </div>
     </LazyMotion>
