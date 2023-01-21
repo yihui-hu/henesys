@@ -258,7 +258,7 @@ button {
   .landing-modal-container {
     height: auto;
     gap: 0.8rem;
-    margin: 0.8rem;
+    margin: 0.8rem !important;
   }
 
   .landing-modal {
