@@ -197,7 +197,7 @@ const AddBookmarkModal = ({
         <FocusOn
           autoFocus={false}
           onEscapeKey={() => setShown(false)}
-          onClickOutside={isDesktop ? () => setShown(false) : undefined}
+          onClickOutside={isDesktop && !addingBookmark ? () => setShown(false) : undefined}
         >
           <m.div
             className="add-bookmark-modal"
