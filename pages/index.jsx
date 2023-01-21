@@ -96,7 +96,7 @@ export default function Landing() {
             transition={{ duration: 0.7, type: "spring", delay: 0.28 }}
           >
             <div className="landing-modal">
-              You can use it however you like honestly. There is the option to
+              You can use it however you like honestly. There is an upcoming option to
               keep your bookmarks private, but joining our small community of bookmarking fiends and sharing interesting articles is recommended.
             </div>
             <h4 className="landing-modal-caption">how</h4>
