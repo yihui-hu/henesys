@@ -245,7 +245,7 @@ export default function Landing() {
           <div className="landing-add-to-homescreen-modal-container">
             <div className="landing-add-to-homescreen-modal">
               <div className="landing-add-to-homescreen-modal-header">
-                <h4>Add to homescreen!</h4>
+                <h4>For iOS devices</h4>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -262,9 +262,7 @@ export default function Landing() {
                   />
                 </svg>
               </div>
-              <hr style={{ border: "0.5px solid #e6e6e6" }}></hr>
               <div className="landing-add-to-homescreen-instruction">
-                <h4>For iOS devices</h4>
                 <ul>
                   <li>Visit henesys on Safari</li>
                   <li>

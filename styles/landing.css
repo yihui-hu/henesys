@@ -387,7 +387,7 @@ button {
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    padding-bottom: 20px !important;
+    /* padding-bottom: 20px !important; */
   }
 
   .landing-arrow-up {
