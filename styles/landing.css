@@ -379,7 +379,7 @@ button {
     bottom: 0;
     width: 100vw;
     background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 20px 0px;
 
     padding: 0.8rem;
 
@@ -387,6 +387,7 @@ button {
     justify-content: space-between;
     align-items: center;
     margin: auto;
+    padding-bottom: 20px !important;
   }
 
   .landing-arrow-up {
