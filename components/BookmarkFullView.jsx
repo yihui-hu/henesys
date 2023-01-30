@@ -340,7 +340,7 @@ export default function BookmarkFullView({
                   <h4>added by {username}</h4>
                   <h4 className="copy-link" onClick={() => {
                     setLinkCopied(true);
-                    navigator.clipboard.writeText(`https://henesys.online/bookmark/${id}`);
+                    navigator.clipboard.writeText(window.location.href);
                   }}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
