@@ -126,6 +126,14 @@ video {
   border: 1px solid #e7e7e7;
   margin-bottom: 5rem;
 }
+/* 
+img {
+  width: 70vw !important;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #e7e7e7;
+  margin-bottom: 5rem;
+} */
 
 br {
   display: none;

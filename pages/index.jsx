@@ -192,8 +192,8 @@ export default function Landing() {
               src={"/reels/henesys_3.mp4"}
             />
           </div>
-          {/* <h4 className="landing-reel-header">
-            View what others are bookmarking in the community
+          <h4 className="landing-reel-header">
+            Dynamic media previews for sharing bookmarks
           </h4>
           <div className="landing-reel-video-div">
             <video
@@ -201,9 +201,9 @@ export default function Landing() {
               muted
               loop
               playsInline
-              src={"/reels/henesys_3.mp4"}
+              src={"/reels/henesys_4.mp4"}
             />
-          </div> */}
+          </div>
         </m.div>
         {!isDesktop && isShown && (
           <div className="landing-add-to-homescreen">
