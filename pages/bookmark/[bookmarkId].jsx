@@ -211,9 +211,7 @@ export default function BookmarkPage({ isLoggedIn, bookmarkData }) {
                     className="copy-link"
                     onClick={() => {
                       setLinkCopied(true);
-                      navigator.clipboard.writeText(
-                        `https://henesys.online/bookmark/${id}`
-                      );
+                      navigator.clipboard.writeText(window.location.href);
                     }}
                   >
                     <svg
