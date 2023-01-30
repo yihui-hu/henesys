@@ -15,12 +15,12 @@ const handler = async (req, res) => {
       });
     }
 
-    if (user.password == process.env.FO_WAITLIST_PASSWORD) {
-      return res.json({
-        status: "error",
-        error: "Hang tight, you'll be let in shortly!",
-      });
-    }
+    // if (user.password == process.env.FO_WAITLIST_PASSWORD) {
+    //   return res.json({
+    //     status: "error",
+    //     error: "Hang tight, you'll be let in shortly!",
+    //   });
+    // }
 
     const validPassword = await bcrypt.compare(
       req.body.password,
