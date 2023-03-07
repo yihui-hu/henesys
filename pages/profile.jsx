@@ -46,7 +46,7 @@ export default function Profile({ user }) {
           </div>
         </div>
         <div className="profile-button-container">
-          <button className="profile-secondary-button">Delete account</button>
+          {/* <button className="profile-secondary-button">Delete account</button> */}
           <button onClick={logout} className="profile-primary-button">Log out</button>
         </div>
       </div>
